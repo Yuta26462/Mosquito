@@ -4,7 +4,7 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 {
 	if (DxLib_Init() == -1) return -1;
 
-	DrawPixel(320, 240, 0xffffff);
+	DrawBox(320, 240,500, 600, 0xffffff,FALSE);
 
 	WaitKey();
 
