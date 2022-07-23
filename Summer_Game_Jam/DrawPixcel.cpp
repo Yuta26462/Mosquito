@@ -8,6 +8,7 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	if (DxLib_Init() == -1) return -1;
 
 	DrawBox(320, 240,500, 600, 0xffffff,FALSE);
+	DrawString(100, 100, "Hallo World", 0xffffff);
 
 	WaitKey();
 
