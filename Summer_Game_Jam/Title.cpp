@@ -19,4 +19,6 @@ BaseScene* Title::Update() {
 void Title::Draw() const {
 	//タイトル画像表示
 	DrawGraph(0, 0, Title_img, FALSE);
+	DrawString(100, 400, "zキーで次のシーンへ", 0x000000);
+	DrawString(400, 400, "スペースキーで終了", 0x000000);
 }

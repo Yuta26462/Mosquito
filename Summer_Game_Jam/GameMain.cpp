@@ -15,4 +15,5 @@ BaseScene* GameMain::Update() {
 
 void GameMain::Draw() const {
 	DrawGraph(0, 0, GameMain_img, FALSE);
+	DrawString(250, 400, "zキーで次のシーンへ", 0x000000);
 }
