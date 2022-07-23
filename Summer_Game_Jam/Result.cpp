@@ -15,5 +15,6 @@ BaseScene* Result::Update() {
 
 void Result::Draw() const {
 	DrawGraph(0, 0, Result_img, FALSE);
+	DrawString(280, 220, "Result画面", 0x000000);
 	DrawString(250, 400, "zキーで次のシーンへ", 0x000000);
 }

@@ -16,12 +16,17 @@ int LoadImages();           //画像読み込み関数
 
 int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
+    SetMainWindowText("タイトル未定");
+
     ChangeWindowMode(TRUE); //ウィンドウモードを有効
     SetWindowSizeChangeEnableFlag(FALSE, FALSE); //ウィンドウを手動で変更できないようにし、ウィンドウのサイズに合わせて拡大しないようにする
     SetWindowSize(640, 480); //画面サイズを横640、480に変更
     if (DxLib_Init() == -1) return -1;	// DXライブラリの初期化処理
-    SetDrawScreen(DX_SCREEN_BACK);	// 描画先画面を裏にする
     if (LoadImages() == -1)return -1;
+
+    SetDrawScreen(DX_SCREEN_BACK);	// 描画先画面を裏にする
+    
+    ChangeFontType(DX_FONTTYPE_ANTIALIASING_4X4);   //フォントをアンチエイジング対応4×4にする。
 
     SceneManager scenMG(new Title());
     // ゲームループ
