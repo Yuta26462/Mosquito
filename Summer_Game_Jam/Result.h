@@ -1,3 +1,4 @@
+#pragma once
 #include "BaseScene.h"
 
 class Result : public BaseScene {
