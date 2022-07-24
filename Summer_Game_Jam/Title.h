@@ -3,7 +3,7 @@
 
 class Title : public BaseScene {
 private:
-
+	int SelectNo;
 public:
 	virtual ~Title() {};
 	virtual BaseScene* Update() override;
