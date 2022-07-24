@@ -19,8 +19,8 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     SetMainWindowText("タイトル未定");
 
     ChangeWindowMode(TRUE); //ウィンドウモードを有効
-    SetWindowSizeChangeEnableFlag(FALSE, FALSE); //ウィンドウを手動で変更できないようにし、ウィンドウのサイズに合わせて拡大しないようにする
-    SetWindowSize(640, 480); //画面サイズを横640、480に変更
+    SetGraphMode(920, 690,16);  //解像度を決定
+    
     if (DxLib_Init() == -1) return -1;	// DXライブラリの初期化処理
     if (LoadImages() == -1)return -1;
 
@@ -51,8 +51,8 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 }
 
 int LoadImages() {
-    if ((Title_img = LoadGraph("images/Title.png")) == -1)return -1;
-    if ((GameMain_img = LoadGraph("images/background.png")) == -1)return -1;
-    if ((Result_img = LoadGraph("images/Ranking.png")) == -1)return -1;
+    if ((Title_img = LoadGraph("Resource/Images/Title.png")) == -1)return -1;
+    if ((GameMain_img = LoadGraph("Resource/Images/background.png")) == -1)return -1;
+    if ((Result_img = LoadGraph("Resource/Images/Ranking.png")) == -1)return -1;
     return 0;
 }
