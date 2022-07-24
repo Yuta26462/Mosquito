@@ -1,5 +1,11 @@
 #include "SceneManager.h"
 
+void SceneManager::Initialize() const {
+
+}
+void SceneManager::Finalize() const {
+
+}
 BaseScene* SceneManager::Update() {
 	BaseScene* p = nScene->Update();
 	if (p != nScene) {
