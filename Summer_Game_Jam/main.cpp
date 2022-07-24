@@ -51,8 +51,8 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 }
 
 int LoadImages() {
-    if ((Title_img = LoadGraph("images/Title.png")) == -1)return -1;
-    if ((GameMain_img = LoadGraph("images/background.png")) == -1)return -1;
-    if ((Result_img = LoadGraph("images/Ranking.png")) == -1)return -1;
+    if ((Title_img = LoadGraph("Resource/images/Title.png")) == -1)return -1;
+    if ((GameMain_img = LoadGraph("Resource/images/background.png")) == -1)return -1;
+    if ((Result_img = LoadGraph("Resource/images/Ranking.png")) == -1)return -1;
     return 0;
 }

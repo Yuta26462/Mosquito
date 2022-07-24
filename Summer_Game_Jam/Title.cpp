@@ -1,11 +1,13 @@
 #include "Title.h"
 #include "GameMain.h"
+#include "enemy.h"
 #include "main.h"
 #include "DxLib.h"
 
 BaseScene* Title::Update() {
 	//zキーでゲームメインへ移動
 	if (g_KeyFlg & PAD_INPUT_A) {
+		
 		return new GameMain();
 	}//スペースキーでゲーム終了
 	else if (g_KeyFlg & PAD_INPUT_M) {
