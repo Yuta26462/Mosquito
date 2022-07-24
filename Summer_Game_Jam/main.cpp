@@ -19,7 +19,7 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     SetMainWindowText("タイトル未定");
 
     ChangeWindowMode(TRUE); //ウィンドウモードを有効
-    SetGraphMode(920, 690,16);  //解像度を決定
+    SetWindowSize(1280, 960);
     
     if (DxLib_Init() == -1) return -1;	// DXライブラリの初期化処理
     if (LoadImages() == -1)return -1;
