@@ -43,8 +43,8 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         GetJoypadAnalogInput(&JoyPadX, &JoyPadY, DX_INPUT_PAD1);    //アナログスティック座標を取得
         SetJoypadDeadZone(DX_INPUT_PAD1, 0.3f);     //角度の制限を緩和
 
-        //SelectX = 0;
-        //SelectY = 0;
+        SelectX = 0;
+        SelectY = 0;
 
         if (++PadTimer > 10) {
             PadTimer = 0;
