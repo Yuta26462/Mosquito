@@ -1,4 +1,5 @@
 #include "enemy.h"
+#include "player.h"
 #include "main.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -152,6 +153,29 @@ void Enemy::ChangeAngle(Enemy* enemy, int num) {
 	float rad = enemy[num].Enemy_angle * (float)M_PI * 2;
 	Move_X = (int)(5 * cosf(rad));
 	Move_Y = (int)(5 * sinf(rad));
+}
+
+void HitEnemy() {
+	if (AttackFlg[AreaNum] == true)
+	{
+		switch (AreaNum)
+		{
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 float Enemy::GetEnemyX() const{

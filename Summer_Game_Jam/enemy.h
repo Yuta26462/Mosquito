@@ -22,6 +22,7 @@ public:
 	void CreateEnemy(Enemy* enemy/*,int died_enemy*/);		//蚊生成関数
 	void ChangeAngle(Enemy* enemy,int num);		//蚊角度変更関数
 	void GetEnemyPos(float* enemy_x, int* enemy_y, int enemy_pos);					//蚊出現位置決定関数
+	void HitEnemy();
 	float GetEnemyX() const;
 	int GetEnemyY() const;
 };
