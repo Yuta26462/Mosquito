@@ -20,86 +20,78 @@ void Enemy::InitEnemy(Enemy* enemy) {
 		enemy[i].pos = 0;
 		enemy[i].Enemy_time = 0;
 		enemy[i].Spawn_flg = false;
-		enemy[i].Enemey_Area = 0;
 	}
 	enemy->Enemy_cnt = 0;
 }
 
-void Enemy::DrawEnemy(int enemy_x, int enemy_y) const{
-	DrawCircle(enemy_x, enemy_y, 10, 0x000000, FALSE);
-	//DrawRotaGraph(enemy_x, enemy_y, 10, 0.2, 0, Title_img, TRUE, FALSE);
+void Enemy::DrawEnemy(int enemy_x, int enemy_y, bool flg) const{
+	if (flg) {
+		DrawCircle(enemy_x, enemy_y, 10, 0x000000, FALSE);
+	}
 }
 
 void Enemy::MoveEnemy(Enemy* enemy) {
 	if (timer++ % 25 == 0 && enemy->Enemy_cnt <= 10) {
 		enemy->CreateEnemy(enemy/*,enemy->Died_enemy*/);
 	}
-	//if (timer % 2) {
-	for (int i = 0; i < 10; i++) {	
-		if (enemy[i].flg) {
-
-			if ((enemy[i].NowX <= 20 || enemy[i].NowX >= 620) && !enemy[i].Spawn_flg) {
-				if (enemy[i].pos <= 1) {
-					enemy[i].NowX += Move_X;
-				}
-				else
-				{
-					enemy[i].NowX -= Move_X;
-				}
-			}
-			else {
-				enemy[i].NowX = SCREEN_WIDTH - 5;
-				enemy[i].Spawn_flg = true;
-			}
-
-			if (enemy[i].Enemy_time++ % 300) {
-				enemy[i].Enemy_vector = GetRand(3);
-			}
-			if (enemy[i].Spawn_flg) {
-				switch (enemy[i].Enemy_vector) {
-				case UP:
-					enemy[i].NowY -= Move_Y;
-					break;
-				case DOWN:
-					enemy[i].NowY += Move_Y;
-					break;
-				case RIGHT:
+	if (timer % 2) {
+		for (int i = 0; i < 10; i++) {
+			if (enemy[i].flg) {
+				if ((enemy[i].NowX <= 20 || enemy[i].NowX >= 620) && !enemy[i].Spawn_flg) {
 					if (enemy[i].pos <= 1) {
-						enemy[i].NowX += Move_X - 5;
+						enemy[i].NowX += Move_X;
 					}
 					else
 					{
-						enemy[i].NowY += Move_Y - 5;
+						enemy[i].NowX -= Move_X;
 					}
-					break;
-				case LEFT:
-					if (enemy[i].pos <= 1) {
-						enemy[i].NowX -= Move_X - 5;
-					}
-					else
-					{
-						enemy[i].NowX -= Move_Y - 5;
-					}
-					break;
-				default:
-					break;
+				}
+				else {
+					enemy[i].Spawn_flg = true;
 				}
 
-				//enemy[i].Enemey_Area=enemy[i].x
-
-
-				if (enemy[i].Spawn_flg && (enemy[i].NowX < -5 || enemy[i].NowX > 645 || enemy[i].NowY < -5 || enemy[i].NowY > 485)) {
-					enemy[i].flg = false;
-					enemy[i].Spawn_flg = false;
-					enemy[i].Enemy_time = 0;
-					enemy->Enemy_cnt--;
+				if (enemy[i].Enemy_time++ % 300) {
+					enemy[i].Enemy_vector = GetRand(3);
 				}
+				if (enemy[i].Spawn_flg) {
+					switch (enemy[i].Enemy_vector) {
+					case UP:
+						enemy[i].NowY -= Move_Y;
+						break;
+					case DOWN:
+						enemy[i].NowY += Move_Y;
+						break;
+					case RIGHT:
+						if (enemy[i].pos <= 1) {
+							enemy[i].NowX += Move_X - 5;
+						}
+						else
+						{
+							enemy[i].NowY += Move_Y - 5;
+						}
+						break;
+					case LEFT:
+						if (enemy[i].pos <= 1) {
+							enemy[i].NowX -= Move_X - 5;
+						}
+						else
+						{
+							enemy[i].NowX -= Move_Y - 5;
+						}
+						break;
+					default:
+						break;
+					}
 
-				
+					enemy[i].Enemy_Area = enemy[i].NowX / 213;
+					if (enemy[i].NowY > 240)enemy[i].Enemy_Area+3;
+					if (AttackFlg[enemy[i].Enemy_Area] || (enemy[i].Spawn_flg && (enemy[i].NowX < -5 || enemy[i].NowX > 645 || enemy[i].NowY < -5 || enemy[i].NowY > 485))) {
+						HitEnemy(enemy, i);
+					}
+				}
 			}
 		}
 	}
-		
 }
 void Enemy::CreateEnemy(Enemy* enemy) {
 	for (int i = 0; i < 10; i++) {
@@ -107,8 +99,6 @@ void Enemy::CreateEnemy(Enemy* enemy) {
 			enemy[i].flg = true;
 			enemy[i].pos = GetRand(3);
 			GetEnemyPos(&enemy[i].NowX, &enemy[i].NowY, enemy[i].pos);
-			enemy[i].Enemy_angle = 0.625;
-			ChangeAngle(enemy, i);
 			enemy->Enemy_cnt++;
 		}
 	}
@@ -143,30 +133,14 @@ void Enemy::GetEnemyPos(int* enemy_NowX, int* enemy_NowY, int enemy_pos) {
 //	Move_Y = (int)(5 * sinf(rad));
 //}
 
-void HitEnemy() {
-	if (AttackFlg[AreaNum] == true)
-	{
-		switch (AreaNum)
-		{
-		case 0:
-			break;
-		case 1:
-			break;
-		case 2:
-			break;
-		case 3:
-			break;
-		case 4:
-			break;
-		case 5:
-			break;
-		default:
-			break;
-		}
-	}
+void Enemy::HitEnemy(Enemy* enemy,int num) {
+	enemy[num].flg = false;
+	enemy->Enemy_cnt--;
+	enemy[num].Spawn_flg = false;
+	enemy[num].Enemy_time = 0;
 }
 
-float Enemy::GetEnemyX() const{
+int Enemy::GetEnemyX() const{
 	return NowX;
 }
 
@@ -174,6 +148,9 @@ int Enemy::GetEnemyY() const {
 	return NowY;
 }
 
+bool Enemy::GetEnemyFlg() const{
+	return flg;
+}
 
 ////ƒ{[ƒ‹‚ÌˆÚ“®
 		//enemy[i].NowX += enemy->Move_X;

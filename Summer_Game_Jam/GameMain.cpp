@@ -34,7 +34,7 @@ void GameMain::Finalize() const {
 void GameMain::Draw() const{
 	DrawGraph(0, 0, GameMain_img, FALSE);
 	for (int i = 0; i < 10; i++) {
-		enemy[i].DrawEnemy(enemy[i].GetEnemyX(),enemy[i].GetEnemyY());
+		enemy[i].DrawEnemy(enemy[i].GetEnemyX(),enemy[i].GetEnemyY(),enemy[i].GetEnemyFlg());
 	}
 	
 	DrawString(270, 220, "GameMain‰æ–Ê", 0x000000);
