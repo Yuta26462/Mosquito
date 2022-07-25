@@ -37,17 +37,21 @@ void Player_Update() {
 	}
 	if (AttackFlg == true) {
 		AttackCount++;
-		if (AttackCount > 31) {
+		if (AttackCount > 8) {
 			AttackFlg = false;
 			AttackCount = 0;
 		}
 	}
 }
 void Player_Draw() {
-	DrawLine(0, 240, 640, 240, 0xffffff);
-	DrawLine(213, 0, 213, 480, 0xffffff);
-	DrawLine(426, 0, 426, 480, 0xffffff);
-	DrawBox(BoxNumber_x * 213, BoxNumber_y * 240, BoxNumber_x * 213 + 214, BoxNumber_y * 241 + 241, BoxColor, FALSE);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
+	DrawLine(0, 240, 640, 240, 0x000000);
+	DrawLine(213, 0, 213, 480, 0x000000);
+	DrawLine(426, 0, 426, 480, 0x000000);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 64);
+	DrawBox(BoxNumber_x * 213, BoxNumber_y * 240, BoxNumber_x * 213 + 214, BoxNumber_y * 241 + 241, BoxColor, TRUE);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 	if (AttackFlg == true) {
 		DrawRotaGraph(BoxNumber_x * 213 + 106, BoxNumber_y * 240 + 120, 0.3, 0, WeaponImage,TRUE, FALSE);
 		DrawString(300, 200, "ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚æ", 0x000000);
