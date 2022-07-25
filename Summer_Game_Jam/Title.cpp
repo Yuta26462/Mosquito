@@ -3,6 +3,14 @@
 #include "Result.h"
 #include "main.h"
 #include "DxLib.h"
+#include"player.h"
+
+void Title::Initialize() const {
+	Player_Initialize();
+}
+void Title::Finalize() const{
+	Player_Finalize();
+}
 
 Title::Title() {
 	SelectNo = 0;
@@ -36,7 +44,7 @@ BaseScene* Title::Update() {
 	if (g_KeyFlg & PAD_INPUT_A) {
 		return new GameMain();
 	}//スペースキーでゲーム終了
-	else if (g_KeyFlg & PAD_INPUT_M) {
+	else if (g_KeyFlg & PAD_INPUT_Y) {
 		return nullptr;
 	}
 	else {
