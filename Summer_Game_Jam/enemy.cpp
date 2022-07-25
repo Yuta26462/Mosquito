@@ -12,6 +12,7 @@
 
 static int timer = 0;
 
+
 void Enemy::InitEnemy(Enemy* enemy) {
 	for (int i = 0; i < 10; i++) {
 		enemy[i].flg = false;
@@ -86,7 +87,7 @@ void Enemy::MoveEnemy(Enemy* enemy) {
 					enemy[i].Enemy_Area = enemy[i].NowX / 213;
 					if (enemy[i].NowY > 240)enemy[i].Enemy_Area+3;
 					if (AttackFlg[enemy[i].Enemy_Area] || (enemy[i].Spawn_flg && (enemy[i].NowX < -5 || enemy[i].NowX > 645 || enemy[i].NowY < -5 || enemy[i].NowY > 485))) {
-						HitEnemy(enemy, i);
+						DeleteEnemy(enemy, i);
 					}
 				}
 			}
@@ -133,7 +134,7 @@ void Enemy::GetEnemyPos(int* enemy_NowX, int* enemy_NowY, int enemy_pos) {
 //	Move_Y = (int)(5 * sinf(rad));
 //}
 
-void Enemy::HitEnemy(Enemy* enemy,int num) {
+void Enemy::DeleteEnemy(Enemy* enemy,int num) {
 	enemy[num].flg = false;
 	enemy->Enemy_cnt--;
 	enemy[num].Spawn_flg = false;

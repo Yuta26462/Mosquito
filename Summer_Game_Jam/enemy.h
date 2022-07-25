@@ -7,7 +7,6 @@ private:
 	bool flg;
 	int pos;
 	int NowX, NowY;       //Œ»İ’n
-	//int Move_X, Move_Y;   ˆÚ“®—Ê
 	float Enemy_angle;
 	int Enemy_cnt;
 	int Enemy_time;
@@ -21,7 +20,7 @@ public:
 	void MoveEnemy(Enemy* enemy);		//‰áˆÚ“®ŠÖ”
 	void CreateEnemy(Enemy* enemy);		//‰á¶¬ŠÖ”
 	void GetEnemyPos(int* enemy_x, int* enemy_y, int enemy_pos);					//‰áoŒ»ˆÊ’uŒˆ’èŠÖ”
-	void HitEnemy(Enemy* enemy ,int num);
+	void DeleteEnemy(Enemy* enemy ,int num);
 	int GetEnemyX() const;
 	int GetEnemyY() const;
 	bool GetEnemyFlg() const;

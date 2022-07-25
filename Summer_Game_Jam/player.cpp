@@ -56,6 +56,7 @@ void Player_Draw() {
 	DrawBox(BoxNumber_x * 213, BoxNumber_y * 240, BoxNumber_x * 213 + 214, BoxNumber_y * 241 + 241, BoxColor, FALSE);
 	DrawFormatString(100, 100, 0x000000, "areanum:%d", AreaNum);
 	if (AttackFlg[AreaNum] == true) {
+		DrawFormatString(BoxNumber_x * 213 + 106, BoxNumber_y * 240 + 120, 0x000000, "attackflg:%d", AttackFlg[AreaNum]);
 		DrawFormatString(100, 100, 0x000000, "areanum:%d", AreaNum);
 		DrawRotaGraph(BoxNumber_x * 213 + 106, BoxNumber_y * 240 + 120, 0.3, 0, WeaponImage,TRUE, FALSE);
 		DrawString(300, 200, "ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚æ", 0x000000);
