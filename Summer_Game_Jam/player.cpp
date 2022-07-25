@@ -2,8 +2,10 @@
 #include"player.h"
 #include"main.h"
 
+bool AttackFlg;
+
 void Player_Initialize() {
-	WeaponImage = LoadGraph("images/Weapon.png");
+	WeaponImage = LoadGraph("Resource/Images/Weapon.png");
 	BoxColor = GetColor(255,0,0);
 	BoxNumber_x = 0;
 	BoxNumber_y = 0;
@@ -45,7 +47,7 @@ void Player_Draw() {
 	DrawLine(426, 0, 426, 480, 0xffffff);
 	DrawBox(BoxNumber_x * 213, BoxNumber_y * 240, BoxNumber_x * 213 + 214, BoxNumber_y * 241 + 241, BoxColor, FALSE);
 	if (AttackFlg == true) {
-		DrawRotaGraph(BoxNumber_x * 213, BoxNumber_y * 240, 0.5, 0, WeaponImage,TRUE, FALSE);
+		DrawRotaGraph(BoxNumber_x * 213 + 106, BoxNumber_y * 240 + 120, 0.25, 0, WeaponImage,TRUE, FALSE);
 		DrawString(300, 200, "ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚æ", 0x000000);
 	}
 }

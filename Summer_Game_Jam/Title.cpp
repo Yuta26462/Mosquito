@@ -2,11 +2,13 @@
 #include "GameMain.h"
 #include "main.h"
 #include "DxLib.h"
+#include"player.h"
 
 void Title::Initialize() const {
-
+	Player_Initialize();
 }
 void Title::Finalize() const{
+	Player_Finalize();
 }
 
 BaseScene* Title::Update() {
