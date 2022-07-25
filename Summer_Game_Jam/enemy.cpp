@@ -19,6 +19,7 @@ void Enemy::InitEnemy(Enemy* enemy) {
 		enemy[i].pos = 0;
 		enemy[i].Enemy_time = 0;
 		enemy[i].Spawn_flg = false;
+		enemy[i].Enemey_Area = 0;
 	}
 	enemy->Enemy_cnt = 0;
 }
@@ -30,7 +31,7 @@ void Enemy::DrawEnemy(int enemy_x, int enemy_y) const{
 
 void Enemy::MoveEnemy(Enemy* enemy) {
 	if (timer++ % 25 == 0 && enemy->Enemy_cnt <= 10) {
-		enemy->CreateEnemy(enemy,enemy->Died_enemy);
+		enemy->CreateEnemy(enemy/*,enemy->Died_enemy*/);
 	}
 	//if (timer % 2) {
 	for (int i = 0; i < 10; i++) {
@@ -93,91 +94,25 @@ void Enemy::MoveEnemy(Enemy* enemy) {
 				default:
 					break;
 				}
-				/*if (Enemy_vector <= 1) {
-					enemy[i].x += (GetRand(2) - 1);
+
+				//enemy[i].Enemey_Area=enemy[i].x
+
+
+				if (enemy[i].Spawn_flg && (enemy[i].NowX < -5 || enemy[i].NowX > 645 || enemy[i].NowY < -5 || enemy[i].NowY > 485)) {
+					enemy[i].flg = false;
+					enemy[i].Spawn_flg = false;
+					enemy[i].Enemy_time = 0;
+					enemy->Enemy_cnt--;
 				}
-				else {
-					enemy[i].y += (GetRand(2) - 1);
-				}*/
-			}
-		if (enemy[i].NowY < 5)                         //上の壁
-		{
-			enemy[i].Enemy_angle = (1 - enemy[i].Enemy_angle);
-			ChangeAngle(enemy,i);
-		}
 
-	//	//画面下を超えたらゲームオーバー
-	//	if (enemy[i].NowY > SCREEN_HIGHT + 5) {
-	//		ballState = BALL_STATE::IDLE;
-	//		}
-	//	}
-
-
-	//	if (ballState != BALL_STATE::IDLE) {
-	//		enemy[i].NowX += g_MoveX;
-	//		enemy[i].NowY += g_MoveY;
-	//	}
-	//	else {
-	//		enemy[i].NowX = bar.getX() + (bar.getWidth() / 2);
-	//		enemy[i].NowY = bar.getY() - ((bar.getHeight() + radius) / 2);
-	//	}
-	//}
-
-
-			if (enemy[i].Spawn_flg && (enemy[i].NowX < -5 || enemy[i].NowX > 645 || enemy[i].NowY < -5 || enemy[i].NowY > 485)) {
-				enemy[i].flg = false;
-				enemy[i].Spawn_flg = false;
-				enemy[i].Enemy_time = 0;
-				enemy->Enemy_cnt--;
+				
 			}
 		}
 	}
-		//}
-	//for (int i = 0; i < 10; i++) {
-
-	//	//ボールの移動
-	//	enemy[i].x += enemy->Move_X;
-	//	enemy[i].y += enemy->Move_Y;
-
-	//	//壁・天井での反射
-	//	if (enemy[i].x < 5 || enemy[i].x > SCREEN_WIDTH - 5)      //横の壁
-	//	{
-	//		if (enemy[i].x < 5) {
-	//			enemy[i].x = 5;
-	//		}
-	//		else {
-	//			enemy[i].x = SCREEN_WIDTH - 5;
-	//		}
-	//		enemy[i].Enemy_angle = (1 - enemy[i].Enemy_angle) + 0.5f;
-	//		if (enemy[i].Enemy_angle > 1) enemy[i].Enemy_angle -= 1.0f;
-	//		ChangeAngle(enemy,i);
-	//	}
-
-	//	if (enemy[i].y < 5)                         //上の壁
-	//	{
-	//		enemy[i].Enemy_angle = (1 - enemy[i].Enemy_angle);
-	//		ChangeAngle(enemy,i);
-	//	}
-
-	//	//画面下を超えたらゲームオーバー
-	//	if (enemy[i].y > SCREEN_HIGHT + 5) {
-	//		ballState = BALL_STATE::IDLE;
-	//		}
-	//	}
-
-
-	//	if (ballState != BALL_STATE::IDLE) {
-	//		enemy[i].x += g_MoveX;
-	//		enemy[i].y += g_MoveY;
-	//	}
-	//	else {
-	//		enemy[i].x = bar.getX() + (bar.getWidth() / 2);
-	//		enemy[i].y = bar.getY() - ((bar.getHeight() + radius) / 2);
-	//	}
-	//}
+		
 }
 
-void Enemy::CreateEnemy(Enemy* enemy,int died_enemy) {
+void Enemy::CreateEnemy(Enemy * enemy/*,int died_enemy*/); {
 	for (int i = 0; i < 10; i++) {
 		if (!enemy[i].flg) {
 			enemy[i].flg = true;
@@ -229,3 +164,75 @@ int Enemy::GetEnemyY() const {
 
 
 
+/*if (Enemy_vector <= 1) {
+					enemy[i].x += (GetRand(2) - 1);
+				}
+				else {
+					enemy[i].y += (GetRand(2) - 1);
+				}*/
+
+				//if (enemy[i].NowY < 5)                         //上の壁
+				//{
+				//	enemy[i].Enemy_angle = (1 - enemy[i].Enemy_angle);
+				//	ChangeAngle(enemy,i);
+				//}
+
+			//	//画面下を超えたらゲームオーバー
+			//	if (enemy[i].NowY > SCREEN_HIGHT + 5) {
+			//		ballState = BALL_STATE::IDLE;
+			//		}
+			//	}
+
+
+			//	if (ballState != BALL_STATE::IDLE) {
+			//		enemy[i].NowX += g_MoveX;
+			//		enemy[i].NowY += g_MoveY;
+			//	}
+			//	else {
+			//		enemy[i].NowX = bar.getX() + (bar.getWidth() / 2);
+			//		enemy[i].NowY = bar.getY() - ((bar.getHeight() + radius) / 2);
+			//	}
+			//}
+		//}
+	//for (int i = 0; i < 10; i++) {
+
+	//	//ボールの移動
+	//	enemy[i].x += enemy->Move_X;
+	//	enemy[i].y += enemy->Move_Y;
+
+	//	//壁・天井での反射
+	//	if (enemy[i].x < 5 || enemy[i].x > SCREEN_WIDTH - 5)      //横の壁
+	//	{
+	//		if (enemy[i].x < 5) {
+	//			enemy[i].x = 5;
+	//		}
+	//		else {
+	//			enemy[i].x = SCREEN_WIDTH - 5;
+	//		}
+	//		enemy[i].Enemy_angle = (1 - enemy[i].Enemy_angle) + 0.5f;
+	//		if (enemy[i].Enemy_angle > 1) enemy[i].Enemy_angle -= 1.0f;
+	//		ChangeAngle(enemy,i);
+	//	}
+
+	//	if (enemy[i].y < 5)                         //上の壁
+	//	{
+	//		enemy[i].Enemy_angle = (1 - enemy[i].Enemy_angle);
+	//		ChangeAngle(enemy,i);
+	//	}
+
+	//	//画面下を超えたらゲームオーバー
+	//	if (enemy[i].y > SCREEN_HIGHT + 5) {
+	//		ballState = BALL_STATE::IDLE;
+	//		}
+	//	}
+
+
+	//	if (ballState != BALL_STATE::IDLE) {
+	//		enemy[i].x += g_MoveX;
+	//		enemy[i].y += g_MoveY;
+	//	}
+	//	else {
+	//		enemy[i].x = bar.getX() + (bar.getWidth() / 2);
+	//		enemy[i].y = bar.getY() - ((bar.getHeight() + radius) / 2);
+	//	}
+	//}
