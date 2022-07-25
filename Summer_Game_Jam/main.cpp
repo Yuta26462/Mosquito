@@ -50,6 +50,7 @@ int	g_KeyFlg;				// “ü—ÍƒL[î•ñ
 int Title_img;
 int GameMain_img;
 int Result_img;
+int Enemy_img;
 
 int JoyPadX, JoyPadY, PadTimer;
 int SelectX, SelectY;
@@ -115,6 +116,7 @@ int LoadImages() {
     if ((Title_img = LoadGraph("Resource/Images/Title.png")) == -1)return -1;
     if ((GameMain_img = LoadGraph("Resource/Images/background.png")) == -1)return -1;
     if ((Result_img = LoadGraph("Resource/Images/Ranking.png")) == -1)return -1;
+    if ((Enemy_img = LoadGraph("Resource/Images/ka.png")) == -1)return -1;
     return 0;
 }
 

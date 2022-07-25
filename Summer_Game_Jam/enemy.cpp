@@ -27,7 +27,8 @@ void Enemy::InitEnemy(Enemy* enemy) {
 
 void Enemy::DrawEnemy(int enemy_x, int enemy_y, bool flg) const{
 	if (flg) {
-		DrawCircle(enemy_x, enemy_y, 10, 0x000000, FALSE);
+		DrawRotaGraph(enemy_x, enemy_y, 1.0, 0, Enemy_img, FALSE, FALSE);
+		//DrawCircle(enemy_x, enemy_y, 10, 0x000000, FALSE);
 	}
 }
 
@@ -51,7 +52,7 @@ void Enemy::MoveEnemy(Enemy* enemy) {
 					enemy[i].Spawn_flg = true;
 				}
 
-				if (enemy[i].Enemy_time++ % 300) {
+				if (enemy[i].Enemy_time++ % 30) {
 					enemy[i].Enemy_vector = GetRand(3);
 				}
 				if (enemy[i].Spawn_flg) {
@@ -85,7 +86,7 @@ void Enemy::MoveEnemy(Enemy* enemy) {
 					}
 
 					enemy[i].Enemy_Area = enemy[i].NowX / 213;
-					if (enemy[i].NowY > 240)enemy[i].Enemy_Area+3;
+					if (enemy[i].NowY > 240)enemy[i].Enemy_Area += 3;
 					if (AttackFlg[enemy[i].Enemy_Area] || (enemy[i].Spawn_flg && (enemy[i].NowX < -5 || enemy[i].NowX > 645 || enemy[i].NowY < -5 || enemy[i].NowY > 485))) {
 						DeleteEnemy(enemy, i);
 					}
@@ -152,6 +153,8 @@ int Enemy::GetEnemyY() const {
 bool Enemy::GetEnemyFlg() const{
 	return flg;
 }
+
+
 
 ////ƒ{[ƒ‹‚ÌˆÚ“®
 		//enemy[i].NowX += enemy->Move_X;
