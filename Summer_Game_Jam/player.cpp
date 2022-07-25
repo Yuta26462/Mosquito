@@ -2,6 +2,8 @@
 #include"player.h"
 #include"main.h"
 
+bool AttackFlg;
+
 void Player_Initialize() {
 	WeaponImage = LoadGraph("Resource/Images/Weapon.png");
 	BoxColor = GetColor(255,0,0);
@@ -16,20 +18,22 @@ void Player_Finalize() {
 	DeleteGraph(WeaponImage);
 }
 void Player_Update() {
-	if (g_KeyFlg & PAD_INPUT_RIGHT) {
-		if (++BoxNumber_x > 2) BoxNumber_x = 2;
-	}
-	if (g_KeyFlg & PAD_INPUT_LEFT) {
-		if (--BoxNumber_x < 0) BoxNumber_x = 0;
-	}
-	if (g_KeyFlg & PAD_INPUT_DOWN) {
-		if (++BoxNumber_y > 1) BoxNumber_y = 1;
-	}
-	if (g_KeyFlg & PAD_INPUT_UP) {
-		if (--BoxNumber_y < 0) BoxNumber_y = 0;
-	}
-	if (g_KeyFlg & PAD_INPUT_A) {
-		AttackFlg = true;
+	if (AttackFlg == false) {
+		if (g_KeyFlg & PAD_INPUT_RIGHT) {
+			if (++BoxNumber_x > 2) BoxNumber_x = 2;
+		}
+		if (g_KeyFlg & PAD_INPUT_LEFT) {
+			if (--BoxNumber_x < 0) BoxNumber_x = 0;
+		}
+		if (g_KeyFlg & PAD_INPUT_DOWN) {
+			if (++BoxNumber_y > 1) BoxNumber_y = 1;
+		}
+		if (g_KeyFlg & PAD_INPUT_UP) {
+			if (--BoxNumber_y < 0) BoxNumber_y = 0;
+		}
+		if (g_KeyFlg & PAD_INPUT_A) {
+			AttackFlg = true;
+		}
 	}
 	if (AttackFlg == true) {
 		AttackCount++;
