@@ -39,27 +39,37 @@ BaseScene* Title::Update() {
 			case 2:
 				MenuChangeFlg = 2;
 				break;
+			case 3:
+				return nullptr;
+				break;
 			default:
 				break;
 			}
 		}
-	}
 
-	//zキーでゲームメインへ移動
-	if (g_KeyFlg & PAD_INPUT_A) {
-		return new GameMain();
-	}//スペースキーでゲーム終了
-	else if (g_KeyFlg & PAD_INPUT_Y) {
-		return nullptr;
-	}
-	else {
+		if (MenuChangeFlg == 1 || MenuChangeFlg == 2) {
+			if (g_KeyFlg & 32)MenuChangeFlg = 0;
+		}
+
 		return this;
 	}
+
+	////zキーでゲームメインへ移動
+	//if (g_KeyFlg & PAD_INPUT_A) {
+	//	return new GameMain();
+	//}//スペースキーでゲーム終了
+	//else if (g_KeyFlg & PAD_INPUT_Y) {
+	//	return nullptr;
+	//}
+	//else {
+	//	return this;
+	//}
 }
 
 void Title::Draw() const {
 
 	if (MenuChangeFlg == 1) {//操作説明
+		DrawGraph(0, 0, Help_img, FALSE);
 		DrawString(100, 200, "zキーで次のシーンへ", 0xDC6560);
 		DrawString(100, 230, "zキーで次のシーンへ", 0xDC6560);
 		DrawString(100, 260, "zキーで次のシーンへ", 0xDC6560);
@@ -68,6 +78,7 @@ void Title::Draw() const {
 		DrawString(100, 350, "zキーで次のシーンへ", 0xDC6560);
 	}
 	else if (MenuChangeFlg == 2) {//クレジット
+		DrawGraph(0, 0, Credit_img, FALSE);
 		DrawString(100, 200, "zキーで次のシーンへ", 0xDC6560);
 		DrawString(100, 230, "zキーで次のシーンへ", 0xDC6560);
 		DrawString(100, 260, "zキーで次のシーンへ", 0xDC6560);
