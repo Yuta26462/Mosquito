@@ -18,12 +18,15 @@ private:
 public:
 	void InitEnemy(Enemy* enemy);		//‰á‰Šú‰»ŠÖ”
 	void DrawEnemy(int enemy_x,int enemy_y,bool flg) const;		//‰á•`‰æŠÖ”
-	void MoveEnemy(Enemy* enemy);		//‰áˆÚ“®ŠÖ”
+	void MoveEnemy(Enemy* enemy, int time);		//‰áˆÚ“®ŠÖ”
 	void CreateEnemy(Enemy* enemy);		//‰á¶¬ŠÖ”
 	void GetEnemyPos(int* enemy_x, int* enemy_y, int enemy_pos);					//‰áoŒ»ˆÊ’uŒˆ’èŠÖ”
 	void DeleteEnemy(Enemy* enemy ,int num);
 	int GetEnemyX() const;
 	int GetEnemyY() const;
 	bool GetEnemyFlg() const;
+	int GetDied_enemy()const;
 	bool GetEnemyDieFlg() const;
 };
+
+int GetEnemyVector();
