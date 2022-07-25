@@ -5,11 +5,9 @@ enum Enemy_Vecor { UP, DOWN, RIGHT, LEFT };
 class Enemy {
 private:
 	bool flg;
-	float x;
-	int y;
 	int pos;
-	int Move_X;
-	int Move_Y;
+	int NowX, NowY;       //Œ»İ’n
+	int Move_X, Move_Y;   //ˆÚ“®—Ê
 	float Enemy_angle;
 	int Enemy_cnt;
 	int Enemy_time;
@@ -24,5 +22,4 @@ public:
 	void GetEnemyPos(float* enemy_x, int* enemy_y, int enemy_pos);					//‰áoŒ»ˆÊ’uŒˆ’èŠÖ”
 	float GetEnemyX() const;
 	int GetEnemyY() const;
-
 };
