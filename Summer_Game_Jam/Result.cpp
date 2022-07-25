@@ -3,6 +3,13 @@
 #include "main.h"
 #include "DxLib.h"
 
+void Result::Initialize() const {
+
+}
+void Result::Finalize() const {
+
+}
+
 BaseScene* Result::Update() {
 	//zキーでタイトル画面へ移動
 	if (g_KeyFlg & PAD_INPUT_A) {

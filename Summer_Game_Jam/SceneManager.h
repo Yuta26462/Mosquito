@@ -10,5 +10,7 @@ public:
 		delete nScene;
 	}
 	BaseScene* Update() override;
+	void Initialize() const override;
+	void Finalize() const override;
 	void Draw() const override;
 };
