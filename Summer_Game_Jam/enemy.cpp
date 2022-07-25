@@ -4,7 +4,7 @@
 #include "DxLib.h"
 
 #define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 960
+#define SCREEN_HIGHT 960
 
 static int timer = 0;
 
@@ -55,7 +55,7 @@ void Enemy::MoveEnemy(Enemy* enemy) {
 		}
 
 		//画面下を超えたらゲームオーバー
-		if (enemy[i].y > SCREEN_HIGHT + radius) {
+		if (enemy[i].y > SCREEN_HIGHT + 5) {
 			ballState = BALL_STATE::IDLE;
 			}
 		}
