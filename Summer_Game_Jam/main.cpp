@@ -2,6 +2,7 @@
 #include "Title.h"
 #include "main.h"
 #include "DxLib.h"
+#include<math.h>
 
 class Fps {
 	int mStartTime; //‘ª’èŠJn
