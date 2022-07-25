@@ -89,10 +89,10 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
         if (++PadTimer > 10) {
             PadTimer = 0;
-            if (JoyPadX > 0)SelectX = 1;
-            if (JoyPadX < 0)SelectX = -1;
-            if (JoyPadY > 0)SelectY = 1;
-            if (JoyPadY < 0)SelectY = -1;
+            if (JoyPadX > 100)SelectX = 1;
+            if (JoyPadX < -100)SelectX = -1;
+            if (JoyPadY > 100)SelectY = 1;
+            if (JoyPadY < -100)SelectY = -1;
         }
 
         ClearDrawScreen();		// ‰æ–Ê‚Ì‰Šú‰»
