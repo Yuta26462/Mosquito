@@ -13,6 +13,7 @@ void Title::Finalize() const{
 }
 
 Title::Title() {
+	MenuFont = CreateFontToHandle("MenuFont", 40, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4);;
 	Pointer_img = LoadGraph("Resource/Images/pointer.png");
 	Help_img = LoadGraph("Resource/Images/help.png");
 	Credit_img = LoadGraph("Resource/Images/Credit.png");
@@ -34,9 +35,11 @@ BaseScene* Title::Update() {
 				return new GameMain();
 				break;
 			case 1:
+				//操作説明
 				MenuChangeFlg = 1;
 				break;
 			case 2:
+				//クレジット
 				MenuChangeFlg = 2;
 				break;
 			case 3:
@@ -48,6 +51,7 @@ BaseScene* Title::Update() {
 		}
 
 		if (MenuChangeFlg == 1 || MenuChangeFlg == 2) {
+			//Bボタンで戻る
 			if (g_KeyFlg & 32)MenuChangeFlg = 0;
 		}
 
@@ -76,6 +80,7 @@ void Title::Draw() const {
 		DrawString(100, 290, "zキーで次のシーンへ", 0xDC6560);
 		DrawString(100, 320, "zキーで次のシーンへ", 0xDC6560);
 		DrawString(100, 350, "zキーで次のシーンへ", 0xDC6560);
+		DrawStringToHandle(120, 400, "zキーで次のシーンへ", 0xFFFFFF, MenuFont, 0xDC6560);
 	}
 	else if (MenuChangeFlg == 2) {//クレジット
 		DrawGraph(0, 0, Credit_img, FALSE);
@@ -92,8 +97,12 @@ void Title::Draw() const {
 		DrawGraph(0, 0, Title_img, FALSE);
 		DrawString(100, 400, "zキーで次のシーンへ", 0x000000);
 		DrawString(400, 400, "スペースキーで終了", 0x000000);
+		DrawStringToHandle(230, 250, "スタート", 0xFFFFFF, MenuFont, 0xDC6560);
+		DrawStringToHandle(230, 295, "操作説明", 0xFFFFFF, MenuFont, 0xDC6560);
+		DrawStringToHandle(230, 340, "クレジット", 0xFFFFFF, MenuFont, 0xDC6560);
+		DrawStringToHandle(230, 385, "ゲーム終了", 0xFFFFFF, MenuFont, 0xDC6560);
 		DrawCircleAA(200, 270 + SelectNo * 45, 16.0f, 3, 0xDC6560, TRUE);
-		DrawGraph(230, 250, Menu_img, TRUE);
+		
 
 	}
 }

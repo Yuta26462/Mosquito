@@ -3,6 +3,7 @@
 
 class Title : public BaseScene {
 private:
+	int MenuFont;
 	int SelectNo;
 	int Menu_img;
 	int Pointer_img;
