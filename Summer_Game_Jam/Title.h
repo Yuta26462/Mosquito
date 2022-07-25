@@ -4,6 +4,11 @@
 class Title : public BaseScene {
 private:
 	int SelectNo;
+	int Menu_img;
+	int Pointer_img;
+	int Help_img;
+	int Credit_img;
+	int MenuChangeFlg;
 public:
 	Title();
 	virtual ~Title() {};
@@ -11,5 +16,4 @@ public:
 	virtual void Initialize() const override;
 	virtual void Finalize() const override;
 	virtual void Draw() const override;
-	void TitleMenu(void);
 };
