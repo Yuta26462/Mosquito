@@ -1,14 +1,28 @@
 #pragma once
-#define RandMaxX 1280
-#define RandMaxY 960
-#define Radius 5  //“G‚Ì”¼Œa
 
-static bool flg;
-static int img;
-static int PosX, PosY;    //Œ»İ‚ÌÀ•W
-static int MoveX, MoveY;  //ˆÚ“®—Ê
-static int speed;
-static int score;
+enum Enemy_Vecor { UP, DOWN, RIGHT, LEFT };
 
-void DrawEnemy();
-void MoveEnemy();
+class Enemy {
+private:
+	bool flg;
+	float x;
+	int y;
+	int pos;
+	int Move_X;
+	int Move_Y;
+	float Enemy_angle;
+	int Enemy_cnt;
+	int Enemy_time;
+	int Enemy_vector;
+	bool Spawn_flg;
+public:
+	void InitEnemy(Enemy* enemy);		//‰á‰Šú‰»ŠÖ”
+	void DrawEnemy(int enemy_x,int enemy_y) const;		//‰á•`‰æŠÖ”
+	void MoveEnemy(Enemy* enemy);		//‰áˆÚ“®ŠÖ”
+	void CreateEnemy(Enemy* enemy);		//‰á¶¬ŠÖ”
+	void ChangeAngle(Enemy* enemy,int num);		//‰áŠp“x•ÏXŠÖ”
+	void GetEnemyPos(float* enemy_x, int* enemy_y, int enemy_pos);					//‰áoŒ»ˆÊ’uŒˆ’èŠÖ”
+	float GetEnemyX() const;
+	int GetEnemyY() const;
+
+};
