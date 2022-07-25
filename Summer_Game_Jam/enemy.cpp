@@ -27,8 +27,7 @@ void Enemy::InitEnemy(Enemy* enemy) {
 
 void Enemy::DrawEnemy(int enemy_x, int enemy_y, bool flg) const{
 	if (flg) {
-		DrawRotaGraph(enemy_x, enemy_y, 1.0, 0, Enemy_img, FALSE, FALSE);
-		//DrawCircle(enemy_x, enemy_y, 10, 0x000000, FALSE);
+		DrawRotaGraph(enemy_x, enemy_y, 0.1, 0, Enemy_img, TRUE, FALSE);
 	}
 }
 
@@ -137,6 +136,7 @@ void Enemy::GetEnemyPos(int* enemy_NowX, int* enemy_NowY, int enemy_pos) {
 
 void Enemy::DeleteEnemy(Enemy* enemy,int num) {
 	enemy[num].flg = false;
+	enemy[num].Enemy_Die = true;
 	enemy->Enemy_cnt--;
 	enemy[num].Spawn_flg = false;
 	enemy[num].Enemy_time = 0;
@@ -154,6 +154,9 @@ bool Enemy::GetEnemyFlg() const{
 	return flg;
 }
 
+//bool Enemy::GetEnemyDieFlg() const {
+//	return Enemy_Die;
+//}
 
 
 ////ƒ{[ƒ‹‚ÌˆÚ“®

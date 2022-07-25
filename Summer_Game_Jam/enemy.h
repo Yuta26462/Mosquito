@@ -14,6 +14,7 @@ private:
 	int Died_enemy;
 	bool Spawn_flg;
 	int Enemy_Area;
+	bool Enemy_Die;
 public:
 	void InitEnemy(Enemy* enemy);		//‰á‰Šú‰»ŠÖ”
 	void DrawEnemy(int enemy_x,int enemy_y,bool flg) const;		//‰á•`‰æŠÖ”
@@ -24,4 +25,5 @@ public:
 	int GetEnemyX() const;
 	int GetEnemyY() const;
 	bool GetEnemyFlg() const;
+	bool GetEnemyDieFlg() const;
 };
