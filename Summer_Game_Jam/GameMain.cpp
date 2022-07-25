@@ -30,7 +30,7 @@ void GameMain::Initialize() const {
 void GameMain::Finalize() const {
 	Player_Finalize();
 }
-void GameMain::Draw() const {
+
 void GameMain::Draw() const{
 	DrawGraph(0, 0, GameMain_img, FALSE);
 	for (int i = 0; i < 10; i++) {
