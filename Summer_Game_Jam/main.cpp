@@ -76,8 +76,8 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     while (scenMG.Update() != nullptr && ProcessMessage() == 0) {
         // 入力キー取得
         g_OldKey = g_NowKey;
-        //g_NowKey = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-        g_NowKey = GetJoypadInputState(DX_INPUT_PAD1);
+        g_NowKey = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+       // g_NowKey = GetJoypadInputState(DX_INPUT_PAD1);
         g_KeyFlg = g_NowKey & ~g_OldKey;
 
         GetJoypadAnalogInput(&JoyPadX, &JoyPadY, DX_INPUT_PAD1);    //アナログスティック座標を取得
