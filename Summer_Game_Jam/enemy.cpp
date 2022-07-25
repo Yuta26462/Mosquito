@@ -1,4 +1,5 @@
 #include "enemy.h"
+#include "main.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "DxLib.h"
@@ -22,57 +23,129 @@ void Enemy::InitEnemy(Enemy* enemy) {
 
 void Enemy::DrawEnemy(int enemy_x, int enemy_y) const{
 	DrawCircle(enemy_x, enemy_y, 10, 0x000000, FALSE);
+	//DrawRotaGraph(enemy_x, enemy_y, 10, 0.2, 0, Title_img, TRUE, FALSE);
 }
 
 void Enemy::MoveEnemy(Enemy* enemy) {
 	if (timer++ % 25 == 0 && enemy->Enemy_cnt <= 10) {
-		enemy->CreateEnemy(enemy);
+		enemy->CreateEnemy(enemy,enemy->Died_enemy);
 	}
+	//if (timer % 2) {
 	for (int i = 0; i < 10; i++) {
 
-		//ボールの移動
-		enemy[i].x += enemy->Move_X;
-		enemy[i].y += enemy->Move_Y;
 
-		//壁・天井での反射
-		if (enemy[i].x < 5 || enemy[i].x > SCREEN_WIDTH - 5)      //横の壁
-		{
-			if (enemy[i].x < 5) {
-				enemy[i].x = 5;
+		if (enemy[i].flg) {
+
+			if ((enemy[i].x <= 20 || enemy[i].x >= 620) && !enemy[i].Spawn_flg) {
+				if (enemy[i].pos <= 1) {
+					enemy[i].x += 20;
+				}
+				else
+				{
+					enemy[i].x -= 20;
+				}
 			}
 			else {
-				enemy[i].x = SCREEN_WIDTH - 5;
+				enemy[i].Spawn_flg = true;
 			}
-			enemy[i].Enemy_angle = (1 - enemy[i].Enemy_angle) + 0.5f;
-			if (enemy[i].Enemy_angle > 1) enemy[i].Enemy_angle -= 1.0f;
-			ChangeAngle(enemy,i);
-		}
 
-		if (enemy[i].y < 5)                         //上の壁
-		{
-			enemy[i].Enemy_angle = (1 - enemy[i].Enemy_angle);
-			ChangeAngle(enemy,i);
-		}
-
-		//画面下を超えたらゲームオーバー
-		if (enemy[i].y > SCREEN_HIGHT + 5) {
-			ballState = BALL_STATE::IDLE;
+			if (enemy[i].Enemy_time++ % 300) {
+				enemy[i].Enemy_vector = GetRand(3);
 			}
-		}
+			if (enemy[i].Spawn_flg) {
+				switch (enemy[i].Enemy_vector) {
+				case UP:
+					enemy[i].y -= 15;
+					break;
+				case DOWN:
+					enemy[i].y += 15;
+					break;
+				case RIGHT:
+					if (enemy[i].pos <= 1) {
+						enemy[i].x += 15;
+					}
+					else
+					{
+						enemy[i].x += 10;
+					}
+					break;
+				case LEFT:
+					if (enemy[i].pos <= 1) {
+						enemy[i].x -= 10;
+					}
+					else
+					{
+						enemy[i].x -= 15;
+					}
+					break;
+				default:
+					break;
+				}
+				/*if (Enemy_vector <= 1) {
+					enemy[i].x += (GetRand(2) - 1);
+				}
+				else {
+					enemy[i].y += (GetRand(2) - 1);
+				}*/
+			}
 
 
-		if (ballState != BALL_STATE::IDLE) {
-			enemy[i].x += g_MoveX;
-			enemy[i].y += g_MoveY;
-		}
-		else {
-			enemy[i].x = bar.getX() + (bar.getWidth() / 2);
-			enemy[i].y = bar.getY() - ((bar.getHeight() + radius) / 2);
+
+
+			if (enemy[i].Spawn_flg && (enemy[i].x < -5 || enemy[i].x > 645 || enemy[i].y < -5 || enemy[i].y > 485)) {
+				enemy[i].flg = false;
+				enemy[i].Spawn_flg = false;
+				enemy[i].Enemy_time = 0;
+				enemy->Enemy_cnt--;
+			}
 		}
 	}
+		//}
+	//for (int i = 0; i < 10; i++) {
+
+	//	//ボールの移動
+	//	enemy[i].x += enemy->Move_X;
+	//	enemy[i].y += enemy->Move_Y;
+
+	//	//壁・天井での反射
+	//	if (enemy[i].x < 5 || enemy[i].x > SCREEN_WIDTH - 5)      //横の壁
+	//	{
+	//		if (enemy[i].x < 5) {
+	//			enemy[i].x = 5;
+	//		}
+	//		else {
+	//			enemy[i].x = SCREEN_WIDTH - 5;
+	//		}
+	//		enemy[i].Enemy_angle = (1 - enemy[i].Enemy_angle) + 0.5f;
+	//		if (enemy[i].Enemy_angle > 1) enemy[i].Enemy_angle -= 1.0f;
+	//		ChangeAngle(enemy,i);
+	//	}
+
+	//	if (enemy[i].y < 5)                         //上の壁
+	//	{
+	//		enemy[i].Enemy_angle = (1 - enemy[i].Enemy_angle);
+	//		ChangeAngle(enemy,i);
+	//	}
+
+	//	//画面下を超えたらゲームオーバー
+	//	if (enemy[i].y > SCREEN_HIGHT + 5) {
+	//		ballState = BALL_STATE::IDLE;
+	//		}
+	//	}
+
+
+	//	if (ballState != BALL_STATE::IDLE) {
+	//		enemy[i].x += g_MoveX;
+	//		enemy[i].y += g_MoveY;
+	//	}
+	//	else {
+	//		enemy[i].x = bar.getX() + (bar.getWidth() / 2);
+	//		enemy[i].y = bar.getY() - ((bar.getHeight() + radius) / 2);
+	//	}
+	//}
 }
 
-void Enemy::CreateEnemy(Enemy* enemy) {
+void Enemy::CreateEnemy(Enemy* enemy,int died_enemy) {
 	for (int i = 0; i < 10; i++) {
 		if (!enemy[i].flg) {
 			enemy[i].flg = true;
@@ -124,70 +197,3 @@ int Enemy::GetEnemyY() const {
 
 
 
-////if (timer % 2) {
-		//	if (enemy[i].flg) {
-		//		
-		//		if ((enemy[i].x <= 20 || enemy[i].x >= 620) && !enemy[i].Spawn_flg) {
-		//			if (enemy[i].pos <= 1) {
-		//				enemy[i].x += 10;
-		//			}
-		//			else
-		//			{
-		//				enemy[i].x -= 10;
-		//			}
-		//		}
-		//		else {
-		//			enemy[i].Spawn_flg = true;
-		//		}
-
-		//		if (enemy[i].Enemy_time++ % 300) {
-		//			enemy[i].Enemy_vector = GetRand(3);
-		//		}
-		//		if (enemy[i].Spawn_flg) {
-		//			switch (enemy[i].Enemy_vector) {
-		//			case UP:
-		//				enemy[i].y -= 10;
-		//				break;
-		//			case DOWN:
-		//				enemy[i].y += 10;
-		//				break;
-		//			case RIGHT:
-		//				if (enemy[i].pos <= 1) {
-		//					enemy[i].x += 10;
-		//				}
-		//				else
-		//				{
-		//					enemy[i].x += 5;
-		//				}
-		//				break;
-		//			case LEFT:
-		//				if (enemy[i].pos <= 1) {
-		//					enemy[i].x -= 5;
-		//				}
-		//				else
-		//				{
-		//					enemy[i].x -= 10;
-		//				}
-		//				break;
-		//			default:
-		//				break;
-		//			}
-		//			/*if (Enemy_vector <= 1) {
-		//				enemy[i].x += (GetRand(2) - 1);
-		//			}
-		//			else {
-		//				enemy[i].y += (GetRand(2) - 1);
-		//			}*/
-		//		}
-
-		//		
-		//		
-
-		//		if (enemy[i].Spawn_flg && (enemy[i].x < -5 || enemy[i].x > 645 || enemy[i].y < -5 || enemy[i].y > 485)) {
-		//			enemy[i].flg = false;
-		//			enemy[i].Spawn_flg = false;
-		//			enemy[i].Enemy_time = 0;
-		//			enemy->Enemy_cnt--;
-		//		}
-		//	}
-		////}

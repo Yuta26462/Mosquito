@@ -1,6 +1,5 @@
 #include "Title.h"
 #include "GameMain.h"
-#include "enemy.h"
 #include "main.h"
 #include "DxLib.h"
 
