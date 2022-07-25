@@ -19,16 +19,16 @@ void Player_Finalize() {
 }
 void Player_Update() {
 	if (AttackFlg == false) {
-		if (g_KeyFlg & PAD_INPUT_RIGHT) {
+		if (g_KeyFlg& PAD_INPUT_RIGHT || GetSelectX() == 1) {
 			if (++BoxNumber_x > 2) BoxNumber_x = 2;
 		}
-		if (g_KeyFlg & PAD_INPUT_LEFT) {
+		if (g_KeyFlg & PAD_INPUT_LEFT || GetSelectX() == -1) {
 			if (--BoxNumber_x < 0) BoxNumber_x = 0;
 		}
-		if (g_KeyFlg & PAD_INPUT_DOWN) {
+		if (g_KeyFlg & PAD_INPUT_DOWN || GetSelectY() == 1) {
 			if (++BoxNumber_y > 1) BoxNumber_y = 1;
 		}
-		if (g_KeyFlg & PAD_INPUT_UP) {
+		if (g_KeyFlg & PAD_INPUT_UP || GetSelectY() == -1) {
 			if (--BoxNumber_y < 0) BoxNumber_y = 0;
 		}
 		if (g_KeyFlg & PAD_INPUT_A) {
