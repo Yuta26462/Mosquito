@@ -10,5 +10,5 @@ static int MoveX, MoveY;  //ˆÚ“®—Ê
 static int speed;
 static int score;
 
-void CreateEnemy();
-void EnemyControl();
+void DrawEnemy();
+void MoveEnemy();
