@@ -5,6 +5,10 @@
 #include "DxLib.h"
 #include "player.h"
 
+//GameMain::GameMain() {
+//	//enemy = 0;
+//	//Enemy_cnt = 0;
+//}
 
 BaseScene* GameMain::Update() {
 	static bool StartFlg = true;
@@ -13,10 +17,10 @@ BaseScene* GameMain::Update() {
 		StartFlg = false;
 	}
 	
-	enemy->MoveEnemy(enemy);
+	enemy->MoveEnemy(enemy,TimeLimt);
 	Player_Update();
 	//zキーでリザルト画面へ移動
-	if (g_KeyFlg & PAD_INPUT_Y) {
+	if (TimeLimt-- < 1 || g_KeyFlg & PAD_INPUT_Y) {
 		return new Result();
 	}
 	else {
@@ -37,7 +41,13 @@ void GameMain::Draw() const{
 		enemy[i].DrawEnemy(enemy[i].GetEnemyX(),enemy[i].GetEnemyY(),enemy[i].GetEnemyFlg());
 	}
 	
+	DrawFormatString(100, 400, 0x000000, "Died_Enemy:%d", enemy->GetDied_enemy());
+	DrawFormatString(500, 100, 0x000000, "Time:%d", GetTime()/60);
 	DrawString(270, 220, "GameMain画面", 0x000000);
 	DrawString(250, 400, "Yボタンで次のシーンへ", 0x000000);
 	Player_Draw();
+}
+
+int GameMain::GetTime() const{
+	return TimeLimt;
 }
