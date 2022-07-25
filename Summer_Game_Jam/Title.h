@@ -10,6 +10,9 @@ private:
 	int Help_img;
 	int Credit_img;
 	int MenuChangeFlg;
+	int OK_SE;
+	int Selecter_SE;
+	int Return_SE;
 public:
 	Title();
 	virtual ~Title() {};
