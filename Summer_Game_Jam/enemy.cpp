@@ -34,18 +34,7 @@ void Enemy::MoveEnemy(Enemy* enemy) {
 		enemy->CreateEnemy(enemy/*,enemy->Died_enemy*/);
 	}
 	//if (timer % 2) {
-	for (int i = 0; i < 10; i++) {
-
-		////ボールの移動
-		//enemy[i].NowX += enemy->Move_X;
-		//enemy[i].NowY += enemy->Move_Y;
-
-		//壁・天井での反射
-		if (enemy[i].NowX < 5 || enemy[i].NowX > SCREEN_WIDTH - 5)      //横の壁
-		{
-			if (enemy[i].NowX < 5) {
-				enemy[i].NowX = 5;
-			}
+	for (int i = 0; i < 10; i++) {	
 		if (enemy[i].flg) {
 
 			if ((enemy[i].NowX <= 20 || enemy[i].NowX >= 620) && !enemy[i].Spawn_flg) {
@@ -111,8 +100,7 @@ void Enemy::MoveEnemy(Enemy* enemy) {
 	}
 		
 }
-
-void Enemy::CreateEnemy(Enemy * enemy/*,int died_enemy*/); {
+void Enemy::CreateEnemy(Enemy* enemy) {
 	for (int i = 0; i < 10; i++) {
 		if (!enemy[i].flg) {
 			enemy[i].flg = true;
@@ -125,7 +113,7 @@ void Enemy::CreateEnemy(Enemy * enemy/*,int died_enemy*/); {
 	}
 }
 
-void Enemy::GetEnemyPos(float* enemy_NowX, int* enemy_NowY, int enemy_pos) {
+void Enemy::GetEnemyPos(int* enemy_NowX, int* enemy_NowY, int enemy_pos) {
 	switch (enemy_pos) {
 	case 0:
 		*enemy_NowX = -30;
@@ -148,22 +136,30 @@ void Enemy::GetEnemyPos(float* enemy_NowX, int* enemy_NowY, int enemy_pos) {
 	}
 }
 
-void Enemy::ChangeAngle(Enemy* enemy, int num) {
-	float rad = enemy[num].Enemy_angle * (float)M_PI * 2;
-	Move_X = (int)(5 * cosf(rad));
-	Move_Y = (int)(5 * sinf(rad));
-}
+//void Enemy::ChangeAngle(Enemy* enemy, int num) {
+//	float rad = enemy[num].Enemy_angle * (float)M_PI * 2;
+//	Move_X = (int)(5 * cosf(rad));
+//	Move_Y = (int)(5 * sinf(rad));
+//}
 
 float Enemy::GetEnemyX() const{
-	return x;
+	return NowX;
 }
 
 int Enemy::GetEnemyY() const {
-	return y;
+	return NowY;
 }
 
 
-
+////ボールの移動
+		//enemy[i].NowX += enemy->Move_X;
+		//enemy[i].NowY += enemy->Move_Y;
+//壁・天井での反射
+		//if (enemy[i].NowX < 5 || enemy[i].NowX > SCREEN_WIDTH - 5)      //横の壁
+		//{
+		//	if (enemy[i].NowX < 5) {
+		//		enemy[i].NowX = 5;
+		//	}
 /*if (Enemy_vector <= 1) {
 					enemy[i].x += (GetRand(2) - 1);
 				}
