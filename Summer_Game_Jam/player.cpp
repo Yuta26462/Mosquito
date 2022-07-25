@@ -6,6 +6,7 @@ bool AttackFlg;
 
 void Player_Initialize() {
 	WeaponImage = LoadGraph("Resource/Images/Weapon.png");
+	Mosquito_SE = LoadSoundMem("Resource/Sounds/SE/Mosquito.wav");
 	BoxColor = GetColor(255,0,0);
 	BoxNumber_x = 1;
 	BoxNumber_y = 0;
@@ -48,6 +49,7 @@ void Player_Update() {
 		else if ((GetJoyPadY() < 0) && GetJoyPadX() > 150) { BoxNumber_x = 2; BoxNumber_y = 0; }
 	}
 	if (AttackFlg == true) {
+		PlaySoundMem(Mosquito_SE, DX_PLAYTYPE_BACK, TRUE);
 		AttackCount++;
 		if (AttackCount > 8) {
 			AttackFlg = false;
