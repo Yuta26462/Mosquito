@@ -7,7 +7,7 @@ private:
 	bool flg;
 	int pos;
 	int NowX, NowY;       //Œ»İ’n
-	int Move_X, Move_Y;   //ˆÚ“®—Ê
+	//int Move_X, Move_Y;   ˆÚ“®—Ê
 	float Enemy_angle;
 	int Enemy_cnt;
 	int Enemy_time;

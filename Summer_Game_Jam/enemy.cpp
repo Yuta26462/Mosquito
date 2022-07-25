@@ -6,6 +6,8 @@
 
 #define SCREEN_WIDTH 1280
 #define SCREEN_HIGHT 960
+#define Move_X 15
+#define Move_Y 15
 
 static int timer = 0;
 
@@ -33,9 +35,9 @@ void Enemy::MoveEnemy(Enemy* enemy) {
 	//if (timer % 2) {
 	for (int i = 0; i < 10; i++) {
 
-		//ボールの移動
-		enemy[i].NowX += enemy->Move_X;
-		enemy[i].NowY += enemy->Move_Y;
+		////ボールの移動
+		//enemy[i].NowX += enemy->Move_X;
+		//enemy[i].NowY += enemy->Move_Y;
 
 		//壁・天井での反射
 		if (enemy[i].NowX < 5 || enemy[i].NowX > SCREEN_WIDTH - 5)      //横の壁
@@ -47,11 +49,11 @@ void Enemy::MoveEnemy(Enemy* enemy) {
 
 			if ((enemy[i].NowX <= 20 || enemy[i].NowX >= 620) && !enemy[i].Spawn_flg) {
 				if (enemy[i].pos <= 1) {
-					enemy[i].NowX += 20;
+					enemy[i].NowX += Move_X;
 				}
 				else
 				{
-					enemy[i].NowX -= 20;
+					enemy[i].NowX -= Move_X;
 				}
 			}
 			else {
@@ -65,27 +67,27 @@ void Enemy::MoveEnemy(Enemy* enemy) {
 			if (enemy[i].Spawn_flg) {
 				switch (enemy[i].Enemy_vector) {
 				case UP:
-					enemy[i].NowY -= 15;
+					enemy[i].NowY -= Move_Y;
 					break;
 				case DOWN:
-					enemy[i].NowY += 15;
+					enemy[i].NowY += Move_Y;
 					break;
 				case RIGHT:
 					if (enemy[i].pos <= 1) {
-						enemy[i].NowX += 15;
+						enemy[i].NowX += Move_X - 5;
 					}
 					else
 					{
-						enemy[i].NowY += 10;
+						enemy[i].NowY += Move_Y - 5;
 					}
 					break;
 				case LEFT:
 					if (enemy[i].pos <= 1) {
-						enemy[i].NowX -= 10;
+						enemy[i].NowX -= Move_X - 5;
 					}
 					else
 					{
-						enemy[i].NowX -= 15;
+						enemy[i].NowX -= Move_Y - 5;
 					}
 					break;
 				default:
