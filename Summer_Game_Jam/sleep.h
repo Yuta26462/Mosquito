@@ -1,6 +1,6 @@
 #pragma once
 
-static int sleepImage;
+static int ImageSleep;
 
 void Sleep_Initialize();
 void Sleep_Finalize();

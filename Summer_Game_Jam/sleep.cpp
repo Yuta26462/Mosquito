@@ -1,13 +1,12 @@
-#include "Dxlib.h"
-#include "sleep.h"
+#include"Dxlib.h"
+#include"sleep.h"
 
-
-void Sleep_Initialize(){
-	sleepImage = LoadGraph("images/Player_Sleep.png");
+void Sleep_Initialize() {
+	ImageSleep = LoadGraph("images/Player_Sleep");
 }
 
 void Sleep_Finalize() {
-	DeleteGraph(sleepImage);
+	DeleteGraph(ImageSleep);
 }
 
 void Sleep_Update() {
