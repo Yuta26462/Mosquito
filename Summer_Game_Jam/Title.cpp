@@ -40,7 +40,7 @@ BaseScene* Title::Update() {
 				MenuChangeFlg = 2;
 				break;
 			case 3:
-				return nullptr;
+				DxLib_End();
 				break;
 			default:
 				break;
@@ -54,16 +54,16 @@ BaseScene* Title::Update() {
 		return this;
 	}
 
-	////zキーでゲームメインへ移動
-	//if (g_KeyFlg & PAD_INPUT_A) {
-	//	return new GameMain();
-	//}//スペースキーでゲーム終了
-	//else if (g_KeyFlg & PAD_INPUT_Y) {
-	//	return nullptr;
-	//}
-	//else {
-	//	return this;
-	//}
+	//zキーでゲームメインへ移動
+	if (g_KeyFlg & PAD_INPUT_A) {
+		return new GameMain();
+	}//スペースキーでゲーム終了
+	else if (g_KeyFlg & PAD_INPUT_Y) {
+		return nullptr;
+	}
+	else {
+		return this;
+	}
 }
 
 void Title::Draw() const {
