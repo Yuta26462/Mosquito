@@ -2,6 +2,8 @@
 #include"player.h"
 #include"main.h"
 
+bool AttackFlg;
+
 void Player_Initialize() {
 	WeaponImage = LoadGraph("Resource/Images/Weapon.png");
 	BoxColor = GetColor(255,0,0);

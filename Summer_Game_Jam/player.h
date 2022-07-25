@@ -5,7 +5,7 @@ static int WeaponImage;
 static int BoxNumber_x,BoxNumber_y;
 static int AttackCount;
 static float BoxColor;
-static bool AttackFlg;
+extern bool AttackFlg;
 
 void Player_Initialize();
 void Player_Finalize();
