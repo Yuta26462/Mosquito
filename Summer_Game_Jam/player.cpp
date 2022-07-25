@@ -35,9 +35,8 @@ void Player_Update() {
 			AttackFlg = true;
 		}
 	}
-	if (AttackFlg == true) {
-		AttackCount++;
-		if (AttackCount > 8) {
+	else {
+		if (AttackCount++ > 8) {
 			AttackFlg = false;
 			AttackCount = 0;
 		}
@@ -54,6 +53,5 @@ void Player_Draw() {
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 	if (AttackFlg == true) {
 		DrawRotaGraph(BoxNumber_x * 213 + 106, BoxNumber_y * 240 + 120, 0.3, 0, WeaponImage,TRUE, FALSE);
-		DrawString(300, 200, "ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚æ", 0x000000);
 	}
 }
