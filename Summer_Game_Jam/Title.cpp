@@ -13,14 +13,19 @@ void Title::Finalize() const{
 }
 
 Title::Title() {
+	Pointer_img = LoadGraph("Resource/Images/pointer.png");
+	Help_img = LoadGraph("Resource/Images/help.png");
+	Credit_img = LoadGraph("Resource/Images/Credit.png");
+	Menu_img = LoadGraph("Resource/Images/menu.png");
 	SelectNo = 0;
+	MenuChangeFlg = 0;
 }
 
 BaseScene* Title::Update() {
 
 	{	//メニュー
 		if (GetSelectY() == -1) { if (SelectNo > 0)SelectNo--; }
-		if (GetSelectY() == 1){if (SelectNo < 2)SelectNo++; }
+		if (GetSelectY() == 1){if (SelectNo < 3)SelectNo++; }
 
 		if (g_KeyFlg & 16) {
 			switch (SelectNo)
@@ -29,10 +34,10 @@ BaseScene* Title::Update() {
 				return new GameMain();
 				break;
 			case 1:
-				return new Result();
+				MenuChangeFlg = 1;
 				break;
 			case 2:
-				return new Title();
+				MenuChangeFlg = 2;
 				break;
 			default:
 				break;
@@ -53,16 +58,31 @@ BaseScene* Title::Update() {
 }
 
 void Title::Draw() const {
-	//タイトル画像表示
-	DrawGraph(0, 0, Title_img, FALSE);
-	DrawString(100, 400, "zキーで次のシーンへ", 0x000000);
-	DrawString(400, 400, "スペースキーで終了", 0x000000);
-	DrawCircleAA(250, 270 + SelectNo * 50, 10.2f, 3, 0xFFFFFF, TRUE);
-	DrawFormatString(200, 200, 0xFFFFFF, "%d", GetSelectX());
-	DrawFormatString(200, 250, 0xFFFFFF, "%d", GetSelectY());
-	DrawFormatString(200, 280, 0xFFFFFF, "SelectNo:%d", SelectNo);
-}
 
-void TitleMenu(void) {
+	if (MenuChangeFlg == 1) {//操作説明
+		DrawString(100, 200, "zキーで次のシーンへ", 0xDC6560);
+		DrawString(100, 230, "zキーで次のシーンへ", 0xDC6560);
+		DrawString(100, 260, "zキーで次のシーンへ", 0xDC6560);
+		DrawString(100, 290, "zキーで次のシーンへ", 0xDC6560);
+		DrawString(100, 320, "zキーで次のシーンへ", 0xDC6560);
+		DrawString(100, 350, "zキーで次のシーンへ", 0xDC6560);
+	}
+	else if (MenuChangeFlg == 2) {//クレジット
+		DrawString(100, 200, "zキーで次のシーンへ", 0xDC6560);
+		DrawString(100, 230, "zキーで次のシーンへ", 0xDC6560);
+		DrawString(100, 260, "zキーで次のシーンへ", 0xDC6560);
+		DrawString(100, 290, "zキーで次のシーンへ", 0xDC6560);
+		DrawString(100, 320, "zキーで次のシーンへ", 0xDC6560);
+		DrawString(100, 350, "zキーで次のシーンへ", 0xDC6560);
 
+
+	}else {
+		//タイトル画像表示
+		DrawGraph(0, 0, Title_img, FALSE);
+		DrawString(100, 400, "zキーで次のシーンへ", 0x000000);
+		DrawString(400, 400, "スペースキーで終了", 0x000000);
+		DrawCircleAA(200, 270 + SelectNo * 45, 16.0f, 3, 0xDC6560, TRUE);
+		DrawGraph(230, 250, Menu_img, TRUE);
+
+	}
 }
