@@ -2,7 +2,7 @@
 #include"player.h"
 #include"main.h"
 
-bool AttackFlg;
+bool AttackFlg[6];
 
 void Player_Initialize() {
 	WeaponImage = LoadGraph("Resource/Images/Weapon.png");
@@ -12,13 +12,17 @@ void Player_Initialize() {
 	box_x = 0;
 	box_y = 0;
 	AttackCount = 0;
-	AttackFlg = 0;
+	AreaNum = 0;
+	for (int i = 0; i < 6; i++) {
+		AttackFlg[i] = 0;
+	}
+	
 }
 void Player_Finalize() {
 	DeleteGraph(WeaponImage);
 }
 void Player_Update() {
-	if (AttackFlg == false) {
+	if (AttackFlg[AreaNum] == false) {
 		if (g_KeyFlg & PAD_INPUT_RIGHT) {
 			if (++BoxNumber_x > 2) BoxNumber_x = 2;
 		}
@@ -31,11 +35,13 @@ void Player_Update() {
 		if (g_KeyFlg & PAD_INPUT_UP) {
 			if (--BoxNumber_y < 0) BoxNumber_y = 0;
 		}
+		AreaNum = BoxNumber_x;
+		if (BoxNumber_y > 0)AreaNum += 3;
 		if (g_KeyFlg & PAD_INPUT_A) {
-			AttackFlg = true;
+			AttackFlg[AreaNum] = true;
 		}
 	}
-	if (AttackFlg == true) {
+	if (AttackFlg[AreaNum] == true) {
 		AttackCount++;
 		if (AttackCount > 8) {
 			AttackFlg = false;
