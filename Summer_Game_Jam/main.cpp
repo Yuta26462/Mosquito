@@ -29,6 +29,8 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     ChangeFontType(DX_FONTTYPE_ANTIALIASING_4X4);   //フォントをアンチエイジング対応4×4にする。
 
     SceneManager scenMG(new Title());
+
+    scenMG.Initialize();
     // ゲームループ
     while (scenMG.Update() != nullptr && ProcessMessage() == 0) {
         // 入力キー取得
@@ -38,13 +40,13 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
         ClearDrawScreen();		// 画面の初期化
 
-
+        
         scenMG.Draw();
 
         ScreenFlip();			// 裏画面の内容を表画面に反映
 
     }
-
+    scenMG.Finalize();
     DxLib_End();	// DXライブラリ使用の終了処理
 
     return 0;	// ソフトの終了

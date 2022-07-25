@@ -4,13 +4,6 @@
 #include "DxLib.h"
 #include "player.h"
 
-void GameMain::Initialize() const{
-	Player_Initialize();
-}
-
-void GameMain::Finalize() const{
-	Player_Finalize();
-}
 
 BaseScene* GameMain::Update() {
 	Player_Update();
@@ -22,7 +15,13 @@ BaseScene* GameMain::Update() {
 		return this;
 	}
 }
+void GameMain::Initialize() const {
+	Player_Initialize();
+}
 
+void GameMain::Finalize() const {
+	Player_Finalize();
+}
 void GameMain::Draw() const {
 	DrawGraph(0, 0, GameMain_img, FALSE);
 	DrawString(270, 220, "GameMain‰æ–Ê", 0x000000);
