@@ -45,13 +45,13 @@ void Enemy::MoveEnemy(Enemy* enemy) {
 			}
 		if (enemy[i].flg) {
 
-			if ((enemy[i].x <= 20 || enemy[i].x >= 620) && !enemy[i].Spawn_flg) {
+			if ((enemy[i].NowX <= 20 || enemy[i].NowX >= 620) && !enemy[i].Spawn_flg) {
 				if (enemy[i].pos <= 1) {
-					enemy[i].x += 20;
+					enemy[i].NowX += 20;
 				}
 				else
 				{
-					enemy[i].x -= 20;
+					enemy[i].NowX -= 20;
 				}
 			}
 			else {
@@ -65,27 +65,27 @@ void Enemy::MoveEnemy(Enemy* enemy) {
 			if (enemy[i].Spawn_flg) {
 				switch (enemy[i].Enemy_vector) {
 				case UP:
-					enemy[i].y -= 15;
+					enemy[i].NowY -= 15;
 					break;
 				case DOWN:
-					enemy[i].y += 15;
+					enemy[i].NowY += 15;
 					break;
 				case RIGHT:
 					if (enemy[i].pos <= 1) {
-						enemy[i].x += 15;
+						enemy[i].NowX += 15;
 					}
 					else
 					{
-						enemy[i].x += 10;
+						enemy[i].NowY += 10;
 					}
 					break;
 				case LEFT:
 					if (enemy[i].pos <= 1) {
-						enemy[i].x -= 10;
+						enemy[i].NowX -= 10;
 					}
 					else
 					{
-						enemy[i].x -= 15;
+						enemy[i].NowX -= 15;
 					}
 					break;
 				default:
@@ -122,7 +122,7 @@ void Enemy::MoveEnemy(Enemy* enemy) {
 	//}
 
 
-			if (enemy[i].Spawn_flg && (enemy[i].x < -5 || enemy[i].x > 645 || enemy[i].y < -5 || enemy[i].y > 485)) {
+			if (enemy[i].Spawn_flg && (enemy[i].NowX < -5 || enemy[i].NowX > 645 || enemy[i].NowY < -5 || enemy[i].NowY > 485)) {
 				enemy[i].flg = false;
 				enemy[i].Spawn_flg = false;
 				enemy[i].Enemy_time = 0;
