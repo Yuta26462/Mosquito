@@ -37,7 +37,7 @@ void Player_Update() {
 	}
 	if (AttackFlg == true) {
 		AttackCount++;
-		if (AttackCount > 30) {
+		if (AttackCount > 31) {
 			AttackFlg = false;
 			AttackCount = 0;
 		}
