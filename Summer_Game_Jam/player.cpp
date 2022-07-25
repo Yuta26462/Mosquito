@@ -7,7 +7,7 @@ bool AttackFlg;
 void Player_Initialize() {
 	WeaponImage = LoadGraph("Resource/Images/Weapon.png");
 	BoxColor = GetColor(255,0,0);
-	BoxNumber_x = 0;
+	BoxNumber_x = 1;
 	BoxNumber_y = 0;
 	box_x = 0;
 	box_y = 0;
@@ -19,23 +19,33 @@ void Player_Finalize() {
 }
 void Player_Update() {
 	if (AttackFlg == false) {
-		if (g_KeyFlg & PAD_INPUT_RIGHT || GetSelectX() == 1) {
+		if (g_KeyFlg & PAD_INPUT_RIGHT) {
 			if (++BoxNumber_x > 2) BoxNumber_x = 2;
 		}
-		if (g_KeyFlg & PAD_INPUT_LEFT || GetSelectX() == -1) {
+		if (g_KeyFlg & PAD_INPUT_LEFT) {
 			if (--BoxNumber_x < 0) BoxNumber_x = 0;
 		}
-		if (g_KeyFlg & PAD_INPUT_DOWN || GetSelectY() == 1) {
+		if (g_KeyFlg & PAD_INPUT_DOWN) {
 			if (++BoxNumber_y > 1) BoxNumber_y = 1;
 		}
-		if (g_KeyFlg & PAD_INPUT_UP || GetSelectY() == -1) {
+		if (g_KeyFlg & PAD_INPUT_UP) {
 			if (--BoxNumber_y < 0) BoxNumber_y = 0;
 		}
 		if (g_KeyFlg & PAD_INPUT_A || g_KeyFlg & 32) {
 			AttackFlg = true;
 		}
-		if (GetJoyPadY() > 0 && GetJoyPadX() < 50 && GetJoyPadX() > -50) { BoxNumber_x = 1; BoxNumber_y = 1; }
-		else if((GetJoyPadY() < 0) && GetJoyPadY() < 50 && GetJoyPadY() > -50){BoxNumber_x = 1; BoxNumber_y = 0; }
+		
+		//¶
+		if (GetJoyPadY() > 0 && GetJoyPadX() < -150) { BoxNumber_x = 0; BoxNumber_y = 1; }
+		else if ((GetJoyPadY() < 0) && GetJoyPadX() < -150) { BoxNumber_x = 0; BoxNumber_y = 0; }
+
+		//^‚ñ’†
+		if (GetJoyPadY() > 0 && GetJoyPadX() == 0) { BoxNumber_x = 1; BoxNumber_y = 1; }
+		else if((GetJoyPadY() < 0) && GetJoyPadX() == 0){BoxNumber_x = 1; BoxNumber_y = 0; }
+
+		//‰E
+		if (GetJoyPadY() > 0 && GetJoyPadX() > 150) { BoxNumber_x = 2; BoxNumber_y = 1; }
+		else if ((GetJoyPadY() < 0) && GetJoyPadX() > 150) { BoxNumber_x = 2; BoxNumber_y = 0; }
 	}
 	if (AttackFlg == true) {
 		AttackCount++;

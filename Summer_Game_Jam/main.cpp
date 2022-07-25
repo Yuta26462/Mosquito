@@ -58,6 +58,7 @@ int LoadImages();           //画像読み込み関数
 
 int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 	Fps fps;
+    SetOutApplicationLogValidFlag(FALSE);   //ログ出力を無効にする
     SetMainWindowText("蚊");
 
     ChangeWindowMode(TRUE); //ウィンドウモードを有効
@@ -89,10 +90,10 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
         if (++PadTimer > 10) {
             PadTimer = 0;
-            if (JoyPadX > 0)SelectX = 1;
-            if (JoyPadX < 0)SelectX = -1;
-            if (JoyPadY > 0)SelectY = 1;
-            if (JoyPadY < 0)SelectY = -1;
+            if (JoyPadX > 100)SelectX = 1;
+            if (JoyPadX < -100)SelectX = -1;
+            if (JoyPadY > 100)SelectY = 1;
+            if (JoyPadY < -100)SelectY = -1;
         }
 
         ClearDrawScreen();		// 画面の初期化
