@@ -3,6 +3,44 @@
 #include "main.h"
 #include "DxLib.h"
 
+class Fps {
+	int mStartTime; //測定開始時刻
+	int mCount;  //カウンタ
+	float mFps;  //fps
+	static const int N = 60;  //平均を取るサンプル数
+	static const int FPS = 60;  //設定したFPS
+
+public:
+	Fps() {
+		mStartTime = 0;
+		mCount = 0;
+		mFps = 0;
+	}
+	bool Update() {
+		if (mCount == 0) {//1フレーム目なら時刻を記憶
+			mStartTime = GetNowCount();
+		}
+		if (mCount == N) {
+			int t = GetNowCount();
+			mFps = 1000.f / ((t - mStartTime) / (float)N);
+			mCount = 0;
+			mStartTime = t;
+		}
+		mCount++;
+		return true;
+	}
+	void Draw() {
+		DrawFormatString(100, 100, GetColor(255, 255, 255), "%.1f", mFps);
+	}
+	void Wait() {
+		int tookTime = GetNowCount() - mStartTime;
+		int waitTime = mCount * 1000 / FPS - tookTime;
+		if (waitTime > 0) {
+			Sleep(waitTime);
+		}
+	}
+};
+
 int	g_OldKey;				// 前回の入力キー
 int	g_NowKey;				// 今回の入力キー
 int	g_KeyFlg;				// 入力キー情報
@@ -15,7 +53,7 @@ int Result_img;
 int LoadImages();           //画像読み込み関数
 
 int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-
+	Fps fps;
     SetMainWindowText("タイトル未定");
 
     ChangeWindowMode(TRUE); //ウィンドウモードを有効
@@ -40,9 +78,11 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
         ClearDrawScreen();		// 画面の初期化
 
-        
+		fps.Update();
+		fps.Draw();
         scenMG.Draw();
 
+		fps.Wait();
         ScreenFlip();			// 裏画面の内容を表画面に反映
 
     }

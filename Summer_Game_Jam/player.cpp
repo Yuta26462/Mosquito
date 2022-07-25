@@ -3,7 +3,7 @@
 #include"main.h"
 
 void Player_Initialize() {
-	WeaponImage = LoadGraph("images/Weapon.png");
+	WeaponImage = LoadGraph("Resource/Images/Weapon.png");
 	BoxColor = GetColor(255,0,0);
 	BoxNumber_x = 0;
 	BoxNumber_y = 0;
