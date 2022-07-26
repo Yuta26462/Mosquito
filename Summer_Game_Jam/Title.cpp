@@ -70,6 +70,7 @@ BaseScene* Title::Update() {
 
 	//zキーでゲームメインへ移動
 	if (g_KeyFlg & PAD_INPUT_A) {
+		
 		return new GameMain();
 	}//スペースキーでゲーム終了
 	else if (g_KeyFlg & PAD_INPUT_Y) {
