@@ -28,6 +28,7 @@ public:
 	int GetEnemyY() const;
 	int GetDied_enemy() const;
 	int GetEnemyDflg() const;
+	//int GetEnemy_Area() const;
 };
 
 int GetEnemyVector();

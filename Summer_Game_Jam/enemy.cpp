@@ -30,6 +30,7 @@ void Enemy::InitEnemy(Enemy* enemy) {
 void Enemy::DrawEnemy(int enemy_x, int enemy_y, bool flg/*, bool* died_flg*/) const{
 	static int DieImg_Tyme = 0;
 	if (flg) {
+		//DrawFormatString(enemy_x, enemy_y, 0x000000, "%d", enemy_area);
 		DrawRotaGraph(enemy_x, enemy_y, 0.1, 0, Enemy_img, TRUE, FALSE);
 	}
 	/*else if (died_flg) {
@@ -92,6 +93,7 @@ void Enemy::MoveEnemy(Enemy* enemy, int time) {
 					default:
 						break;
 					}
+					
 
 					enemy[i].Enemy_Area = enemy[i].NowX / 213;
 					if (enemy[i].NowY > 240)enemy[i].Enemy_Area += 3;
@@ -184,6 +186,10 @@ bool Enemy::GetEnemyFlg() const{
 int Enemy::GetDied_enemy() const {
 	return Died_enemy;
 }
+
+//int Enemy::GetEnemy_Area() const {
+//	return Enemy_Area;
+//}
 
 
 ////ƒ{[ƒ‹‚ÌˆÚ“®
