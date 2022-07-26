@@ -14,6 +14,9 @@
 //static int timer = 0;
 //int GameMain::Enemy_cnt;
 
+//void Enemy::Drawene(Enemy* enemy) {
+//	DrawString(0, 0, "aa", 0x000000);
+//}
 
 void Enemy::InitEnemy(Enemy* enemy) {
 	for (int i = 0; i < 10; i++) {
@@ -24,22 +27,35 @@ void Enemy::InitEnemy(Enemy* enemy) {
 		enemy[i].Enemy_time = 0;
 		enemy[i].Spawn_flg = false;
 	}
+	enemy->Died_enemy = 0;
 	enemy->Enemy_cnt = 0;
 }
 
-void Enemy::DrawEnemy(int enemy_x, int enemy_y, bool flg) const{
-	if (flg) {
-		DrawRotaGraph(enemy_x, enemy_y, 0.1, 0, Enemy_img, TRUE, FALSE);
+void Enemy::DrawEnemy(Enemy enemy) const {
+	static int DieImg_Tyme = 0;
+	if (enemy.flg) {
+		DrawRotaGraph(enemy.GetEnemyX(), enemy.GetEnemyY(), 0.1, 0, Enemy_img, TRUE, FALSE);
+		//DrawFormatString(enemy.GetEnemyX(), enemy.GetEnemyY(), 0x000000, "%d", enemy.Died_flg);
+
+
+	}
+	else if (enemy.Died_flg) {
+		if (60 > DieImg_Tyme++)DrawRotaGraph(enemy.GetEnemyX(), enemy.GetEnemyY(), 0, 1, 0, Die_Enemy_img, TRUE, FALSE);
+		else {
+			enemy.Died_flg = false;
+			DieImg_Tyme = 0;
+		}
 	}
 }
 
 void Enemy::MoveEnemy(Enemy* enemy, int time) {
-	if (time % 25 == 0 && enemy->Enemy_cnt <= 10) {
-		enemy->CreateEnemy(enemy/*,enemy->Died_enemy*/);
+	if (time % 60 == 0 && enemy->Enemy_cnt <= enemy->GetEnemyMakes(enemy->Died_enemy)) {
+		enemy->CreateEnemy(enemy, 3/*,enemy->Died_enemy*/);
 	}
 	if (time % 2) {
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 20; i++) {
 			if (enemy[i].flg) {
+
 				if ((enemy[i].NowX <= 20 || enemy[i].NowX >= 620) && !enemy[i].Spawn_flg) {
 					if (enemy[i].pos <= 1) {
 						enemy[i].NowX += Move_X;
@@ -86,10 +102,12 @@ void Enemy::MoveEnemy(Enemy* enemy, int time) {
 						break;
 					}
 
+
 					enemy[i].Enemy_Area = enemy[i].NowX / 213;
 					if (enemy[i].NowY > 240)enemy[i].Enemy_Area += 3;
 					if (AttackFlg[enemy[i].Enemy_Area]) {
 						enemy->Died_enemy++;
+						enemy->SetEnemyDflg(enemy, i);
 						DeleteEnemy(enemy, i);
 					}
 
@@ -101,15 +119,27 @@ void Enemy::MoveEnemy(Enemy* enemy, int time) {
 		}
 	}
 }
-void Enemy::CreateEnemy(Enemy* enemy) {
+void Enemy::CreateEnemy(Enemy* enemy, int Make_enemys) {
+	int made_enemys = 0;
+
 	for (int i = 0; i < 10; i++) {
-		if (!enemy[i].flg) {
-			enemy[i].flg = true;
-			enemy[i].pos = GetRand(3);
-			GetEnemyPos(&enemy[i].NowX, &enemy[i].NowY, enemy[i].pos);
-			enemy->Enemy_cnt++;
+		if (made_enemys < Make_enemys) {
+			if (!enemy[i].flg) {
+				made_enemys++;
+				enemy[i].flg = true;
+				enemy[i].pos = GetRand(3);
+				GetEnemyPos(&enemy[i].NowX, &enemy[i].NowY, enemy[i].pos);
+				enemy->Enemy_cnt++;
+			}
 		}
 	}
+
+}
+
+int Enemy::GetEnemyMakes(int died_enemy) {
+	if (died_enemy < 20)return 3;
+	else if (died_enemy < 40)return 5;
+	else if (died_enemy < 60)return 10;
 }
 
 int GetEnemyVector() {
@@ -125,19 +155,19 @@ void Enemy::GetEnemyPos(int* enemy_NowX, int* enemy_NowY, int enemy_pos) {
 	switch (enemy_pos) {
 	case 0:
 		*enemy_NowX = -30;
-		*enemy_NowY = 50;
+		*enemy_NowY = 70;
 		break;
 	case 1:
 		*enemy_NowX = -30;
-		*enemy_NowY = 430;
+		*enemy_NowY = 410;
 		break;
 	case 2:
 		*enemy_NowX = 670;
-		*enemy_NowY = 50;
+		*enemy_NowY = 70;
 		break;
 	case 3:
 		*enemy_NowX = 670;
-		*enemy_NowY = 430;
+		*enemy_NowY = 410;
 		break;
 	default:
 		break;
@@ -150,15 +180,29 @@ void Enemy::GetEnemyPos(int* enemy_NowX, int* enemy_NowY, int enemy_pos) {
 //	Move_Y = (int)(5 * sinf(rad));
 //}
 
-void Enemy::DeleteEnemy(Enemy* enemy,int num) {
+void Enemy::DeleteEnemy(Enemy* enemy, int num) {
 	enemy[num].flg = false;
-	enemy[num].Enemy_Die = true;
+	enemy[num].Died_flg = false;
 	enemy->Enemy_cnt--;
 	enemy[num].Spawn_flg = false;
 	enemy[num].Enemy_time = 0;
 }
 
-int Enemy::GetEnemyX() const{
+void Enemy::CheckEnemyAlive(Enemy* enemy) {
+	int i = 0;
+	for (i = 0; i < 10; i++) {
+		if (enemy[i].flg == true) {
+			Enemy_AliveFlg = true;
+			break;
+		}
+	}
+	if (i >= 10) {
+		Enemy_AliveFlg = false;
+	}
+}
+
+
+int Enemy::GetEnemyX() const {
 	return NowX;
 }
 
@@ -166,16 +210,23 @@ int Enemy::GetEnemyY() const {
 	return NowY;
 }
 
-bool Enemy::GetEnemyFlg() const{
+bool Enemy::GetEnemyFlg() const {
 	return flg;
+}
+
+void Enemy::SetEnemyDflg(Enemy* enemy, int num) {
+	enemy[num].Died_flg = true;
 }
 
 int Enemy::GetDied_enemy() const {
 	return Died_enemy;
 }
 
-//bool Enemy::GetEnemyDieFlg() const {
-//	return Enemy_Die;
+bool Enemy::GetEnemyAliveFlg(Enemy* enemy) {
+	return Enemy_AliveFlg;
+}
+//int Enemy::GetEnemy_Area() const {
+//	return Enemy_Area;
 //}
 
 
