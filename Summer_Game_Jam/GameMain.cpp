@@ -19,7 +19,7 @@ BaseScene* GameMain::Update() {
 	Player_Update();
 	Sleep_Update(enemy);
 	//デバッグ用		Yボタンでリザルト画面へ
-	if (TimeLimt-- < 1 || g_KeyFlg & 128) {
+	if (TimeLimt-- < 1 || g_KeyFlg & 128 || finishFlg == true) {
 		return new Result();
 	}
 	else {
