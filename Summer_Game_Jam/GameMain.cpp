@@ -13,6 +13,7 @@ GameMain::GameMain() {
 	static bool StartFlg = true;
 	TimeLimt = 1800;
 	Sleep_Initialize();
+	//Enemy::Enemy();
 }
 
 BaseScene* GameMain::Update() {
@@ -46,7 +47,7 @@ void GameMain::Finalize() const {
 
 void GameMain::Draw() const {
 	DrawExtendGraph(0, 0,641,481, GameMain_img, FALSE);
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < 10; i++) {
 		enemy->DrawEnemy(enemy[i]);
 	}
 		

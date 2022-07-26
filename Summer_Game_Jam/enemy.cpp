@@ -14,6 +14,20 @@
 //static int timer = 0;
 //int GameMain::Enemy_cnt;
 
+//Enemy::Enemy() {
+//	Enemy::flg = false;
+//	Enemy::NowX = 0;
+//	Enemy::NowY = 0;
+//	Enemy::pos = 0;
+//	Enemy::Enemy_time = 0;
+//	Enemy::Enemy_vector = 0;
+//	Enemy::Spawn_flg = false;
+//	Enemy::Died_enemy = 0;
+//	Enemy::Enemy_cnt = 0;
+//	Enemy::Enemy_Area = 0;
+//	Enemy::Enemy_AliveFlg = false;
+//	Enemy::Died_flg = false;
+//}
 
 void Enemy::InitEnemy(Enemy* enemy) {
 	for (int i = 0; i < 10; i++) {
@@ -184,7 +198,6 @@ void Enemy::DeleteEnemy(Enemy* enemy, int num) {
 	enemy[num].flg = false;
 	enemy[num].Died_flg = true;
 	enemy->Enemy_cnt--;
-	DeadEnemynum = num;
 	enemy[num].Spawn_flg = false;
 	enemy[num].Enemy_time = 0;
 }
