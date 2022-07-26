@@ -1,5 +1,5 @@
 #pragma once
-#include"enemy.h"
+#include "GameMain.h"
 
 static int ImageSleep;		//Q‚Ä‚é‰æ‘œ
 static int ImageSleep2;		//Q‚Ú‚¯‰æ‘œ

@@ -12,34 +12,34 @@ class Fps {
     static const int FPS = 60;  //設定したFPS
 
 public:
-    Fps() {
-        mStartTime = 0;
-        mCount = 0;
-        mFps = 0;
-    }
-    bool Update() {
-        if (mCount == 0) {//1フレーム目なら時刻を記憶
-            mStartTime = GetNowCount();
-        }
-        if (mCount == N) {
-            int t = GetNowCount();
-            mFps = 1000.f / ((t - mStartTime) / (float)N);
-            mCount = 0;
-            mStartTime = t;
-        }
-        mCount++;
-        return true;
-    }
-    void Draw() {
-        //DrawFormatString(100, 100, GetColor(255, 255, 255), "%.1f", mFps);
-    }
-    void Wait() {
-        int tookTime = GetNowCount() - mStartTime;
-        int waitTime = mCount * 1000 / FPS - tookTime;
-        if (waitTime > 0) {
-            Sleep(waitTime);
-        }
-    }
+	Fps() {
+		mStartTime = 0;
+		mCount = 0;
+		mFps = 0;
+	}
+	bool Update() {
+		if (mCount == 0) {//1フレーム目なら時刻を記憶
+			mStartTime = GetNowCount();
+		}
+		if (mCount == N) {
+			int t = GetNowCount();
+			mFps = 1000.f / ((t - mStartTime) / (float)N);
+			mCount = 0;
+			mStartTime = t;
+		}
+		mCount++;
+		return true;
+	}
+	void Draw() {
+		//DrawFormatString(100, 100, GetColor(255, 255, 255), "%.1f", mFps);
+	}
+	void Wait() {
+		int tookTime = GetNowCount() - mStartTime;
+		int waitTime = mCount * 1000 / FPS - tookTime;
+		if (waitTime > 0) {
+			Sleep(waitTime);
+		}
+	}
 };
 
 int	g_OldKey;				// 前回の入力キー

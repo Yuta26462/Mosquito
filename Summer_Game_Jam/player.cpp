@@ -31,16 +31,33 @@ void Player_Update() {
 		}
 
 		//¶
-		if (GetJoyPadY() > 0 && GetJoyPadX() < -150) { BoxNumber_x = 0; BoxNumber_y = 1; }
-		else if ((GetJoyPadY() < 0) && GetJoyPadX() < -150) { BoxNumber_x = 0; BoxNumber_y = 0; }
+		if (GetJoyPadY() > 0 && GetJoyPadX() < -150) { BoxNumber_x = 0; BoxNumber_y = 1;}
+		else if ((GetJoyPadY() < 0) && GetJoyPadX() < -150) { BoxNumber_x = 0; BoxNumber_y = 0;}
 
 		//^‚ñ’†
-		if (GetJoyPadY() > 0 && GetJoyPadX() == 0) { BoxNumber_x = 1; BoxNumber_y = 1; }
-		else if ((GetJoyPadY() < 0) && GetJoyPadX() == 0) { BoxNumber_x = 1; BoxNumber_y = 0; }
+		if (GetJoyPadY() > 0 && GetJoyPadX() == 0) { BoxNumber_x = 1; BoxNumber_y = 1;}
+		else if ((GetJoyPadY() < 0) && GetJoyPadX() == 0) { BoxNumber_x = 1; BoxNumber_y = 0;}
 
 		//‰E
-		if (GetJoyPadY() > 0 && GetJoyPadX() > 150) { BoxNumber_x = 2; BoxNumber_y = 1; }
-		else if ((GetJoyPadY() < 0) && GetJoyPadX() > 150) { BoxNumber_x = 2; BoxNumber_y = 0; }
+		if (GetJoyPadY() > 0 && GetJoyPadX() > 150) { BoxNumber_x = 2; BoxNumber_y = 1;}
+		else if ((GetJoyPadY() < 0) && GetJoyPadX() > 150) { BoxNumber_x = 2; BoxNumber_y = 0;}
+	}
+	switch (BoxNumber_x)
+	{
+	case 0:
+		if (!BoxNumber_y)AreaNum = 0;
+		else  AreaNum = 3;
+		break;
+	case 1:
+		if (!BoxNumber_y)AreaNum = 1;
+		else  AreaNum = 4;
+		break;
+	case 2:
+		if (!BoxNumber_y)AreaNum = 2;
+		else AreaNum = 5;
+		break;
+	default:
+		break;
 	}
 	switch (BoxNumber_x)
 	{
