@@ -36,11 +36,12 @@ void GameMain::Finalize() const {
 	Sleep_Finalize();
 }
 
-void GameMain::Draw() const{
+void GameMain::Draw() const {
 	DrawGraph(0, 0, GameMain_img, FALSE);
-	for (int i = 0; i < 10; i++) {
-		enemy[i].DrawEnemy(enemy[i].GetEnemyX(),enemy[i].GetEnemyY(),enemy[i].GetEnemyFlg()/*,enemy[i].GetEnemyDflg()*/);
+	for (int i = 0; i < 20; i++) {
+		enemy->DrawEnemy(enemy[i]);
 	}
+		
 	
 	DrawFormatString(100, 400, 0x000000, "Died_Enemy:%d", enemy->GetDied_enemy());
 	DrawFormatString(500, 100, 0x000000, "Time:%d", GetTime()/60);
@@ -48,6 +49,6 @@ void GameMain::Draw() const{
 	Sleep_Draw();
 }
 
-int GameMain::GetTime() const{
+int GameMain::GetTime() const {
 	return TimeLimt;
 }

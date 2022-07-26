@@ -5,11 +5,11 @@
 #include<math.h>
 
 class Fps {
-	int mStartTime; //測定開始時刻
-	int mCount;  //カウンタ
-	float mFps;  //fps
-	static const int N = 60;  //平均を取るサンプル数
-	static const int FPS = 60;  //設定したFPS
+    int mStartTime; //測定開始時刻
+    int mCount;  //カウンタ
+    float mFps;  //fps
+    static const int N = 60;  //平均を取るサンプル数
+    static const int FPS = 60;  //設定したFPS
 
 public:
 	Fps() {
@@ -59,18 +59,18 @@ int SelectX, SelectY;
 int LoadImages();           //画像読み込み関数
 
 int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-	Fps fps;
+    Fps fps;
     SetOutApplicationLogValidFlag(FALSE);   //ログ出力を無効にする
     SetMainWindowText("蚊");
 
     ChangeWindowMode(TRUE); //ウィンドウモードを有効
     SetWindowSize(1280, 960);
-    
+
     if (DxLib_Init() == -1) return -1;	// DXライブラリの初期化処理
     if (LoadImages() == -1)return -1;
 
     SetDrawScreen(DX_SCREEN_BACK);	// 描画先画面を裏にする
-    
+
     ChangeFontType(DX_FONTTYPE_ANTIALIASING_4X4);   //フォントをアンチエイジング対応4×4にする。
 
     SceneManager scenMG(new Title());
@@ -101,11 +101,11 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
         ClearDrawScreen();		// 画面の初期化
 
-		fps.Update();
-		fps.Draw();
+        fps.Update();
+        fps.Draw();
         scenMG.Draw();
 
-		fps.Wait();
+        fps.Wait();
         ScreenFlip();			// 裏画面の内容を表画面に反映
 
     }
@@ -136,14 +136,16 @@ int GetSelectY(void) {
     if (SelectY == 1 || SelectY == -1) {
         int Key = SelectY;
         return Key;
-    }else{ return 0; }
+    }
+    else { return 0; }
 }
 
-int GetJoyPadX(void) { 
+int GetJoyPadX(void) {
     if (-1000 <= JoyPadX && JoyPadX <= 1000) {
         int PadX = JoyPadX;
         return PadX;
-    }else { return 0; }
+    }
+    else { return 0; }
 }
 
 int GetJoyPadY(void) {

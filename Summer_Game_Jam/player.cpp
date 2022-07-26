@@ -7,7 +7,7 @@ bool AttackFlg[6];
 void Player_Initialize() {
 	WeaponImage = LoadGraph("Resource/Images/Weapon.png");
 	Mosquito_SE = LoadSoundMem("Resource/Sounds/SE/Mosquito.wav");
-	BoxColor = GetColor(255,0,0);
+	BoxColor = GetColor(255, 0, 0);
 	BoxNumber_x = 1;
 	BoxNumber_y = 0;
 	box_x = 0;
@@ -17,7 +17,7 @@ void Player_Initialize() {
 	for (int i = 0; i < 6; i++) {
 		AttackFlg[i] = 0;
 	}
-	
+
 }
 void Player_Finalize() {
 	DeleteGraph(WeaponImage);
@@ -59,6 +59,23 @@ void Player_Update() {
 	default:
 		break;
 	}
+	switch (BoxNumber_x)
+	{
+	case 0:
+		if (!BoxNumber_y)AreaNum = 0;
+		else  AreaNum = 3;
+		break;
+	case 1:
+		if (!BoxNumber_y)AreaNum = 1;
+		else  AreaNum = 4;
+		break;
+	case 2:
+		if (!BoxNumber_y)AreaNum = 2;
+		else AreaNum = 5;
+		break;
+	default:
+		break;
+	}
 	if (AttackFlg[AreaNum] == true) {
 		PlaySoundMem(Mosquito_SE, DX_PLAYTYPE_BACK, TRUE);
 		AttackCount++;
@@ -78,7 +95,7 @@ void Player_Draw() {
 	DrawBox(BoxNumber_x * 213, BoxNumber_y * 240, BoxNumber_x * 213 + 214, BoxNumber_y * 241 + 241, BoxColor, TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 	if (AttackFlg[AreaNum] == true) {
-		DrawRotaGraph(BoxNumber_x * 213 + 106, BoxNumber_y * 240 + 120, 0.3, 0, WeaponImage,TRUE, FALSE);
+		DrawRotaGraph(BoxNumber_x * 213 + 106, BoxNumber_y * 240 + 120, 0.3, 0, WeaponImage, TRUE, FALSE);
 		DrawString(300, 200, "ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚æ", 0x000000);
 	}
 }
