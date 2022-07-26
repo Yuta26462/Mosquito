@@ -4,7 +4,6 @@ enum Enemy_Vecor { UP, DOWN, RIGHT, LEFT };
 
 class Enemy {
 private:
-	bool flg;
 	int pos;
 	int NowX, NowY;       //Œ»İ’n
 	float Enemy_angle;
@@ -16,6 +15,7 @@ private:
 	int Enemy_Area;
 	bool Enemy_Die;
 public:
+	bool flg;
 	void InitEnemy(Enemy* enemy);		//‰á‰Šú‰»ŠÖ”
 	void DrawEnemy(int enemy_x,int enemy_y,bool flg) const;		//‰á•`‰æŠÖ”
 	void MoveEnemy(Enemy* enemy, int time);		//‰áˆÚ“®ŠÖ”

@@ -4,12 +4,15 @@
 #include "main.h"
 #include "DxLib.h"
 #include"player.h"
+#include "sleep.h"
 
 void Title::Initialize() const {
+	Sleep_Initialize();
 	Player_Initialize();
 	PlaySoundMem(Title_BGM, DX_PLAYTYPE_BACK, TRUE);
 }
 void Title::Finalize() const{
+	Sleep_Finalize();
 	Player_Finalize();
 }
 

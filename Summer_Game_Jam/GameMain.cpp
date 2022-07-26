@@ -22,7 +22,7 @@ BaseScene* GameMain::Update() {
 	Player_Update();
 	Sleep_Update();
 	//z?L?[????U???g??????
-	if (TimeLimt-- < 1 || g_KeyFlg & PAD_INPUT_Y) {
+	if (TimeLimt-- < 1 || g_KeyFlg & PAD_INPUT_Y || finishflg == true) {
 		return new Result();
 	}
 	else {
