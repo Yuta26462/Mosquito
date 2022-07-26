@@ -60,7 +60,8 @@ int LoadImages();           //画像読み込み関数
 
 int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 	Fps fps;
-    SetMainWindowText("タイトル未定");
+    SetOutApplicationLogValidFlag(FALSE);   //ログ出力を無効にする
+    SetMainWindowText("蚊");
 
     ChangeWindowMode(TRUE); //ウィンドウモードを有効
     SetWindowSize(1280, 960);
