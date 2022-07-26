@@ -42,7 +42,7 @@ void Enemy::DrawEnemy(Enemy enemy) const {
 			enemy.Died_flg = false;
 			DieImg_Tyme = 0;
 		}
-	}*///DrawFormatString(200, 300, 0xDC6560, "Combo:%d", ComboTimer);
+	}///DrawFormatString(200, 300, 0xDC6560, "Combo:%d", ComboTimer);
 	//SetFontSize(40);
 	//if (Combo_displayFlg && ComboTimer++ < 60) { DrawFormatString(GetEnemyX(), enemy_y, 0xDC6560, "%d",GetDied_enemy()); }
 	//else if (ComboTimer >= 60) { Combo_displayFlg = FALSE; ComboTimer = 0; }SetFontSize(20);
