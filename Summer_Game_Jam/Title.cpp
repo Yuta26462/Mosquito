@@ -7,11 +7,13 @@
 #include "sleep.h"
 
 void Title::Initialize() const {
+	Sleep_Initialize();
 	Player_Initialize();
 	Sleep_Initialize();
 	PlaySoundMem(Title_BGM, DX_PLAYTYPE_BACK, TRUE);
 }
 void Title::Finalize() const{
+	Sleep_Finalize();
 	Player_Finalize();
 	Sleep_Finalize();
 }

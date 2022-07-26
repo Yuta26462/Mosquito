@@ -24,7 +24,6 @@ void Result::Finalize() const {
 BaseScene* Result::Update() {
 	//Bボタンでタイトルへ
 	if (g_KeyFlg & 32) {
-		StartFlg = true;
 		return new Title();
 	}
 	else {
