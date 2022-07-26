@@ -5,7 +5,7 @@
 
 class GameMain : public BaseScene {
 private:
-	Enemy enemy[10];
+	Enemy enemy[20];
 	int TimeLimt = 1860;
 
 public:

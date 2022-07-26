@@ -14,6 +14,9 @@
 //static int timer = 0;
 //int GameMain::Enemy_cnt;
 
+//void Enemy::Drawene(Enemy* enemy) {
+//	DrawString(0, 0, "aa", 0x000000);
+//}
 
 void Enemy::InitEnemy(Enemy* enemy) {
 	for (int i = 0; i < 10; i++) {
@@ -24,29 +27,33 @@ void Enemy::InitEnemy(Enemy* enemy) {
 		enemy[i].Enemy_time = 0;
 		enemy[i].Spawn_flg = false;
 	}
+	enemy->Died_enemy = 0;
 	enemy->Enemy_cnt = 0;
 }
 
-void Enemy::DrawEnemy(int enemy_x, int enemy_y, bool flg/*, bool* died_flg*/) const{
+void Enemy::DrawEnemy(Enemy enemy) const{
 	static int DieImg_Tyme = 0;
-	if (flg) {
+	if (enemy.flg) {
+		//DrawRotaGraph(enemy.GetEnemyX(),enemy.GetEnemyY(), 0.1, 0, Enemy_img, TRUE, FALSE);
+		DrawFormatString(enemy.GetEnemyX(), enemy.GetEnemyY(), 0x000000, "%d", enemy.Died_flg);
 		//DrawFormatString(enemy_x, enemy_y, 0x000000, "%d", enemy_area);
-		DrawRotaGraph(enemy_x, enemy_y, 0.1, 0, Enemy_img, TRUE, FALSE);
+		
 	}
-	/*else if (died_flg) {
-		if (60 > DieImg_Tyme++)DrawRotaGraph(enemy_x, enemy_y, 0, 1, 0, Die_Enemy_img, TRUE, FALSE);
+	else if (enemy.Died_flg) {
+		if (60 > DieImg_Tyme++)DrawRotaGraph(enemy.GetEnemyX(), enemy.GetEnemyY(), 0, 1, 0, Die_Enemy_img, TRUE, FALSE);
 		else {
+			enemy.Died_flg = false;
 			DieImg_Tyme = 0;
 		}
-	}*/
+	}
 }
 
 void Enemy::MoveEnemy(Enemy* enemy, int time) {
-	if (time % 25 == 0 && enemy->Enemy_cnt <= 10) {
-		enemy->CreateEnemy(enemy,enemy->GetEnemyMakes(enemy->Died_enemy)/*,enemy->Died_enemy*/);
+	if (time % 60 == 0 && enemy->Enemy_cnt <= enemy->GetEnemyMakes(enemy->Died_enemy)) {
+		enemy->CreateEnemy(enemy,3/*,enemy->Died_enemy*/);
 	}
 	if (time % 2) {
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 20; i++) {
 			if (enemy[i].flg) {
 				
 				if ((enemy[i].NowX <= 20 || enemy[i].NowX >= 620) && !enemy[i].Spawn_flg) {
@@ -100,6 +107,7 @@ void Enemy::MoveEnemy(Enemy* enemy, int time) {
 					if (enemy[i].NowY > 240)enemy[i].Enemy_Area += 3;
 					if (AttackFlg[enemy[i].Enemy_Area]) {
 						enemy->Died_enemy++;
+						enemy->SetEnemyDflg(enemy,i);
 						DeleteEnemy(enemy, i);
 					}
 
@@ -113,22 +121,25 @@ void Enemy::MoveEnemy(Enemy* enemy, int time) {
 }
 void Enemy::CreateEnemy(Enemy* enemy,int Make_enemys) {
 	int made_enemys = 0;
-	for (int i = 0; i < 10; i++) {
-		if (made_enemys < Make_enemys) {
-			if (!enemy[i].flg) {
-				enemy[i].flg = true;
-				enemy[i].pos = GetRand(3);
-				GetEnemyPos(&enemy[i].NowX, &enemy[i].NowY, enemy[i].pos);
-				enemy->Enemy_cnt++;
+	
+		for (int i = 0; i < 10; i++) {
+			if (made_enemys < Make_enemys) {
+				if (!enemy[i].flg) {
+					made_enemys++;
+					enemy[i].flg = true;
+					enemy[i].pos = GetRand(3);
+					GetEnemyPos(&enemy[i].NowX, &enemy[i].NowY, enemy[i].pos);
+					enemy->Enemy_cnt++;
+				}
 			}
 		}
-	}
+	
 }
 
 int Enemy::GetEnemyMakes(int died_enemy) {
-	if (died_enemy < 10)return 3;
-	else if (died_enemy < 20)return 5;
-	else if (died_enemy < 30)return 10;
+	if (died_enemy < 20)return 3;
+	else if (died_enemy < 40)return 5;
+	else if (died_enemy < 60)return 10;
 }
 
 int GetEnemyVector() {
@@ -144,19 +155,19 @@ void Enemy::GetEnemyPos(int* enemy_NowX, int* enemy_NowY, int enemy_pos) {
 	switch (enemy_pos) {
 	case 0:
 		*enemy_NowX = -30;
-		*enemy_NowY = 50;
+		*enemy_NowY = 70;
 		break;
 	case 1:
 		*enemy_NowX = -30;
-		*enemy_NowY = 430;
+		*enemy_NowY = 410;
 		break;
 	case 2:
 		*enemy_NowX = 670;
-		*enemy_NowY = 50;
+		*enemy_NowY = 70;
 		break;
 	case 3:
 		*enemy_NowX = 670;
-		*enemy_NowY = 430;
+		*enemy_NowY = 410;
 		break;
 	default:
 		break;
@@ -171,7 +182,7 @@ void Enemy::GetEnemyPos(int* enemy_NowX, int* enemy_NowY, int enemy_pos) {
 
 void Enemy::DeleteEnemy(Enemy* enemy,int num) {
 	enemy[num].flg = false;
-	enemy[num].Died_flg = true;
+	enemy[num].Died_flg = false;
 	enemy->Enemy_cnt--;
 	enemy[num].Spawn_flg = false;
 	enemy[num].Enemy_time = 0;
@@ -203,9 +214,9 @@ bool Enemy::GetEnemyFlg() const{
 	return flg;
 }
 
-//int Enemy::GetEnemyDflg() const {
-//	//return &Died_flg;
-//}
+void Enemy::SetEnemyDflg(Enemy* enemy,int num){
+	enemy[num].Died_flg = true;
+}
 
 int Enemy::GetDied_enemy() const {
 	return Died_enemy;
