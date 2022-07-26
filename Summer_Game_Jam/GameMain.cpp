@@ -49,11 +49,11 @@ void GameMain::Draw() const{
 	DrawFormatString(500, 100, 0x000000, "Time:%d", GetTime()/60);
 	DrawString(270, 220, "GameMain???", 0x000000);
 	DrawString(250, 400, "Y?{?^???????V?[????", 0x000000);
-	Player_Draw();
+	Player_Draw(); 
+	Sleep_Draw();
 }
 
 int GameMain::GetTime() const{
 	return TimeLimt;
 }
-	Sleep_Draw();
-}
+	
