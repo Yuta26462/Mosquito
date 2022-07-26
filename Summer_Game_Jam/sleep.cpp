@@ -19,9 +19,7 @@ void Sleep_Finalize() {
 }
 
 void Sleep_Update(Enemy* enemy) {
-	if (enemy->GetEnemyAliveFlg(enemy)) {
-		gauge--;
-	}
+	if (enemy->GetEnemyAliveFlg(enemy))gauge--;
 	if (20 * gauge / gaugeMax <= -640) {
 		finishFlg = true;
 	}
