@@ -1,4 +1,5 @@
 #pragma once
+#include"enemy.h"
 
 static int ImageSleep;		//Q‚Ä‚é‰æ‘œ
 static int ImageSleep2;		//Q‚Ú‚¯‰æ‘œ
@@ -9,5 +10,5 @@ static int red = GetColor(255, 255, 255);
 
 void Sleep_Initialize();
 void Sleep_Finalize();
-void Sleep_Update();
+void Sleep_Update(Enemy* enemy);
 void Sleep_Draw();
