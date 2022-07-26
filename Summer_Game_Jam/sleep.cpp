@@ -11,8 +11,8 @@ void Sleep_Finalize() {
 	DeleteGraph(ImageSleep2);
 }
 
-void Sleep_Update() {
-	gauge--;
+void Sleep_Update(Enemy* enemy) {
+	if (enemy->GetEnemyAliveFlg(enemy))gauge--;
 }
 
 void Sleep_Draw() {

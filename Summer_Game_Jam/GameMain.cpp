@@ -15,6 +15,7 @@ BaseScene* GameMain::Update() {
 	}
 	
 	enemy->MoveEnemy(enemy,TimeLimt);
+	enemy->CheckEnemyAlive(enemy);
 	Player_Update();
 	Sleep_Update();
 	//デバッグ用		Yボタンでリザルト画面へ
