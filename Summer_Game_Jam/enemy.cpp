@@ -27,7 +27,7 @@ void Enemy::InitEnemy(Enemy* enemy) {
 	enemy->Enemy_cnt = 0;
 }
 
-void Enemy::DrawEnemy(int enemy_x, int enemy_y, bool flg/*, bool* died_flg*/) const{
+void Enemy::DrawEnemy(int enemy_x, int enemy_y, bool flg/*, bool* died_flg*/) const {
 	static int DieImg_Tyme = 0;
 	if (flg) {
 		//DrawFormatString(enemy_x, enemy_y, 0x000000, "%d", enemy_area);
@@ -38,7 +38,10 @@ void Enemy::DrawEnemy(int enemy_x, int enemy_y, bool flg/*, bool* died_flg*/) co
 		else {
 			DieImg_Tyme = 0;
 		}
-	}*/
+	}*/DrawFormatString(200, 300, 0xDC6560, "Combo:%d", ComboTimer);
+	SetFontSize(40);
+	if (Combo_displayFlg && ComboTimer++ < 60) { DrawFormatString(GetEnemyX(), enemy_y, 0xDC6560, "%d",GetDied_enemy()); }
+	else if (ComboTimer >= 60) { Combo_displayFlg = FALSE; ComboTimer = 0; }SetFontSize(20);
 }
 
 void Enemy::MoveEnemy(Enemy* enemy, int time) {
@@ -100,9 +103,10 @@ void Enemy::MoveEnemy(Enemy* enemy, int time) {
 					if (enemy[i].NowY > 240)enemy[i].Enemy_Area += 3;
 					if (AttackFlg[enemy[i].Enemy_Area]) {
 						enemy->Died_enemy++;
+						Combo_displayFlg = true;
 						DeleteEnemy(enemy, i);
 					}
-
+					
 					if (enemy[i].Spawn_flg && (enemy[i].NowX < -5 || enemy[i].NowX > 645 || enemy[i].NowY < -5 || enemy[i].NowY > 485)) {
 						DeleteEnemy(enemy, i);
 					}
@@ -173,6 +177,7 @@ void Enemy::DeleteEnemy(Enemy* enemy,int num) {
 	enemy[num].flg = false;
 	enemy[num].Died_flg = true;
 	enemy->Enemy_cnt--;
+	DeadEnemynum = num;
 	enemy[num].Spawn_flg = false;
 	enemy[num].Enemy_time = 0;
 }
