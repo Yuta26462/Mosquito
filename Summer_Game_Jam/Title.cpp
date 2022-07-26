@@ -25,8 +25,6 @@ Title::Title() {
 BaseScene* Title::Update() {
 
 	{	//メニュー
-		if (GetSelectY() == -1) { if (SelectNo > 0)SelectNo--; }
-		if (GetSelectY() == 1){if (SelectNo < 3)SelectNo++; }
 
 		if (g_KeyFlg & 16) {
 			switch (SelectNo)
@@ -49,10 +47,15 @@ BaseScene* Title::Update() {
 				break;
 			}
 		}
-
-		if (MenuChangeFlg == 1 || MenuChangeFlg == 2) {
-			//Bボタンで戻る
-			if (g_KeyFlg & 32)MenuChangeFlg = 0;
+		//カーソル移動
+		if (MenuChangeFlg == false) {
+			static int MenuNo = 0;
+			if (GetSelectY() == -1) { if (--SelectNo < 0) SelectNo = 3; }
+			if (GetSelectY() == 1) { if (++SelectNo > 3) SelectNo = 0; }
+		}
+			if (MenuChangeFlg == 1 || MenuChangeFlg == 2) {
+				//Bボタンで戻る
+				if (g_KeyFlg & 32)MenuChangeFlg = 0;
 		}
 
 		return this;
