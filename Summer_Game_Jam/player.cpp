@@ -79,7 +79,7 @@ void Player_Update() {
 	if (AttackFlg[AreaNum] == true) {
 		PlaySoundMem(Mosquito_SE, DX_PLAYTYPE_BACK, TRUE);
 		AttackCount++;
-		if (AttackCount > 8) {
+		if (AttackCount > 20) {
 			AttackFlg[AreaNum] = false;
 			AttackCount = 0;
 		}
