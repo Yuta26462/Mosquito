@@ -43,7 +43,6 @@ void GameMain::Draw() const{
 	
 	DrawFormatString(100, 400, 0x000000, "Died_Enemy:%d", enemy->GetDied_enemy());
 	DrawFormatString(500, 100, 0x000000, "Time:%d", GetTime()/60);
-	DrawString(270, 220, "GameMain画面", 0x000000);
 	DrawString(250, 400, "Yボタンで次のシーンへ", 0x000000);
 	Player_Draw();
 }
