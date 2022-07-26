@@ -6,10 +6,6 @@
 #include "player.h"
 #include "sleep.h"
 
-//GameMain::GameMain() {
-//	//enemy = 0;
-//	//Enemy_cnt = 0;
-//}
 
 BaseScene* GameMain::Update() {
 	static bool StartFlg = true;
@@ -21,8 +17,8 @@ BaseScene* GameMain::Update() {
 	enemy->MoveEnemy(enemy,TimeLimt);
 	Player_Update();
 	Sleep_Update();
-	//z?L?[????U???g??????
-	if (TimeLimt-- < 1 || g_KeyFlg & PAD_INPUT_Y) {
+	//デバッグ用		Yボタンでリザルト画面へ
+	if (TimeLimt-- < 1 || g_KeyFlg & 128) {
 		return new Result();
 	}
 	else {
@@ -47,7 +43,6 @@ void GameMain::Draw() const{
 	
 	DrawFormatString(100, 400, 0x000000, "Died_Enemy:%d", enemy->GetDied_enemy());
 	DrawFormatString(500, 100, 0x000000, "Time:%d", GetTime()/60);
-	DrawString(250, 400, "Yボタンで次のシーンへ", 0x000000);
 	Player_Draw();
 	Sleep_Draw();
 }
