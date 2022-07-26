@@ -1,7 +1,10 @@
 #include"Dxlib.h"
 #include"sleep.h"
 
+bool finishFlg;
+
 void Sleep_Initialize() {
+	finishFlg = false;
 	ImageSleep = LoadGraph("Resource/images/Player_Sleep");
 	ImageSleep = LoadGraph("Resource/images/sleep.png");
 }
@@ -13,6 +16,12 @@ void Sleep_Finalize() {
 
 void Sleep_Update(Enemy* enemy) {
 	if (enemy->GetEnemyAliveFlg(enemy))gauge--;
+	if (20 * gauge / gaugeMax <= -640) {
+		finishFlg = true;
+	}
+	else {
+		finishFlg = false;
+	}
 }
 
 void Sleep_Draw() {
