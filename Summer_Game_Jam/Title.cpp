@@ -47,6 +47,7 @@ BaseScene* Title::Update() {
 			switch (SelectNo)
 			{
 			case 0:
+				StopSoundMem(Title_BGM);
 				return new GameMain();
 				break;
 			case 1:

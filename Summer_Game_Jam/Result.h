@@ -2,7 +2,9 @@
 #include "BaseScene.h"
 
 class Result : public BaseScene {
+	int GameClear_BGM, GameOver_BGM;
 public:
+	Result();
 	virtual ~Result() {};
 	virtual BaseScene* Update() override;
 	virtual void Initialize() const override;

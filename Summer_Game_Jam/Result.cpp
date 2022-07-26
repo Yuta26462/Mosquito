@@ -4,6 +4,16 @@
 #include "DxLib.h"
 #include "sleep.h"
 
+Result::Result() {
+	GameClear_BGM = LoadSoundMem("Resource/Sounds/BGM/GameClear.wav");
+	GameOver_BGM = LoadSoundMem("Resource/Sounds/BGM/GameOver.wav");
+	if (gauge <= 0) {
+		GameOver_BGM = LoadSoundMem("Resource/Sounds/BGM/GameOver.wav");
+	}else {
+		PlaySoundMem(GameClear_BGM, DX_PLAYTYPE_BACK, TRUE);
+	}
+}
+
 void Result::Initialize() const {
 
 }

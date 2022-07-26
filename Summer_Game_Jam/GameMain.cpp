@@ -6,9 +6,17 @@
 #include "player.h"
 #include "sleep.h"
 
+GameMain::GameMain() {
+	Main_BGM = LoadSoundMem("Resource/Sounds/BGM/GameMain.wav");
+	MainUp_BGM = LoadSoundMem("Resource/Sounds/BGM/GameMain_UP.wav");
+	PlaySoundMem(Main_BGM, DX_PLAYTYPE_BACK, TRUE);
+	static bool StartFlg = true;
+	TimeLimt = 1800;
+	Sleep_Initialize();
+}
 
 BaseScene* GameMain::Update() {
-	static bool StartFlg = true;
+	
 	if (StartFlg) {
 		enemy->InitEnemy(enemy);
 		StartFlg = false;
@@ -42,7 +50,7 @@ void GameMain::Draw() const{
 		enemy[i].DrawEnemy(enemy[i].GetEnemyX(),enemy[i].GetEnemyY(),enemy[i].GetEnemyFlg()/*,enemy[i].GetEnemyDflg()*/);
 	}
 	
-	DrawFormatString(100, 400, 0x000000, "Died_Enemy:%d", enemy->GetDied_enemy());
+	//DrawFormatString(100, 400, 0x000000, "Died_Enemy:%d", enemy->GetDied_enemy());
 	DrawFormatString(500, 100, 0x000000, "Time:%d", GetTime()/60);
 	Player_Draw();
 	Sleep_Draw();

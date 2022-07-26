@@ -38,10 +38,10 @@ void Enemy::DrawEnemy(int enemy_x, int enemy_y, bool flg/*, bool* died_flg*/) co
 		else {
 			DieImg_Tyme = 0;
 		}
-	}*/DrawFormatString(200, 300, 0xDC6560, "Combo:%d", ComboTimer);
-	SetFontSize(40);
-	if (Combo_displayFlg && ComboTimer++ < 60) { DrawFormatString(GetEnemyX(), enemy_y, 0xDC6560, "%d",GetDied_enemy()); }
-	else if (ComboTimer >= 60) { Combo_displayFlg = FALSE; ComboTimer = 0; }SetFontSize(20);
+	}*///DrawFormatString(200, 300, 0xDC6560, "Combo:%d", ComboTimer);
+	//SetFontSize(40);
+	//if (Combo_displayFlg && ComboTimer++ < 60) { DrawFormatString(GetEnemyX(), enemy_y, 0xDC6560, "%d",GetDied_enemy()); }
+	//else if (ComboTimer >= 60) { Combo_displayFlg = FALSE; ComboTimer = 0; }SetFontSize(20);
 }
 
 void Enemy::MoveEnemy(Enemy* enemy, int time) {
