@@ -14,9 +14,6 @@
 //static int timer = 0;
 //int GameMain::Enemy_cnt;
 
-//void Enemy::Drawene(Enemy* enemy) {
-//	DrawString(0, 0, "aa", 0x000000);
-//}
 
 void Enemy::InitEnemy(Enemy* enemy) {
 	for (int i = 0; i < 10; i++) {
@@ -45,7 +42,10 @@ void Enemy::DrawEnemy(Enemy enemy) const {
 			enemy.Died_flg = false;
 			DieImg_Tyme = 0;
 		}
-	}
+	}*///DrawFormatString(200, 300, 0xDC6560, "Combo:%d", ComboTimer);
+	//SetFontSize(40);
+	//if (Combo_displayFlg && ComboTimer++ < 60) { DrawFormatString(GetEnemyX(), enemy_y, 0xDC6560, "%d",GetDied_enemy()); }
+	//else if (ComboTimer >= 60) { Combo_displayFlg = FALSE; ComboTimer = 0; }SetFontSize(20);
 }
 
 void Enemy::MoveEnemy(Enemy* enemy, int time) {
@@ -182,7 +182,7 @@ void Enemy::GetEnemyPos(int* enemy_NowX, int* enemy_NowY, int enemy_pos) {
 
 void Enemy::DeleteEnemy(Enemy* enemy, int num) {
 	enemy[num].flg = false;
-	enemy[num].Died_flg = false;
+	enemy[num].Died_flg = true;
 	enemy->Enemy_cnt--;
 	DeadEnemynum = num;
 	enemy[num].Spawn_flg = false;
