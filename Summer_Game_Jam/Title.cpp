@@ -7,6 +7,7 @@
 
 void Title::Initialize() const {
 	Player_Initialize();
+	PlaySoundMem(Title_BGM, DX_PLAYTYPE_BACK, TRUE);
 }
 void Title::Finalize() const{
 	Player_Finalize();
@@ -21,6 +22,7 @@ Title::Title() {
 	OK_SE = LoadSoundMem("Resource/Sounds/SE/OK.wav");
 	Selecter_SE = LoadSoundMem("Resource/Sounds/SE/Selecter.wav");
 	Return_SE = LoadSoundMem("Resource/Sounds/SE/Return.wav");
+	Title_BGM = LoadSoundMem("Resource/Sounds/BGM/Title.wav");
 	SelectNo = 0;
 	MenuChangeFlg = 0;
 }

@@ -39,20 +39,20 @@ void Player_Update() {
 		if (g_KeyFlg & PAD_INPUT_A || g_KeyFlg & 32) {
 			AttackFlg[AreaNum] = true;
 		}
-		
+
 		//¶
 		if (GetJoyPadY() > 0 && GetJoyPadX() < -150) { BoxNumber_x = 0; BoxNumber_y = 1; }
 		else if ((GetJoyPadY() < 0) && GetJoyPadX() < -150) { BoxNumber_x = 0; BoxNumber_y = 0; }
 
 		//^‚ñ’†
 		if (GetJoyPadY() > 0 && GetJoyPadX() == 0) { BoxNumber_x = 1; BoxNumber_y = 1; }
-		else if((GetJoyPadY() < 0) && GetJoyPadX() == 0){BoxNumber_x = 1; BoxNumber_y = 0; }
+		else if ((GetJoyPadY() < 0) && GetJoyPadX() == 0) { BoxNumber_x = 1; BoxNumber_y = 0; }
 
 		//‰E
 		if (GetJoyPadY() > 0 && GetJoyPadX() > 150) { BoxNumber_x = 2; BoxNumber_y = 1; }
 		else if ((GetJoyPadY() < 0) && GetJoyPadX() > 150) { BoxNumber_x = 2; BoxNumber_y = 0; }
 	}
-	if (AttackFlg == true) {
+	if (AttackFlg[AreaNum] == true) {
 		PlaySoundMem(Mosquito_SE, DX_PLAYTYPE_BACK, TRUE);
 		AttackCount++;
 		if (AttackCount > 8) {

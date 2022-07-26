@@ -13,6 +13,7 @@ private:
 	int OK_SE;
 	int Selecter_SE;
 	int Return_SE;
+	int Title_BGM;
 public:
 	Title();
 	virtual ~Title() {};
