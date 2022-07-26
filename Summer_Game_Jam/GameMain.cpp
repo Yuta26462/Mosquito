@@ -19,8 +19,9 @@ BaseScene* GameMain::Update() {
 	}
 	
 	enemy->MoveEnemy(enemy,TimeLimt);
+	enemy->CheckEnemyAlive(enemy);
 	Player_Update();
-	Sleep_Update();
+	Sleep_Update(enemy);
 	//z?L?[????U???g??????
 	if (TimeLimt-- < 1 || g_KeyFlg & PAD_INPUT_Y) {
 		return new Result();
