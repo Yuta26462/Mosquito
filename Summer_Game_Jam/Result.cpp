@@ -4,6 +4,8 @@
 #include "DxLib.h"
 #include "sleep.h"
 
+bool StartFlg;
+
 void Result::Initialize() const {
 
 }
