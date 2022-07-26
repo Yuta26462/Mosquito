@@ -25,7 +25,8 @@ void Player_Finalize() {
 void Player_Update() {
 	if (AttackFlg[AreaNum] == false) {
 
-		if (g_KeyFlg & PAD_INPUT_A || g_KeyFlg & 32) {
+		//Aƒ{ƒ^ƒ“‚ÅUŒ‚
+		if (g_KeyFlg & 16) {
 			AttackFlg[AreaNum] = true;
 		}
 
