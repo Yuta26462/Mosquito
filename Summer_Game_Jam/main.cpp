@@ -2,6 +2,7 @@
 #include "Title.h"
 #include "main.h"
 #include "DxLib.h"
+#include<math.h>
 
 class Fps {
 	int mStartTime; //測定開始時刻
@@ -49,6 +50,8 @@ int	g_KeyFlg;				// 入力キー情報
 int Title_img;
 int GameMain_img;
 int Result_img;
+int Enemy_img;
+int Die_Enemy_img;
 
 int JoyPadX, JoyPadY, PadTimer;
 int SelectX, SelectY;
@@ -57,7 +60,8 @@ int LoadImages();           //画像読み込み関数
 
 int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 	Fps fps;
-    SetMainWindowText("タイトル未定");
+    SetOutApplicationLogValidFlag(FALSE);   //ログ出力を無効にする
+    SetMainWindowText("蚊");
 
     ChangeWindowMode(TRUE); //ウィンドウモードを有効
     SetWindowSize(1280, 960);
@@ -114,6 +118,8 @@ int LoadImages() {
     if ((Title_img = LoadGraph("Resource/Images/Title.png")) == -1)return -1;
     if ((GameMain_img = LoadGraph("Resource/Images/background.png")) == -1)return -1;
     if ((Result_img = LoadGraph("Resource/Images/Ranking.png")) == -1)return -1;
+    if ((Enemy_img = LoadGraph("Resource/Images/ka.png")) == -1)return -1;
+    if ((Die_Enemy_img = LoadGraph("Resource/Images/Die_ka.png")) == -1)return -1;
     return 0;
 }
 
