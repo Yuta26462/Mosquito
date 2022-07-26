@@ -16,6 +16,10 @@ private:
 	int Enemy_Area;
 	bool Enemy_AliveFlg;
 	int Died_flg;
+	mutable int ComboTimer;
+	mutable bool Combo_displayFlg;
+	mutable int DeadEnemynum;
+
 public:
 	void InitEnemy(Enemy* enemy);		//‰á‰Šú‰»ŠÖ”
 	void DrawEnemy(int enemy_x, int enemy_y, bool flg/*, bool* died_flg*/) const;		//‰á•`‰æŠÖ”
