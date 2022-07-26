@@ -34,9 +34,9 @@ void Enemy::InitEnemy(Enemy* enemy) {
 void Enemy::DrawEnemy(Enemy enemy) const{
 	static int DieImg_Tyme = 0;
 	if (enemy.flg) {
-		//DrawRotaGraph(enemy.GetEnemyX(),enemy.GetEnemyY(), 0.1, 0, Enemy_img, TRUE, FALSE);
-		DrawFormatString(enemy.GetEnemyX(), enemy.GetEnemyY(), 0x000000, "%d", enemy.Died_flg);
-		//DrawFormatString(enemy_x, enemy_y, 0x000000, "%d", enemy_area);
+		DrawRotaGraph(enemy.GetEnemyX(),enemy.GetEnemyY(), 0.1, 0, Enemy_img, TRUE, FALSE);
+		//DrawFormatString(enemy.GetEnemyX(), enemy.GetEnemyY(), 0x000000, "%d", enemy.Died_flg);
+		
 		
 	}
 	else if (enemy.Died_flg) {
