@@ -31,7 +31,7 @@ public:
 		return true;
 	}
 	void Draw() {
-		DrawFormatString(100, 100, GetColor(255, 255, 255), "%.1f", mFps);
+		//DrawFormatString(100, 100, GetColor(255, 255, 255), "%.1f", mFps);
 	}
 	void Wait() {
 		int tookTime = GetNowCount() - mStartTime;
@@ -80,9 +80,10 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     while (scenMG.Update() != nullptr && ProcessMessage() == 0) {
         // 入力キー取得
         g_OldKey = g_NowKey;
-        g_NowKey = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-       // g_NowKey = GetJoypadInputState(DX_INPUT_PAD1);
+        g_NowKey = GetJoypadInputState(DX_INPUT_PAD1);
         g_KeyFlg = g_NowKey & ~g_OldKey;
+
+        if (g_KeyFlg & 1024) DxLib_End();   //BACKボタンでプログラム終了
 
         GetJoypadAnalogInput(&JoyPadX, &JoyPadY, DX_INPUT_PAD1);    //アナログスティック座標を取得
         SetJoypadDeadZone(DX_INPUT_PAD1, 0.3f);     //角度の制限を緩和

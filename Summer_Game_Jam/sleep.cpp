@@ -29,7 +29,7 @@ void Sleep_Update() {
 }
 
 void Sleep_Draw() {
-		DrawBox(0, 0, 620 + 20, 10 + 20, black, TRUE);		//ògÇï`âÊ
-		DrawBox(0, 0, 640 + 20 * gauge / gaugeMax, 10 + 20, blue, TRUE);	//HPÉQÅ[ÉWÇï`âÊ
-		DrawBox(0, 0, 620 + 20, 10 + 20, black, FALSE);		//ògÇï`âÊ
+		DrawBox(0, 0, 620 + 20, 10 + 20, black, TRUE);		//?g??`??
+		DrawBox(0, 0, 640 + 20 * gauge / gaugeMax, 10 + 20, blue, TRUE);	//HP?Q?[?W??`??
+		DrawBox(0, 0, 620 + 20, 10 + 20, black, FALSE);		//?g??`??
 }

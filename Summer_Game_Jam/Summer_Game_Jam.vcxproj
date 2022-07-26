@@ -152,7 +152,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DrawPixcel.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="Result.cpp" />
