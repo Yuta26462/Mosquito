@@ -13,6 +13,7 @@ private:
 	int Died_enemy;
 	bool Spawn_flg;
 	int Enemy_Area;
+	int DeadEnemynum;
 	bool Enemy_AliveFlg;
 	bool Died_flg;
 public:
