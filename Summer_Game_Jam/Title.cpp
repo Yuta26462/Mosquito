@@ -94,10 +94,11 @@ void Title::Draw() const {
 		DrawString(100, 150, "タイトル      蚊", 0xDC6560);
 		DrawString(100, 180, "制作者        国際電子ビジネス専門学校 Lチーム", 0xDC6560);
 		DrawString(130, 240, "素材利用", 0xDC6560);
-		DrawString(100, 270, "画像　　 　   みんちりえ   https://min-chi.material.jp/", 0xDC6560);
-		DrawString(100, 300, "              いらすとや   https://www.irasutoya.com/", 0xDC6560);
-		DrawString(100, 330, "BGM", 0xDC6560);
-		DrawString(100, 360, "SE", 0xDC6560);
+		DrawString(100, 270, "画像　　 　   みんちりえ     https://min-chi.material.jp/", 0xDC6560);
+		DrawString(100, 300, "              いらすとや     https://www.irasutoya.com/", 0xDC6560);
+		DrawString(100, 330, "BGM           DOVA-SYNDROME  https://dova-s.jp/", 0xDC6560);
+		DrawString(100, 360, "                 MusMus      https://musmus.main.jp/", 0xDC6560);
+		DrawString(100, 390, "SE            DOVA-SYNDROME  https://dova-s.jp/", 0xDC6560);
 
 
 	}else {
