@@ -6,9 +6,17 @@
 #include "player.h"
 #include "sleep.h"
 
+GameMain::GameMain() {
+	Main_BGM = LoadSoundMem("Resource/Sounds/BGM/GameMain.wav");
+	MainUp_BGM = LoadSoundMem("Resource/Sounds/BGM/GameMain_UP.wav");
+	PlaySoundMem(Main_BGM, DX_PLAYTYPE_BACK, TRUE);
+	static bool StartFlg = true;
+	TimeLimt = 1800;
+	Sleep_Initialize();
+}
 
 BaseScene* GameMain::Update() {
-	static bool StartFlg = true;
+	static int StartFlg = TRUE;
 	if (StartFlg) {
 		enemy->InitEnemy(enemy);
 		StartFlg = false;
@@ -37,13 +45,13 @@ void GameMain::Finalize() const {
 }
 
 void GameMain::Draw() const {
-	DrawGraph(0, 0, GameMain_img, FALSE);
-	for (int i = 0; i < 20; i++) {
+	DrawExtendGraph(0, 0,641,481, GameMain_img, FALSE);
+	for (int i = 0; i < 10; i++) {
 		enemy->DrawEnemy(enemy[i]);
 	}
 		
 	
-	DrawFormatString(100, 400, 0x000000, "Died_Enemy:%d", enemy->GetDied_enemy());
+	//DrawFormatString(100, 400, 0x000000, "Died_Enemy:%d", enemy->GetDied_enemy());
 	DrawFormatString(500, 100, 0x000000, "Time:%d", GetTime()/60);
 	Player_Draw();
 	Sleep_Draw();
