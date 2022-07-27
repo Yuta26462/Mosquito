@@ -54,7 +54,8 @@ void Result::Draw() const {
 			DrawRotaString(150, 50, 2.0, 2.0, 0.0, 0.0, 0, 0x000000, 0x000000, TRUE, "撃墜成功！！！");
 		}
 		if (TextCount > 120) {
-			DrawRotaString(500, 400, 1.0, 1.0, 0.0, 0.0, 0, 0x000000, 0x000000, TRUE, "スコア:");
+			//DrawRotaString(500, 400, 1.0, 1.0, 0.0, 0.0, 0, 0x000000, 0x000000, TRUE, "スコア:");
+			DrawFormatString(500, 400, 0x000000, "スコア:%d", enemy->GetScore());
 		}
 	}
 }
