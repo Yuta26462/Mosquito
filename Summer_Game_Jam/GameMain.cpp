@@ -50,8 +50,12 @@ void GameMain::Draw() const {
 	for (int i = 0; i < 10; i++) {
 		enemy->DrawEnemy(enemy[i]);
 	}
-		
+	for (int j = 0; j < 6; j++) {
+		DrawFormatString(30 * j, 200, 0xffffff, "%d", enemy->GetEnemyIntoArea(j));
+	}
 	
+	DrawFormatString(100, 400, 0xffffff, "Score:%d", enemy->GetScore());
+	DrawFormatString(100, 450, 0xffffff, "Combo:%d", enemy->GetCombo());
 	//DrawFormatString(100, 400, 0x000000, "Died_Enemy:%d", enemy->GetDied_enemy());
 	DrawFormatString(500, 100, 0x000000, "Time:%d", GetTime()/60);
 	Player_Draw();

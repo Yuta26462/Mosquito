@@ -40,6 +40,7 @@ public:
 	int GetCombo()const;
 	void SetCombo(int combo_flg);
 	//int GetEnemy_Area() const;
+	int GetEnemyIntoArea(int num)const;
 };
 
 int GetEnemyVector();

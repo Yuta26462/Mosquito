@@ -38,8 +38,13 @@ void Enemy::InitEnemy(Enemy* enemy) {
 		enemy[i].Enemy_time = 0;
 		enemy[i].Spawn_flg = false;
 	}
+	for (int j = 0; j < 6; j++) {
+		EnemyIntoArea[j] = 0;
+	}
 	enemy->Died_enemy = 0;
 	enemy->Enemy_cnt = 0;
+	enemy->Score = 0;
+	enemy->Combo = 0;
 }
 
 void Enemy::DrawEnemy(Enemy enemy) const {
@@ -51,6 +56,7 @@ void Enemy::DrawEnemy(Enemy enemy) const {
 }
 
 void Enemy::MoveEnemy(Enemy* enemy, int time) {
+	CheckEnemyIntoArea(enemy);
 	if (time % 60 == 0 && enemy->Enemy_cnt <= enemy->GetEnemyMakes(enemy->Died_enemy)) {
 		enemy->CreateEnemy(enemy, 3/*,enemy->Died_enemy*/);
 	}
@@ -216,16 +222,22 @@ void Enemy::CheckEnemyIntoArea(Enemy* enemy) {
 		{
 		case 0:
 			NewEnemy_num[0]++;
+			break;
 		case 1:
 			NewEnemy_num[1]++;
+			break;
 		case 2:
 			NewEnemy_num[2]++;
+			break;
 		case 3:
 			NewEnemy_num[3]++;
+			break;
 		case 4:
 			NewEnemy_num[4]++;
+			break;
 		case 5:
 			NewEnemy_num[5]++;
+			break;
 		default:
 			continue;
 		}
@@ -281,3 +293,6 @@ void Enemy::SetCombo(int combo_flg) {
 //	return Enemy_Area;
 //}
 
+int Enemy::GetEnemyIntoArea(int num) const {
+	return EnemyIntoArea[num];
+}
