@@ -10,7 +10,6 @@ void Title::Initialize() const {
 	Sleep_Initialize();
 	Player_Initialize();
 	Sleep_Initialize();
-	PlaySoundMem(Title_BGM, DX_PLAYTYPE_BACK, TRUE);
 }
 void Title::Finalize() const{
 	Sleep_Finalize();
@@ -30,6 +29,7 @@ Title::Title() {
 	Title_BGM = LoadSoundMem("Resource/Sounds/BGM/Title.wav");
 	SelectNo = 0;
 	MenuChangeFlg = 0;
+	PlaySoundMem(Title_BGM, DX_PLAYTYPE_BACK, TRUE);
 }
 
 BaseScene* Title::Update() {

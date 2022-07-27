@@ -30,6 +30,12 @@ BaseScene* Result::Update() {
 	TextCount++;
 	//Bボタンでタイトルへ
 	if (g_KeyFlg & 32) {
+		if (finishFlg == true) {
+			StopSoundMem(GameOver_BGM);
+		}
+		else {
+			StopSoundMem(GameClear_BGM);
+		}
 		return new Title();
 	}
 	else {
