@@ -31,9 +31,19 @@ void Sleep_Update(Enemy* enemy) {
 }
 
 void Sleep_Draw() {
-	DrawBox(0, 0, 620 + 20, 10 + 20, black, TRUE);		//?g??`??
-	DrawBox(0, 0, 640 + 20 * gauge / gaugeMax, 10 + 20, blue, TRUE);	//HP?Q?[?W??`??
-	DrawBox(0, 0, 620 + 20, 10 + 20, black, FALSE);		//?g??`??
+	DrawBox(0, 0, 620 + 20, 10 + 20, black, TRUE);
+	if (640 + 20 * gauge / gaugeMax >= 320) {
+		DrawBox(0, 0, 640 + 20 * gauge / gaugeMax, 10 + 20, blue, TRUE);
+	}
+	else if (640 + 20 * gauge / gaugeMax < 320 && 640 + 20 * gauge / gaugeMax >= 160 ){
+		DrawBox(0, 0, 640 + 20 * gauge / gaugeMax, 10 + 20, yello, TRUE);
+	}
+	else {
+		DrawBox(0, 0, 640 + 20 * gauge / gaugeMax, 10 + 20, red, TRUE);
+	}
+	DrawBox(0, 0, 620 + 20, 10 + 20, black, FALSE);
+	SetFontSize(20);
+	DrawString(260, 5, "êáñ∞ÉQÅ[ÉW", 0x000000);
 }
 
 void Sleep_Player_Draw() {

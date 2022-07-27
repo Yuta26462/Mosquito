@@ -6,7 +6,8 @@ static int ImageSleep2;		//Q‚Ú‚¯‰æ‘œ
 static int gauge = 0, gaugeMax = 40;
 static int black = GetColor(0, 0, 0);
 static int blue = GetColor(0, 255, 255);
-static int red = GetColor(255, 255, 255);
+static int red = GetColor(255, 0, 0);
+static int yello = GetColor(255, 255, 0);
 
 extern bool finishFlg;
 
