@@ -81,12 +81,12 @@ void Title::Draw() const {
 
 	if (MenuChangeFlg == 1) {//操作説明
 		DrawGraph(0, 0, Help_img, FALSE);
-		DrawString(140, 160, "蚊が６つに分けられた枠内に出現するよ！", 0xffffff);
-		DrawString(140, 190, "スティックで蚊がいるところにカーソルを合わせて、", 0xffffff);
-		DrawString(140, 220, "Aボタンを押したら蚊を倒すことができるよ！", 0xffffff);
-		DrawString(140, 250, "間違えずに連続で蚊を倒していくと", 0xffffff);
-		DrawString(140, 280, "コンボが発生して、獲得できるスコアが増えていくから", 0xffffff);
-		DrawString(140, 310, "頑張ってたくさん倒そう！！", 0xffffff);
+		DrawString(100, 140, "蚊が６つに分けられた枠内に出現するよ！", 0xffffff);
+		//DrawString(140, 190, "スティックで蚊がいるところにカーソルを合わせて、", 0xffffff);
+		//DrawString(140, 220, "Aボタンを押したら蚊を倒すことができるよ！", 0xffffff);
+		DrawString(100, 160, "間違えずに連続で蚊を倒していくとコンボが発生して、", 0xffffff);
+		DrawString(100, 180, "獲得できるスコアが増えていくから頑張ってたくさん倒そう！", 0xffffff);
+		//DrawString(140, 310, "頑張ってたくさん倒そう！！", 0xffffff);
 		DrawStringToHandle(90, 400, "Bボタンでタイトルに戻る", 0xFFFFFF, MenuFont, 0xDC6560);
 	}
 	else if (MenuChangeFlg == 2) {//クレジット
