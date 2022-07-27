@@ -13,21 +13,7 @@
 
 //static int timer = 0;
 //int GameMain::Enemy_cnt;
-
-//Enemy::Enemy() {
-//	Enemy::flg = false;
-//	Enemy::NowX = 0;
-//	Enemy::NowY = 0;
-//	Enemy::pos = 0;
-//	Enemy::Enemy_time = 0;
-//	Enemy::Enemy_vector = 0;
-//	Enemy::Spawn_flg = false;
-//	Enemy::Died_enemy = 0;
-//	Enemy::Enemy_cnt = 0;
-//	Enemy::Enemy_Area = 0;
-//	Enemy::Enemy_AliveFlg = false;
-//	Enemy::Died_flg = false;
-//}
+Enemy enemy[10];
 
 void Enemy::InitEnemy(Enemy* enemy) {
 	for (int i = 0; i < 10; i++) {

@@ -42,5 +42,6 @@ public:
 	//int GetEnemy_Area() const;
 	int GetEnemyIntoArea(int num)const;
 };
+extern Enemy enemy[10];
 
 int GetEnemyVector();
