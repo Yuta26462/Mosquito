@@ -2,7 +2,7 @@
 
 static int box_x, box_y;
 static int WeaponImage;
-static int Mosquito_SE;
+static int Flyswatter_SE;
 static int BoxNumber_x,BoxNumber_y;
 static int AttackCount;
 static float BoxColor;
