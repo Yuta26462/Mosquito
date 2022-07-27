@@ -8,8 +8,8 @@
 Result::Result() {
 	GameClear_BGM = LoadSoundMem("Resource/Sounds/BGM/GameClear.wav");
 	GameOver_BGM = LoadSoundMem("Resource/Sounds/BGM/GameOver.wav");
-	GameOver_Face = LoadGraph("Resource/Images/GameOver_Face.png");
-	Clear_Face = LoadGraph("Resource/Images/Clear_Face.png");
+	GameOver_Face = LoadGraph("Resource/Images/Player/GameOver_Face.png");
+	Clear_Face = LoadGraph("Resource/Images/Player/Clear_Face.png");
 	HareBack = LoadGraph("Resource/Images/hare.png");
 	Donyori_Back = LoadGraph("Resource/Images/Gameover_Back.png");
 	TextCount = 0;
