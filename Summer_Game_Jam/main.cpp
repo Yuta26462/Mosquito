@@ -61,6 +61,7 @@ int LoadImages();           //画像読み込み関数
 int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
     Fps fps;
     SetOutApplicationLogValidFlag(FALSE);   //ログ出力を無効にする
+    SetWindowIconID(01);
     SetMainWindowText("蚊");
 
     ChangeWindowMode(TRUE); //ウィンドウモードを有効
