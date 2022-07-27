@@ -6,7 +6,7 @@
 class GameMain : public BaseScene {
 private:
 	mutable int TimeLimt;
-	mutable int Main_BGM, MainUp_BGM;
+	mutable int Main_BGM, MainUp_BGM, Wind_chimes_SE;
 public:
 	GameMain();
 	virtual ~GameMain() {};
