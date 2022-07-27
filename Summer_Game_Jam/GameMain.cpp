@@ -46,6 +46,7 @@ void GameMain::Finalize() const {
 
 void GameMain::Draw() const {
 	DrawExtendGraph(0, 0,641,481, GameMain_img, FALSE);
+	Sleep_Player_Draw();
 	for (int i = 0; i < 10; i++) {
 		enemy->DrawEnemy(enemy[i]);
 	}

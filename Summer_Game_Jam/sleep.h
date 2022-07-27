@@ -14,3 +14,4 @@ void Sleep_Initialize();
 void Sleep_Finalize();
 void Sleep_Update(Enemy* enemy);
 void Sleep_Draw();
+void Sleep_Player_Draw();
