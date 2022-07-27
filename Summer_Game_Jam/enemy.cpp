@@ -47,7 +47,7 @@ void Enemy::MoveEnemy(Enemy* enemy, int time) {
 		enemy->CreateEnemy(enemy, 3/*,enemy->Died_enemy*/);
 	}
 	if (time % 2) {
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 10; i++) {
 			if (enemy[i].flg) {
 
 				if ((enemy[i].NowX <= 20 || enemy[i].NowX >= 620) && !enemy[i].Spawn_flg) {
