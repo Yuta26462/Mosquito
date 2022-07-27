@@ -6,7 +6,7 @@ class Enemy {
 private:
 	int pos;
 	int NowX, NowY;       //Œ»İ’n
-	//float Enemy_angle;
+	int speed;
 	int Enemy_cnt;
 	int Enemy_time;
 	int Enemy_vector;
@@ -24,6 +24,7 @@ public:
 	void DrawEnemy(Enemy enemy) const;		//‰á•`‰æŠÖ”
 	//void Drawene(Enemy enmey) const; int enemy_x, int enemy_y, bool flg/*, bool* died_flg*/
 	void MoveEnemy(Enemy* enemy, int time);		//‰áˆÚ“®ŠÖ”
+	int SetEnemySpeed();					
 	void CreateEnemy(Enemy* enemy,int Make_enemys);		//‰á¶¬ŠÖ”
 	void GetEnemyPos(int* enemy_x, int* enemy_y, int enemy_pos);					//‰áoŒ»ˆÊ’uŒˆ’èŠÖ”
 	void DeleteEnemy(Enemy* enemy ,int num);

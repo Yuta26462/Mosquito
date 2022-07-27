@@ -40,6 +40,7 @@ void Enemy::DrawEnemy(Enemy enemy) const {
 }
 
 void Enemy::MoveEnemy(Enemy* enemy, int time) {
+	if (AttackInterval <= 0)SetCombo(FALSE);
 	CheckEnemyIntoArea(enemy);
 	if (time % SetEnemySpawn(Died_enemy) == 0 && enemy->Enemy_cnt <= enemy->GetEnemyMakes(enemy->Died_enemy)) {
 		enemy->CreateEnemy(enemy, 3/*,enemy->Died_enemy*/);
@@ -67,19 +68,19 @@ void Enemy::MoveEnemy(Enemy* enemy, int time) {
 				if (enemy[i].Spawn_flg) {
 					switch (enemy[i].Enemy_vector) {
 					case UP:
-						enemy[i].NowY -= Move_Y;
+						enemy[i].NowY -= enemy[i].speed;
 						break;
 					case DOWN:
-						enemy[i].NowY += Move_Y;
+						enemy[i].NowY += enemy[i].speed;
 						break;
 					case RIGHT:
 						if (enemy[i].pos <= 1) {
-							enemy[i].NowX += Move_X;
+							enemy[i].NowX += enemy[i].speed;
 						}
 						break;
 					case LEFT:
 						if (enemy[i].pos > 1) {
-							enemy[i].NowX -= Move_X;
+							enemy[i].NowX -= enemy[i].speed;
 						}
 						break;
 					default:
@@ -113,9 +114,17 @@ void Enemy::MoveEnemy(Enemy* enemy, int time) {
 }
 
 int SetEnemySpawn(int died_enemy) {
-	if (died_enemy < 10)return 120;
-	else if (died_enemy < 20)return 100;
-	else if (died_enemy < 30)return 60;
+	if (died_enemy < 10)return 180;
+	else if (died_enemy < 20)return 140;
+	else if (died_enemy < 30)return 80;
+}
+
+int Enemy::SetEnemySpeed() {
+	int rand_num = GetRand(5);
+	if (rand_num <= 2)return 15;
+	else if (rand_num <= 4)return 30;
+	else if (rand_num <= 5) return 50;
+	else return -1;
 }
 
 void Enemy::CreateEnemy(Enemy* enemy, int Make_enemys) {
@@ -128,6 +137,7 @@ void Enemy::CreateEnemy(Enemy* enemy, int Make_enemys) {
 				enemy[i].flg = true;
 				enemy[i].pos = GetRand(3);
 				GetEnemyPos(&enemy[i].NowX, &enemy[i].NowY, enemy[i].pos);
+				enemy[i].speed = SetEnemySpeed();
 				enemy->Enemy_cnt++;
 			}
 		}
@@ -154,7 +164,7 @@ void Enemy::GetEnemyPos(int* enemy_NowX, int* enemy_NowY, int enemy_pos) {
 	switch (enemy_pos) {
 	case 0:
 		*enemy_NowX = -30;
-		*enemy_NowY = 70;
+		*enemy_NowY = 100;
 		break;
 	case 1:
 		*enemy_NowX = -30;
@@ -162,11 +172,11 @@ void Enemy::GetEnemyPos(int* enemy_NowX, int* enemy_NowY, int enemy_pos) {
 		break;
 	case 2:
 		*enemy_NowX = 670;
-		*enemy_NowY = 70;
+		*enemy_NowY = 380;
 		break;
 	case 3:
 		*enemy_NowX = 670;
-		*enemy_NowY = 410;
+		*enemy_NowY = 380;
 		break;
 	default:
 		break;

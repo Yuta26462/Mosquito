@@ -4,6 +4,7 @@
 
 int AreaNum;
 bool AttackFlg;
+int AttackInterval;
 
 void Player_Initialize() {
 	WeaponImage = LoadGraph("Resource/Images/Weapon.png");
@@ -17,13 +18,13 @@ void Player_Initialize() {
 	AttackCount = 0;
 	AreaNum = 0;
 	AttackFlg = false;
-
+	AttackInterval = 180;
 }
 void Player_Finalize() {
 	DeleteGraph(WeaponImage);
 }
 void Player_Update() {
-	
+	if (AttackInterval > 0)AttackInterval--;
 	if (AttackFlg==false) {
 
 		//Aƒ{ƒ^ƒ“‚ÅUŒ‚
@@ -31,6 +32,7 @@ void Player_Update() {
 			//AttackFlg[AreaNum] = true;
 			PlaySoundMem(Flyswatter_SE, DX_PLAYTYPE_BACK, TRUE);
 			AttackFlg = true;
+			AttackInterval = 180;
 		}
 
 		

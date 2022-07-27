@@ -8,6 +8,7 @@ static int AttackCount;
 static float BoxColor;
 extern int AreaNum;
 extern bool AttackFlg;
+extern int AttackInterval;
 
 void Player_Initialize();
 void Player_Finalize();
