@@ -16,9 +16,6 @@ void Player_Initialize() {
 	box_y = 0;
 	AttackCount = 0;
 	AreaNum = 0;
-	/*for (int i = 0; i < 6; i++) {
-		AttackFlg[i] = 0;
-	}*/
 	AttackFlg = false;
 
 }
@@ -26,12 +23,12 @@ void Player_Finalize() {
 	DeleteGraph(WeaponImage);
 }
 void Player_Update() {
-	//static int NowArea = 0;
-	if (AttackFlg==false/*AttackFlg[AreaNum] == false*/) {
+	
+	if (AttackFlg==false) {
 
 		//Aƒ{ƒ^ƒ“‚ÅUŒ‚
 		if (g_KeyFlg & 16) {
-			//AttackFlg[AreaNum] = true;
+			
 			PlaySoundMem(Mosquito_SE, DX_PLAYTYPE_BACK, TRUE);
 			AttackFlg = true;
 		}
@@ -69,8 +66,8 @@ void Player_Update() {
 		break;
 	}
 	
-	//NowArea = AreaNum;
-	if (AttackFlg==true/*AttackFlg[AreaNum] == true*//* && AreaNum == NowArea*/) {
+	
+	if (AttackFlg==true) {
 		AttackCount++;
 		if (AttackCount > 12) {
 			AttackFlg = false;
