@@ -88,7 +88,7 @@ void Player_Draw() {
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 64);
 	DrawBox(BoxNumber_x * 213, BoxNumber_y * 270, BoxNumber_x * 213 + 214, BoxNumber_y * 271 + 271, BoxColor, TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
-	if (AttackFlg[AreaNum] == true) {
+	if (AttackFlg == true) {
 		DrawRotaGraph(BoxNumber_x * 213 + 106, BoxNumber_y * 240 + 150, 0.3, 0, WeaponImage, TRUE, FALSE);
 		DrawString(300, 200, "ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚æ", 0x000000);
 	}
