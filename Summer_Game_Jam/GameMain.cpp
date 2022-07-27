@@ -11,6 +11,8 @@ GameMain::GameMain() {
 	Main_BGM = LoadSoundMem("Resource/Sounds/BGM/Title.wav");
 	MainUp_BGM = LoadSoundMem("Resource/Sounds/BGM/GameMain_UP.wav");
 	Wind_chimes_SE = LoadSoundMem("Resource/Sounds/SE/wind_chimes.wav");
+	Moon_img = LoadGraph("Resource/Images/Background/Moon1.png");
+	Sun_img = LoadGraph("Resource/Images/Background/Sun.png");
 	PlaySoundMem(Main_BGM, DX_PLAYTYPE_BACK, TRUE);
 	PlaySoundMem(Wind_chimes_SE, DX_PLAYTYPE_BACK, TRUE);
 	static bool StartFlg = true;
@@ -19,9 +21,27 @@ GameMain::GameMain() {
 	Sleep_Initialize();
 	enemy->InitEnemy(enemy);
 	StatusFont = CreateFontToHandle("StatusFont", 20, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4);
+	MoonX = 200;
+	MoonY = 130;
+	SunX = 640;
+	SunY = 500;
+	BackgroundColor = RGB(41, 42, 62);
+	Bright = 140;
 }
 
 BaseScene* GameMain::Update() {
+
+	//GraphFilter(GameMain_img, DX_GRAPH_FILTER_HSB, 0, MoonFilter[0], MoonFilter[1], MoonFilter[2]);
+	if (TimeLimt % 60 == 0) {
+		BackgroundColor += RGB(7, 4, 0);
+	}else if(TimeLimt % 6 == 0){
+		MoonX++;
+		MoonY++;
+		SunX--;
+		SunY--;
+		Bright++;
+	}
+	if (TimeLimt < 900)StopSoundMem(Main_BGM);
 	
 	enemy->MoveEnemy(TimeLimt);
 	enemy->CheckEnemyAlive(enemy);
@@ -48,8 +68,12 @@ void GameMain::Finalize() const {
 }
 
 void GameMain::Draw() const {
-	
-	DrawExtendGraph(0, 0,641,481, GameMain_img, FALSE);
+	DrawBoxAA(0, 0, 641, 360, BackgroundColor, TRUE, 0);
+	DrawRotaGraph(MoonX, MoonY, 0.5f, 0, Moon_img, TRUE);
+	DrawRotaGraph(SunX, SunY, 1.0f, 0, Sun_img, TRUE);
+	SetDrawBright(Bright, Bright, Bright);
+	DrawExtendGraph(0, 0,641,481, GameMain_img,TRUE);
+	SetDrawBright(255, 255, 255);
 	Sleep_Player_Draw();
 	for (int i = 0; i < 10; i++) {
 		enemy[i].DrawEnemy();

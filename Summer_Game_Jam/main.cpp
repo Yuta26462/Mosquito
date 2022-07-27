@@ -119,7 +119,7 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 int LoadImages() {
     if ((Title_img = LoadGraph("Resource/Images/Background/Title.png")) == -1)return -1;
-    if ((GameMain_img = LoadGraph("Resource/Images/Background/GameMain1.png")) == -1)return -1;
+    if ((GameMain_img = LoadGraph("Resource/Images/Background/GameMain_Back.png")) == -1)return -1;
     if ((Result_img = LoadGraph("Resource/Images/Background/GameMain.png")) == -1)return -1;
     if ((Enemy_img = LoadGraph("Resource/Images/ka.png")) == -1)return -1;
     if ((Die_Enemy_img = LoadGraph("Resource/Images/Die_ka.png")) == -1)return -1;
