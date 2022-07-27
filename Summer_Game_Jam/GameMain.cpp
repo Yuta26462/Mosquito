@@ -49,10 +49,8 @@ void GameMain::Draw() const {
 	for (int i = 0; i < 10; i++) {
 		enemy->DrawEnemy(enemy[i]);
 	}
-		
-	
 	//DrawFormatString(100, 400, 0x000000, "Died_Enemy:%d", enemy->GetDied_enemy());
-	DrawFormatString(500, 100, 0x000000, "Time:%d", GetTime()/60);
+	DrawFormatString(500, 100, 0xffffff, "Time:%d", GetTime()/60);
 	Player_Draw();
 	Sleep_Draw();
 }

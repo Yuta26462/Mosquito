@@ -24,12 +24,6 @@ void Player_Finalize() {
 }
 void Player_Update() {
 	if (AttackFlg[AreaNum] == false) {
-
-		//Aボタンで攻撃
-		if (g_KeyFlg & 16) {
-			AttackFlg[AreaNum] = true;
-		}
-
 		//左
 		if (GetJoyPadY() > 0 && GetJoyPadX() < -150) { BoxNumber_x = 0; BoxNumber_y = 1;}
 		else if ((GetJoyPadY() < 0) && GetJoyPadX() < -150) { BoxNumber_x = 0; BoxNumber_y = 0;}
@@ -41,6 +35,11 @@ void Player_Update() {
 		//右
 		if (GetJoyPadY() > 0 && GetJoyPadX() > 150) { BoxNumber_x = 2; BoxNumber_y = 1;}
 		else if ((GetJoyPadY() < 0) && GetJoyPadX() > 150) { BoxNumber_x = 2; BoxNumber_y = 0;}
+
+		//Aボタンで攻撃
+		if (g_KeyFlg & 16) {
+			AttackFlg[AreaNum] = true;
+		}
 	}
 	switch (BoxNumber_x)
 	{
@@ -79,7 +78,7 @@ void Player_Update() {
 	if (AttackFlg[AreaNum] == true) {
 		PlaySoundMem(Mosquito_SE, DX_PLAYTYPE_BACK, TRUE);
 		AttackCount++;
-		if (AttackCount > 20) {
+		if (AttackCount > 12) {
 			AttackFlg[AreaNum] = false;
 			AttackCount = 0;
 		}
