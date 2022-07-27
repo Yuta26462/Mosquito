@@ -9,6 +9,7 @@
 bool finishFlg;
 
 void Sleep_Initialize() {
+	gauge = 0;
 	finishFlg = false;
 	ImageSleep = LoadGraph("Resource/images/Player_Sleep.png");
 	ImageSleep2 = LoadGraph("Resource/images/sleep.png");

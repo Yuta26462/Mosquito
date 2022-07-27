@@ -66,6 +66,7 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     ChangeWindowMode(TRUE); //ウィンドウモードを有効
     SetWindowSize(1280, 960);
+    SetBackgroundColor(255, 255, 255);//背景色を白に
 
     if (DxLib_Init() == -1) return -1;	// DXライブラリの初期化処理
     if (LoadImages() == -1)return -1;
@@ -119,7 +120,7 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 int LoadImages() {
     if ((Title_img = LoadGraph("Resource/Images/Title.png")) == -1)return -1;
     if ((GameMain_img = LoadGraph("Resource/Images/GameMain1.png")) == -1)return -1;
-    if ((Result_img = LoadGraph("Resource/Images/Ranking.png")) == -1)return -1;
+    if ((Result_img = LoadGraph("Resource/Images/GameMain.png")) == -1)return -1;
     if ((Enemy_img = LoadGraph("Resource/Images/ka.png")) == -1)return -1;
     if ((Die_Enemy_img = LoadGraph("Resource/Images/Die_ka.png")) == -1)return -1;
     return 0;

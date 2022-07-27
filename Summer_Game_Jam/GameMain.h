@@ -5,9 +5,10 @@
 
 class GameMain : public BaseScene {
 private:
-	Enemy enemy[10];
-	mutable int TimeLimt = 1860;
+	mutable int TimeLimt;
 	mutable int Main_BGM, MainUp_BGM;
+	bool StartFlg;
+	int StatusFont;
 public:
 	GameMain();
 	virtual ~GameMain() {};

@@ -13,7 +13,7 @@
 
 //static int timer = 0;
 //int GameMain::Enemy_cnt;
-
+Enemy enemy[10];
 
 void Enemy::InitEnemy(Enemy* enemy) {
 	for (int i = 0; i < 10; i++) {
@@ -24,36 +24,30 @@ void Enemy::InitEnemy(Enemy* enemy) {
 		enemy[i].Enemy_time = 0;
 		enemy[i].Spawn_flg = false;
 	}
+	for (int j = 0; j < 6; j++) {
+		EnemyIntoArea[j] = 0;
+	}
 	enemy->Died_enemy = 0;
 	enemy->Enemy_cnt = 0;
+	enemy->Score = 0;
+	enemy->Combo = 0;
 }
 
 void Enemy::DrawEnemy(Enemy enemy) const {
 	static int DieImg_Tyme = 0;
 	if (enemy.flg) {
 		DrawRotaGraph(enemy.GetEnemyX(), enemy.GetEnemyY(), 0.1, 0, Enemy_img, TRUE, FALSE);
-		//DrawFormatString(enemy.GetEnemyX(), enemy.GetEnemyY(), 0x000000, "%d", enemy.Died_flg);
-
-
 	}
-	else if (enemy.Died_flg) {
-		if (60 > DieImg_Tyme++)DrawRotaGraph(enemy.GetEnemyX(), enemy.GetEnemyY(), 0, 1, 0, Die_Enemy_img, TRUE, FALSE);
-		else {
-			enemy.Died_flg = false;
-			DieImg_Tyme = 0;
-		}
-	}///DrawFormatString(200, 300, 0xDC6560, "Combo:%d", ComboTimer);
-	//SetFontSize(40);
-	//if (Combo_displayFlg && ComboTimer++ < 60) { DrawFormatString(GetEnemyX(), enemy_y, 0xDC6560, "%d",GetDied_enemy()); }
-	//else if (ComboTimer >= 60) { Combo_displayFlg = FALSE; ComboTimer = 0; }SetFontSize(20);
+	
 }
 
 void Enemy::MoveEnemy(Enemy* enemy, int time) {
-	if (time % 60 == 0 && enemy->Enemy_cnt <= enemy->GetEnemyMakes(enemy->Died_enemy)) {
+	CheckEnemyIntoArea(enemy);
+	if (time % SetEnemySpawn(Died_enemy) == 0 && enemy->Enemy_cnt <= enemy->GetEnemyMakes(enemy->Died_enemy)) {
 		enemy->CreateEnemy(enemy, 3/*,enemy->Died_enemy*/);
 	}
 	if (time % 2) {
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 10; i++) {
 			if (enemy[i].flg) {
 
 				if ((enemy[i].NowX <= 20 || enemy[i].NowX >= 620) && !enemy[i].Spawn_flg) {
@@ -105,13 +99,24 @@ void Enemy::MoveEnemy(Enemy* enemy, int time) {
 
 					enemy[i].Enemy_Area = enemy[i].NowX / 213;
 					if (enemy[i].NowY > 240)enemy[i].Enemy_Area += 3;
-					if (AttackFlg[enemy[i].Enemy_Area]) {
+					/*if (AttackFlg[enemy[i].Enemy_Area]) {
 						enemy->Died_enemy++;
-						enemy->SetEnemyDflg(enemy, i);
 						DeleteEnemy(enemy, i);
+					}*/
+
+					if (AttackFlg) {
+						if (AreaNum == enemy[i].Enemy_Area) {
+							enemy->SetScore();
+							enemy->SetCombo(TRUE);
+							enemy->Died_enemy++;
+							DeleteEnemy(enemy, i);
+						}
+						else if (EnemyIntoArea[AreaNum] <= 0) {
+							enemy->SetCombo(FALSE);
+						}
 					}
 					
-					if (enemy[i].Spawn_flg && (enemy[i].NowX < -5 || enemy[i].NowX > 645 || enemy[i].NowY < -5 || enemy[i].NowY > 485)) {
+					if (enemy[i].Spawn_flg && (enemy[i].NowX < -5 || enemy[i].NowX > 645 || enemy[i].NowY < 25 || enemy[i].NowY > 485)) {
 						DeleteEnemy(enemy, i);
 					}
 				}
@@ -119,6 +124,13 @@ void Enemy::MoveEnemy(Enemy* enemy, int time) {
 		}
 	}
 }
+
+int SetEnemySpawn(int died_enemy) {
+	if (died_enemy < 10)return 180;
+	else if (died_enemy < 20)return 120;
+	else if (died_enemy < 30)return 60;
+}
+
 void Enemy::CreateEnemy(Enemy* enemy, int Make_enemys) {
 	int made_enemys = 0;
 
@@ -137,9 +149,9 @@ void Enemy::CreateEnemy(Enemy* enemy, int Make_enemys) {
 }
 
 int Enemy::GetEnemyMakes(int died_enemy) {
-	if (died_enemy < 20)return 3;
-	else if (died_enemy < 40)return 5;
-	else if (died_enemy < 60)return 10;
+	if (died_enemy < 10)return 3;
+	else if (died_enemy < 20)return 5;
+	else if (died_enemy < 30)return 10;
 }
 
 int GetEnemyVector() {
@@ -174,17 +186,11 @@ void Enemy::GetEnemyPos(int* enemy_NowX, int* enemy_NowY, int enemy_pos) {
 	}
 }
 
-//void Enemy::ChangeAngle(Enemy* enemy, int num) {
-//	float rad = enemy[num].Enemy_angle * (float)M_PI * 2;
-//	Move_X = (int)(5 * cosf(rad));
-//	Move_Y = (int)(5 * sinf(rad));
-//}
+
 
 void Enemy::DeleteEnemy(Enemy* enemy, int num) {
 	enemy[num].flg = false;
-	enemy[num].Died_flg = true;
 	enemy->Enemy_cnt--;
-	DeadEnemynum = num;
 	enemy[num].Spawn_flg = false;
 	enemy[num].Enemy_time = 0;
 }
@@ -202,6 +208,37 @@ void Enemy::CheckEnemyAlive(Enemy* enemy) {
 	}
 }
 
+void Enemy::CheckEnemyIntoArea(Enemy* enemy) {
+	int NewEnemy_num[6] = { 0,0,0,0,0,0 };
+	for (int i = 0; i < 10; i++) {
+		switch (enemy[i].Enemy_Area)
+		{
+		case 0:
+			NewEnemy_num[0]++;
+			break;
+		case 1:
+			NewEnemy_num[1]++;
+			break;
+		case 2:
+			NewEnemy_num[2]++;
+			break;
+		case 3:
+			NewEnemy_num[3]++;
+			break;
+		case 4:
+			NewEnemy_num[4]++;
+			break;
+		case 5:
+			NewEnemy_num[5]++;
+			break;
+		default:
+			continue;
+		}
+	}
+	for (int j = 0; j < 6; j++) {
+		EnemyIntoArea[j] = NewEnemy_num[j];
+	}
+}
 
 int Enemy::GetEnemyX() const {
 	return NowX;
@@ -215,10 +252,6 @@ bool Enemy::GetEnemyFlg() const {
 	return flg;
 }
 
-void Enemy::SetEnemyDflg(Enemy* enemy, int num) {
-	enemy[num].Died_flg = true;
-}
-
 int Enemy::GetDied_enemy() const {
 	return Died_enemy;
 }
@@ -226,89 +259,33 @@ int Enemy::GetDied_enemy() const {
 bool Enemy::GetEnemyAliveFlg(Enemy* enemy) {
 	return Enemy_AliveFlg;
 }
+
+int Enemy::GetScore() const {
+	return Score;
+}
+
+void Enemy::SetScore() {
+	Score += ((Combo / 10) + 1) * 100;
+}
+
+int Enemy::GetCombo() const {
+	return Combo;
+}
+
+void Enemy::SetCombo(int combo_flg) {
+	if (combo_flg) {
+		Combo++;
+	}
+	else {
+		Combo = 0;
+	}
+
+}
+
 //int Enemy::GetEnemy_Area() const {
 //	return Enemy_Area;
 //}
 
-
-////ボールの移動
-		//enemy[i].NowX += enemy->Move_X;
-		//enemy[i].NowY += enemy->Move_Y;
-//壁・天井での反射
-		//if (enemy[i].NowX < 5 || enemy[i].NowX > SCREEN_WIDTH - 5)      //横の壁
-		//{
-		//	if (enemy[i].NowX < 5) {
-		//		enemy[i].NowX = 5;
-		//	}
-/*if (Enemy_vector <= 1) {
-					enemy[i].x += (GetRand(2) - 1);
-				}
-				else {
-					enemy[i].y += (GetRand(2) - 1);
-				}*/
-
-				//if (enemy[i].NowY < 5)                         //上の壁
-				//{
-				//	enemy[i].Enemy_angle = (1 - enemy[i].Enemy_angle);
-				//	ChangeAngle(enemy,i);
-				//}
-
-			//	//画面下を超えたらゲームオーバー
-			//	if (enemy[i].NowY > SCREEN_HIGHT + 5) {
-			//		ballState = BALL_STATE::IDLE;
-			//		}
-			//	}
-
-
-			//	if (ballState != BALL_STATE::IDLE) {
-			//		enemy[i].NowX += g_MoveX;
-			//		enemy[i].NowY += g_MoveY;
-			//	}
-			//	else {
-			//		enemy[i].NowX = bar.getX() + (bar.getWidth() / 2);
-			//		enemy[i].NowY = bar.getY() - ((bar.getHeight() + radius) / 2);
-			//	}
-			//}
-		//}
-	//for (int i = 0; i < 10; i++) {
-
-	//	//ボールの移動
-	//	enemy[i].x += enemy->Move_X;
-	//	enemy[i].y += enemy->Move_Y;
-
-	//	//壁・天井での反射
-	//	if (enemy[i].x < 5 || enemy[i].x > SCREEN_WIDTH - 5)      //横の壁
-	//	{
-	//		if (enemy[i].x < 5) {
-	//			enemy[i].x = 5;
-	//		}
-	//		else {
-	//			enemy[i].x = SCREEN_WIDTH - 5;
-	//		}
-	//		enemy[i].Enemy_angle = (1 - enemy[i].Enemy_angle) + 0.5f;
-	//		if (enemy[i].Enemy_angle > 1) enemy[i].Enemy_angle -= 1.0f;
-	//		ChangeAngle(enemy,i);
-	//	}
-
-	//	if (enemy[i].y < 5)                         //上の壁
-	//	{
-	//		enemy[i].Enemy_angle = (1 - enemy[i].Enemy_angle);
-	//		ChangeAngle(enemy,i);
-	//	}
-
-	//	//画面下を超えたらゲームオーバー
-	//	if (enemy[i].y > SCREEN_HIGHT + 5) {
-	//		ballState = BALL_STATE::IDLE;
-	//		}
-	//	}
-
-
-	//	if (ballState != BALL_STATE::IDLE) {
-	//		enemy[i].x += g_MoveX;
-	//		enemy[i].y += g_MoveY;
-	//	}
-	//	else {
-	//		enemy[i].x = bar.getX() + (bar.getWidth() / 2);
-	//		enemy[i].y = bar.getY() - ((bar.getHeight() + radius) / 2);
-	//	}
-	//}
+int Enemy::GetEnemyIntoArea(int num) const {
+	return EnemyIntoArea[num];
+}
