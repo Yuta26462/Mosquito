@@ -6,6 +6,8 @@ class Result : public BaseScene {
 	int GameOver_Face, Clear_Face;
 	int TextCount;
 	int HareBack,Donyori_Back;
+	int Font_string;
+	int Font_num;
 public:
 	Result();
 	virtual ~Result() {};

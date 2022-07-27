@@ -11,43 +11,47 @@
 #define Move_X 15
 #define Move_Y 15
 
-Enemy enemy[10];
+Enemy enemy[15];
 
 void Enemy::InitEnemy(Enemy* enemy) {
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 15; i++) {
 		enemy[i].flg = false;
 		enemy[i].NowX = 0;
 		enemy[i].NowY = 0;
 		enemy[i].pos = 0;
 		enemy[i].Enemy_time = 0;
 		enemy[i].Spawn_flg = false;
+		enemy[i].Drawtimer = 0;
 	}
 	for (int j = 0; j < 6; j++) {
 		EnemyIntoArea[j] = 0;
 	}
-	enemy->Died_enemy = 0;
-	enemy->Enemy_cnt = 0;
-	enemy->Score = 0;
-	enemy->Combo = 0;
+	Died_enemy = 0;
+	Enemy_cnt = 0;
+	Score = 0;
+	Combo = 0;
 	MissingSE= LoadSoundMem("Resource/Sounds/SE/swing1.wav");
+	
 }
 
-void Enemy::DrawEnemy(Enemy enemy) const {
-	static int DieImg_Tyme = 0;
-	if (enemy.flg) {
-		DrawRotaGraph(enemy.GetEnemyX(), enemy.GetEnemyY(), 0.1, 0, Enemy_img, TRUE, FALSE);
+void Enemy::DrawEnemy() const {
+	int DieX, DieY;
+	static bool startflg = true;
+	if (flg) {
+		DrawRotaGraph(NowX, NowY, 0.1, 0, Enemy_img, TRUE, FALSE);
 	}
 	
 }
 
 void Enemy::MoveEnemy(int time) {
+	
 	if (AttackInterval <= 0)SetCombo(FALSE);
 	CheckEnemyIntoArea(enemy);
-	if (time % SetEnemySpawn(time) == 0 ) {
-		enemy->CreateEnemy(enemy, 2);
+	if (time % 120 == 0 ) {
+		CreateEnemy(SetEnemyMakes(time));
 	}
 	if (time % 2) {
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 15; i++) {
 			if (enemy[i].flg) {
 
 				if ((enemy[i].NowX <= 20 || enemy[i].NowX >= 620) && !enemy[i].Spawn_flg) {
@@ -94,21 +98,19 @@ void Enemy::MoveEnemy(int time) {
 
 					if (AttackFlg) {
 						if (AreaNum == enemy[i].Enemy_Area) {
-							DrawFormatString(enemy[i].NowX, enemy[i].NowY+10, 0xffffff, "%dcombo", Combo);
 							enemy->SetScore();
 							enemy->SetCombo(TRUE);
 							enemy->Died_enemy++;
-							DeleteEnemy(enemy, i);
+							DeleteEnemy(i);
 						}
 						else if (EnemyIntoArea[AreaNum] <= 0) {
 							Missflg = true;
-							//PlaySoundMem(MissingSE, DX_PLAYTYPE_BACK, TRUE);
 							enemy->SetCombo(FALSE);
 						}
 					}
 					
 					if (enemy[i].Spawn_flg && (enemy[i].NowX < -5 || enemy[i].NowX > 645 || enemy[i].NowY < 25 || enemy[i].NowY > 485)) {
-						DeleteEnemy(enemy, i);
+						DeleteEnemy(i);
 					}
 				}
 			}
@@ -116,10 +118,13 @@ void Enemy::MoveEnemy(int time) {
 	}
 }
 
-int SetEnemySpawn(int timelimit) {
-	if (timelimit >= 1200 )return 120;
+int SetEnemySpawn(int diedenemy) {
+	if (diedenemy < 20)return 120;
+	if (diedenemy < 40)return 60;
+	if (diedenemy < 60)return 30;
+	/*if (timelimit >= 1200 )return 120;
 	else if (timelimit >= 600)return 60;
-	else if (timelimit >= 0)return 30;
+	else if (timelimit >= 0)return 30;*/
 	else return -1;
 }
 
@@ -131,10 +136,10 @@ int Enemy::SetEnemySpeed() {
 	else return -1;
 }
 
-void Enemy::CreateEnemy(Enemy* enemy, int Make_enemys) {
+void Enemy::CreateEnemy(int Make_enemys) {
 	int made_enemys = 0;
 
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 15; i++) {
 		if (made_enemys < Make_enemys) {
 			if (!enemy[i].flg) {
 				made_enemys++;
@@ -142,17 +147,17 @@ void Enemy::CreateEnemy(Enemy* enemy, int Make_enemys) {
 				enemy[i].pos = GetRand(3);
 				GetEnemyPos(&enemy[i].NowX, &enemy[i].NowY, enemy[i].pos);
 				enemy[i].speed = SetEnemySpeed();
-				enemy->Enemy_cnt++;
+				Enemy_cnt++;
 			}
 		}
 	}
 
 }
 
-int Enemy::GetEnemyMakes(int died_enemy) {
-	if (died_enemy < 10)return 3;
-	else if (died_enemy < 20)return 5;
-	else if (died_enemy < 30)return 10;
+int Enemy::SetEnemyMakes(int time) {
+	if (time >= 1200 )return 3;
+	else if (time >= 600)return 4;
+	else if (time >= 0)return 5;
 	else return -1;
 }
 
@@ -177,7 +182,7 @@ void Enemy::GetEnemyPos(int* enemy_NowX, int* enemy_NowY, int enemy_pos) {
 		break;
 	case 2:
 		*enemy_NowX = 670;
-		*enemy_NowY = 380;
+		*enemy_NowY = 100;
 		break;
 	case 3:
 		*enemy_NowX = 670;
@@ -190,16 +195,16 @@ void Enemy::GetEnemyPos(int* enemy_NowX, int* enemy_NowY, int enemy_pos) {
 
 
 
-void Enemy::DeleteEnemy(Enemy* enemy, int num) {
+void Enemy::DeleteEnemy(int num) {
 	enemy[num].flg = false;
-	enemy->Enemy_cnt--;
+	Enemy_cnt--;
 	enemy[num].Spawn_flg = false;
 	enemy[num].Enemy_time = 0;
 }
 
 void Enemy::CheckEnemyAlive(Enemy* enemy) {
 	int i = 0;
-	for (i = 0; i < 10; i++) {
+	for (i = 0; i < 15; i++) {
 		if (enemy[i].flg == true) {
 			Enemy_AliveFlg = true;
 			break;
@@ -212,7 +217,7 @@ void Enemy::CheckEnemyAlive(Enemy* enemy) {
 
 void Enemy::CheckEnemyIntoArea(Enemy* enemy) {
 	int NewEnemy_num[6] = { 0,0,0,0,0,0 };
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 15; i++) {
 		if (enemy[i].flg) {
 			switch (enemy[i].Enemy_Area)
 			{
@@ -255,6 +260,7 @@ int Enemy::GetEnemyY() const {
 bool Enemy::GetEnemyFlg() const {
 	return flg;
 }
+
 
 int Enemy::GetDied_enemy() const {
 	return Died_enemy;

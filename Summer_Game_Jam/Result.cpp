@@ -13,6 +13,8 @@ Result::Result() {
 	HareBack = LoadGraph("Resource/Images/hare.png");
 	Donyori_Back = LoadGraph("Resource/Images/Gameover_Back.png");
 	TextCount = 0;
+	Font_string = CreateFontToHandle("Font_string", 40, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4);
+	Font_num = CreateFontToHandle("Font_num", 30, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4);
 
 	if (finishFlg == true) {
 		PlaySoundMem(GameOver_BGM, DX_PLAYTYPE_BACK, TRUE);
@@ -51,26 +53,20 @@ void Result::Draw() const {
 		DrawRotaGraph(320, 240, 1.5, 0, Donyori_Back, TRUE);
 		DrawRotaGraph(270, 300, 2.0, 0, GameOver_Face, TRUE);
 		if (TextCount > 60) {
-			SetFontSize(40);
-			DrawFormatString(230, 120, 0x000000, "撃退失敗...");
+			DrawStringToHandle(230, 120, "撃退失敗...", 0x000000, Font_string);
 		}
 		if (TextCount > 120) {
-			//DrawRotaString(500, 400, 1.0, 1.0, 0.0, 0.0, 0, 0x000000, 0x000000, FALSE, "スコア:");
-			SetFontSize(30);
-			DrawFormatString(450, 400, 0x000000, "スコア:%d", enemy->GetScore());
+			DrawFormatStringToHandle(450, 400, 0x000000, Font_num, "スコア:%d", enemy->GetScore());
 		}
 	}
 	else {
 		DrawRotaGraph(320, 190, 1.7, 0, HareBack, TRUE);
 		DrawRotaGraph(320, 320, 0.8, 0, Clear_Face, TRUE);
 		if (TextCount > 60) {
-			SetFontSize(40);
-			DrawFormatString(210, 30, 0x000000,"撃退成功！！！");
+			DrawStringToHandle(210, 30, "撃退成功！！！", 0x000000, Font_string);
 		}
 		if (TextCount > 120) {
-			//DrawRotaString(500, 400, 1.0, 1.0, 0.0, 0.0, 0, 0x000000, 0x000000, TRUE, "スコア:");
-			SetFontSize(30);
-			DrawFormatString(450, 400, 0x000000, "スコア:%d", enemy->GetScore());
+			DrawFormatStringToHandle(450, 400, 0x000000, Font_num, "スコア:%d", enemy->GetScore());
 		}
 	}
 }
