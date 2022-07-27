@@ -42,19 +42,19 @@ void Result::Draw() const {
 	if (finishFlg == true) {
 		DrawRotaGraph(320, 285, 2.0, 0, GameOver_Face, TRUE);
 		if (TextCount > 60) {
-			DrawRotaString(150, 50, 2.0, 2.0, 0.0, 0.0, 0, 0x000000, 0x000000, FALSE, "??????s...");
+			DrawRotaString(150, 50, 2.0, 2.0, 0.0, 0.0, 0, 0x000000, 0x000000, FALSE, "撃墜失敗...");
 		}
 		if (TextCount > 120) {
-			DrawRotaString(500, 400, 1.0, 1.0, 0.0, 0.0, 0, 0x000000, 0x000000, FALSE, "?X?R?A:");
+			DrawRotaString(500, 400, 1.0, 1.0, 0.0, 0.0, 0, 0x000000, 0x000000, FALSE, "スコア:");
 		}
 	}
 	else {
 		DrawRotaGraph(320, 275, 1.0, 0, Clear_Face, TRUE);
 		if (TextCount > 60) {
-			DrawRotaString(150, 50, 2.0, 2.0, 0.0, 0.0, 0, 0x000000, 0x000000, TRUE, "????????I?I?I");
+			DrawRotaString(150, 50, 2.0, 2.0, 0.0, 0.0, 0, 0x000000, 0x000000, TRUE, "撃墜成功！！！");
 		}
 		if (TextCount > 120) {
-			DrawRotaString(500, 400, 1.0, 1.0, 0.0, 0.0, 0, 0x000000, 0x000000, TRUE, "?X?R?A:");
+			DrawRotaString(500, 400, 1.0, 1.0, 0.0, 0.0, 0, 0x000000, 0x000000, TRUE, "スコア:");
 		}
 	}
 }
