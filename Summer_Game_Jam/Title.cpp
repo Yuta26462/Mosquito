@@ -23,7 +23,7 @@ Title::Title() {
 	Help_img = LoadGraph("Resource/Images/Background/help.png");
 	Credit_img = LoadGraph("Resource/Images/Background/Credit.png");
 
-	Menu_img = LoadGraph("Resource/Images/menu.png");
+	
 	Pad_img = LoadGraph("Resource/Images/pad.png");
 	OK_SE = LoadSoundMem("Resource/Sounds/SE/OK.wav");
 	Selecter_SE = LoadSoundMem("Resource/Sounds/SE/Selecter.wav");
