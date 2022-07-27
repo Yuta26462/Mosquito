@@ -91,15 +91,17 @@ void Title::Draw() const {
 	}
 	else if (MenuChangeFlg == 2) {//クレジット
 		DrawGraph(0, 0, Credit_img, FALSE);
-		DrawString(100, 150, "タイトル      蚊", 0xffffff);
-		DrawString(100, 180, "制作者        国際電子ビジネス専門学校 Lチーム", 0xffffff);
-		DrawString(130, 220, "素材利用", 0xffffff);
-		DrawString(100, 250, "画像　　 　 みんちりえ        ", 0xffffff);
-		DrawString(100, 280, "            いらすとや        ", 0xffffff);
-		DrawString(100, 310, "BGM         DOVA-SYNDROME     ", 0xffffff);
-		DrawString(100, 340, "            MusMus            ", 0xffffff);
-		DrawString(100, 370, "SE          魔王魂　　　　     【森田交一】システム49", 0xffffff);
-		DrawString(100, 400, "            ニコニ・コモンズ   【でぃめとろ丼】   夜の虫の音 ", 0xffffff);
+		DrawString(100, 130, "タイトル      蚊", 0xffffff);
+		DrawString(100, 160, "制作者        国際電子ビジネス専門学校 Lチーム", 0xffffff);
+		DrawString(130, 190, "素材利用", 0xffffff);
+		DrawString(100, 220, "画像　　 　 みんちりえ        ", 0xffffff);
+		DrawString(100, 250, "            いらすとや        ", 0xffffff);
+		DrawString(100, 280, "BGM         ", 0xffffff);
+		DrawString(100, 310, "            ", 0xffffff);
+		DrawString(100, 340, "SE          魔王魂　　　　     【森田交一】システム49", 0xffffff);
+		DrawString(100, 370, "            効果音ラボ　　　   【効果音ラボ】キャンセル5", 0xffffff);
+		DrawString(100, 400, "            効果音工房　　　   【効果音工房】カーソル移動-11", 0xffffff);
+		DrawString(100, 430, "            ニコニ・コモンズ   【でぃめとろ丼】夜の虫の音 ", 0xffffff);
 
 
 	}else {
