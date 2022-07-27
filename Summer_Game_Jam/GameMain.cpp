@@ -18,14 +18,11 @@ GameMain::GameMain() {
 	static bool StartFlg = true;
 	TimeLimt = 1800;
 	Sleep_Initialize();
+	enemy->InitEnemy(enemy);
 	StatusFont = CreateFontToHandle("StatusFont", 30, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4);
 }
 
 BaseScene* GameMain::Update() {
-	if (StartFlg) {
-		enemy->InitEnemy(enemy);
-		StartFlg = false;
-	}
 	
 	enemy->MoveEnemy(enemy,TimeLimt);
 	enemy->CheckEnemyAlive(enemy);
