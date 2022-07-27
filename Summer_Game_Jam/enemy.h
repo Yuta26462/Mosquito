@@ -14,7 +14,9 @@ private:
 	bool Spawn_flg;
 	int Enemy_Area;
 	bool Enemy_AliveFlg;
-	bool Died_flg;
+	int EnemyIntoArea[6];
+	int Score;
+	int Combo;
 public:
 	//Enemy();
 	bool flg;
@@ -26,13 +28,17 @@ public:
 	void GetEnemyPos(int* enemy_x, int* enemy_y, int enemy_pos);					//‰áoŒ»ˆÊ’uŒˆ’èŠÖ”
 	void DeleteEnemy(Enemy* enemy ,int num);
 	void CheckEnemyAlive(Enemy* enemy);
+	void CheckEnemyIntoArea(Enemy* enemy);
 	bool GetEnemyFlg() const;
 	int GetEnemyX() const;
 	int GetEnemyY() const;
 	int GetDied_enemy() const;
-	void SetEnemyDflg(Enemy* enemy,int num);
 	int GetEnemyMakes(int died_enemy);
 	bool GetEnemyAliveFlg(Enemy* enemy);
+	int GetScore()const;
+	void SetScore();
+	int GetCombo()const;
+	void SetCombo(int combo_flg);
 	//int GetEnemy_Area() const;
 };
 
