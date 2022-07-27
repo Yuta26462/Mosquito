@@ -17,14 +17,10 @@ GameMain::GameMain() {
 	static bool StartFlg = true;
 	TimeLimt = 1800;
 	Sleep_Initialize();
+	enemy->InitEnemy(enemy);
 }
 
 BaseScene* GameMain::Update() {
-	static int StartFlg = TRUE;
-	if (StartFlg) {
-		enemy->InitEnemy(enemy);
-		StartFlg = false;
-	}
 	
 	enemy->MoveEnemy(enemy,TimeLimt);
 	enemy->CheckEnemyAlive(enemy);
