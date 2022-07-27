@@ -32,6 +32,7 @@ void Player_Update() {
 		//Aƒ{ƒ^ƒ“‚ÅUŒ‚
 		if (g_KeyFlg & 16) {
 			//AttackFlg[AreaNum] = true;
+			PlaySoundMem(Mosquito_SE, DX_PLAYTYPE_BACK, TRUE);
 			AttackFlg = true;
 		}
 
@@ -70,7 +71,6 @@ void Player_Update() {
 	
 	//NowArea = AreaNum;
 	if (AttackFlg==true/*AttackFlg[AreaNum] == true*//* && AreaNum == NowArea*/) {
-		PlaySoundMem(Mosquito_SE, DX_PLAYTYPE_BACK, TRUE);
 		AttackCount++;
 		if (AttackCount > 12) {
 			AttackFlg = false;
