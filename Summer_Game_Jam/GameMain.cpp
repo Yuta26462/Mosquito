@@ -9,19 +9,19 @@
 GameMain::GameMain() {
 	Main_BGM = LoadSoundMem("Resource/Sounds/BGM/GameMain.wav");
 	MainUp_BGM = LoadSoundMem("Resource/Sounds/BGM/GameMain_UP.wav");
+	Wind_chimes_SE = LoadSoundMem("Resource/Sounds/SE/wind_chimes.wav");
 	PlaySoundMem(Main_BGM, DX_PLAYTYPE_BACK, TRUE);
+	ChangeVolumeSoundMem(255 * 60 / 100, Main_BGM);
+	PlaySoundMem(Wind_chimes_SE, DX_PLAYTYPE_BACK, TRUE);
+	ChangeVolumeSoundMem(255 * 80 / 100, Wind_chimes_SE);
 	static bool StartFlg = true;
 	TimeLimt = 1800;
 	Player_Initialize();
 	Sleep_Initialize();
+	enemy->InitEnemy(enemy);
 }
 
 BaseScene* GameMain::Update() {
-	static int StartFlg = TRUE;
-	if (StartFlg) {
-		enemy->InitEnemy(enemy);
-		StartFlg = false;
-	}
 	
 	enemy->MoveEnemy(enemy,TimeLimt);
 	enemy->CheckEnemyAlive(enemy);
@@ -50,7 +50,13 @@ void GameMain::Draw() const {
 	for (int i = 0; i < 10; i++) {
 		enemy->DrawEnemy(enemy[i]);
 	}
-	//DrawFormatString(100, 400, 0x000000, "Died_Enemy:%d", enemy->GetDied_enemy());
+	/*for (int j = 0; j < 6; j++) {
+		DrawFormatString(30 * j, 200, 0xffffff, "%d", enemy->GetEnemyIntoArea(j));
+	}*/
+	
+	DrawFormatString(100, 400, 0xffffff, "Score:%d", enemy->GetScore());
+	DrawFormatString(100, 450, 0xffffff, "Combo:%d", enemy->GetCombo());
+	//DrawFormatString(100, 350, 0x000000, "Died_Enemy:%d", enemy->GetDied_enemy());
 	DrawFormatString(500, 100, 0xffffff, "Time:%d", GetTime()/60);
 	Player_Draw();
 	Sleep_Draw();

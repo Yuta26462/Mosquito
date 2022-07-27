@@ -35,11 +35,11 @@ Title::Title() {
 BaseScene* Title::Update() {
 
 	{	//メニュー
-		if (GetSelectY() == -1 && SelectNo > 0) {
+		if (GetSelectY() == -1 && SelectNo > 0 && MenuChangeFlg == 0) {
 				SelectNo--;
 				PlaySoundMem(Selecter_SE, DX_PLAYTYPE_BACK, TRUE);
 		}
-		if (GetSelectY() == 1 && SelectNo < 3){
+		if (GetSelectY() == 1 && SelectNo < 3 && MenuChangeFlg == 0){
 				SelectNo++;
 				PlaySoundMem(Selecter_SE, DX_PLAYTYPE_BACK, TRUE);
 		}
@@ -81,22 +81,25 @@ void Title::Draw() const {
 
 	if (MenuChangeFlg == 1) {//操作説明
 		DrawGraph(0, 0, Help_img, FALSE);
-		DrawString(100, 200, "蚊が６つに分けられた枠内に出現するよ！", 0xDC6560);
-		DrawString(100, 230, "スティックや十字ボタンで蚊がいるところに合わせて、", 0xDC6560);
-		DrawString(100, 260, "Aボタンを押したら蚊を倒すことができるよ！", 0xDC6560);
-		DrawString(100, 290, "間違えずに連続で蚊を倒していくと", 0xDC6560);
-		DrawString(100, 320, "コンボが発生して、獲得できるスコアが増えていくから", 0xDC6560);
-		DrawString(100, 350, "頑張ってたくさん倒そう！！", 0xDC6560);
-		DrawStringToHandle(120, 400, "Bボタンでタイトルに戻る", 0xFFFFFF, MenuFont, 0xDC6560);
+		DrawString(140, 160, "蚊が６つに分けられた枠内に出現するよ！", 0xffffff);
+		DrawString(140, 190, "スティックで蚊がいるところにカーソルを合わせて、", 0xffffff);
+		DrawString(140, 220, "Aボタンを押したら蚊を倒すことができるよ！", 0xffffff);
+		DrawString(140, 250, "間違えずに連続で蚊を倒していくと", 0xffffff);
+		DrawString(140, 280, "コンボが発生して、獲得できるスコアが増えていくから", 0xffffff);
+		DrawString(140, 310, "頑張ってたくさん倒そう！！", 0xffffff);
+		DrawStringToHandle(90, 400, "Bボタンでタイトルに戻る", 0xFFFFFF, MenuFont, 0xDC6560);
 	}
 	else if (MenuChangeFlg == 2) {//クレジット
 		DrawGraph(0, 0, Credit_img, FALSE);
-		DrawString(100, 200, "タイトル　　　蚊", 0xDC6560);
-		DrawString(100, 230, "制作者　　　　国際電子ビジネス専門学校 Lチーム", 0xDC6560);
-		DrawString(100, 260, "素材利用", 0xDC6560);
-		DrawString(100, 290, "画像　　　　みんちりえ（ https://min-chi.material.jp/ ）", 0xDC6560);
-		DrawString(100, 320, "BGM", 0xDC6560);
-		DrawString(100, 350, "SE", 0xDC6560);
+		DrawString(100, 150, "タイトル      蚊", 0xffffff);
+		DrawString(100, 180, "制作者        国際電子ビジネス専門学校 Lチーム", 0xffffff);
+		DrawString(130, 220, "素材利用", 0xffffff);
+		DrawString(100, 250, "画像　　 　 みんちりえ        ", 0xffffff);
+		DrawString(100, 280, "            いらすとや        ", 0xffffff);
+		DrawString(100, 310, "BGM         DOVA-SYNDROME     ", 0xffffff);
+		DrawString(100, 340, "            MusMus            ", 0xffffff);
+		DrawString(100, 370, "SE          魔王魂　　　　     【森田交一】システム49", 0xffffff);
+		DrawString(100, 400, "            ニコニ・コモンズ   【でぃめとろ丼】   夜の虫の音 ", 0xffffff);
 
 
 	}else {
