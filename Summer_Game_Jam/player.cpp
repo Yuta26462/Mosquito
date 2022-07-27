@@ -7,7 +7,7 @@ bool AttackFlg;
 
 void Player_Initialize() {
 	WeaponImage = LoadGraph("Resource/Images/Weapon.png");
-	Mosquito_SE = LoadSoundMem("Resource/Sounds/SE/Mosquitoes.wav");
+	Flyswatter_SE = LoadSoundMem("Resource/Sounds/SE/Flyswatter.wav");
 
 	BoxColor = GetColor(255, 0, 0);
 	BoxNumber_x = 1;
