@@ -40,23 +40,27 @@ BaseScene* Result::Update() {
 void Result::Draw() const {
 	//DrawGraph(0, 0, Result_img, FALSE);
 	if (finishFlg == true) {
-		DrawRotaGraph(320, 285, 2.0, 0, GameOver_Face, TRUE);
+		DrawRotaGraph(270, 285, 2.0, 0, GameOver_Face, TRUE);
 		if (TextCount > 60) {
-			DrawRotaString(150, 50, 2.0, 2.0, 0.0, 0.0, 0, 0x000000, 0x000000, FALSE, "撃墜失敗...");
+			SetFontSize(40);
+			DrawFormatString(230, 50, 0x000000, "撃退失敗...");
 		}
 		if (TextCount > 120) {
 			//DrawRotaString(500, 400, 1.0, 1.0, 0.0, 0.0, 0, 0x000000, 0x000000, FALSE, "スコア:");
-			DrawFormatString(500, 400, 0x000000, "スコア:%d", enemy->GetScore());
+			SetFontSize(30);
+			DrawFormatString(450, 400, 0x000000, "スコア:%d", enemy->GetScore());
 		}
 	}
 	else {
 		DrawRotaGraph(320, 275, 1.0, 0, Clear_Face, TRUE);
 		if (TextCount > 60) {
-			DrawRotaString(150, 50, 2.0, 2.0, 0.0, 0.0, 0, 0x000000, 0x000000, FALSE, "撃墜成功！！！");
+			SetFontSize(40);
+			DrawFormatString(230, 30, 0x000000,"撃退成功！！！");
 		}
 		if (TextCount > 120) {
 			//DrawRotaString(500, 400, 1.0, 1.0, 0.0, 0.0, 0, 0x000000, 0x000000, TRUE, "スコア:");
-			DrawFormatString(500, 400, 0x000000, "スコア:%d", enemy->GetScore());
+			SetFontSize(30);
+			DrawFormatString(450, 400, 0x000000, "スコア:%d", enemy->GetScore());
 		}
 	}
 }
