@@ -8,6 +8,7 @@ private:
 	int Pointer_img;
 	int Help_img;
 	int Credit_img;
+	int Pad_img;
 	int MenuChangeFlg;
 	int OK_SE;
 	int Selecter_SE;

@@ -22,6 +22,7 @@ Title::Title() {
 	Pointer_img = LoadGraph("Resource/Images/pointer.png");
 	Help_img = LoadGraph("Resource/Images/Background/help.png");
 	Credit_img = LoadGraph("Resource/Images/Background/Credit.png");
+	Pad_img = LoadGraph("Resource/Images/pad1.png");
 	OK_SE = LoadSoundMem("Resource/Sounds/SE/OK.wav");
 	Selecter_SE = LoadSoundMem("Resource/Sounds/SE/Selecter.wav");
 	Return_SE = LoadSoundMem("Resource/Sounds/SE/Return.wav");
@@ -86,6 +87,7 @@ void Title::Draw() const {
 		DrawString(100, 160, "間違えずに連続で蚊を倒していくとコンボが発生して、", 0xffffff);
 		DrawString(100, 180, "獲得できるスコアが増えていくから頑張ってたくさん倒そう！", 0xffffff);
 		//DrawString(140, 310, "頑張ってたくさん倒そう！！", 0xffffff);
+		DrawRotaGraph(315, 310, 0.5, 0, Pad_img, TRUE);
 		DrawStringToHandle(90, 400, "Bボタンでタイトルに戻る", 0xFFFFFF, MenuFont, 0xDC6560);
 	}
 	else if (MenuChangeFlg == 2) {//クレジット
