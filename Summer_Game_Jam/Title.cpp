@@ -91,17 +91,24 @@ void Title::Draw() const {
 	}
 	else if (MenuChangeFlg == 2) {//クレジット
 		DrawGraph(0, 0, Credit_img, FALSE);
-		DrawString(100, 130, "タイトル      蚊", 0xffffff);
-		DrawString(100, 160, "制作者        国際電子ビジネス専門学校 Lチーム", 0xffffff);
-		DrawString(130, 190, "素材利用", 0xffffff);
-		DrawString(100, 220, "画像　　 　 みんちりえ        ", 0xffffff);
-		DrawString(100, 250, "            いらすとや        ", 0xffffff);
-		DrawString(100, 280, "BGM         ", 0xffffff);
-		DrawString(100, 310, "            ", 0xffffff);
-		DrawString(100, 340, "SE          魔王魂　　　　     【森田交一】システム49", 0xffffff);
-		DrawString(100, 370, "            効果音ラボ　　　   【効果音ラボ】キャンセル5", 0xffffff);
-		DrawString(100, 400, "            効果音工房　　　   【効果音工房】カーソル移動-11", 0xffffff);
-		DrawString(100, 430, "            ニコニ・コモンズ   【でぃめとろ丼】夜の虫の音 ", 0xffffff);
+		DrawString(100, 130, "タイトル", 0x7fffd4);
+		DrawString(200, 130, "蚊", 0xffffff);
+		DrawString(100, 150, "制作者", 0x7fffd4);
+		DrawString(200, 150, "国際電子ビジネス専門学校 Lチーム", 0xffffff);
+		DrawString(130, 200, "素材利用", 0xffff00);
+		DrawString(100, 230, "画像", 0xffff00);
+		DrawString(180, 230, "みんちりえ        ", 0xffffff);
+		DrawString(180, 250, "いらすとや        ", 0xffffff);
+		DrawString(330, 230, "BGM", 0xffff00);
+		DrawString(410, 230, "DOVA-SYNDROME", 0xffffff);
+		DrawString(410, 250, "MusMus", 0xffffff);
+		DrawString(100, 300, "SE", 0xffff00);
+		DrawString(180, 300, "魔王魂　　　　     【森田交一】     システム49", 0xffffff);
+		DrawString(180, 320, "OtoLogic           【OtoLogic】     蚊　生録01", 0xffffff);
+		DrawString(180, 340, "効果音ラボ　　　   【効果音ラボ】   キャンセル5", 0xffffff);
+		DrawString(180, 360, "効果音工房　　　   【効果音工房】   カーソル移動-11", 0xffffff);
+		DrawString(180, 380, "ニコニ・コモンズ   【でぃめとろ丼】 夜の虫の音 ", 0xffffff);
+		DrawString(180, 400, "                   【みそしる】     何かを叩いた音 ", 0xffffff);
 
 
 	}else {
