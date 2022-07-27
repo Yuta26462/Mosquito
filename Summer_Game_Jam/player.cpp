@@ -32,7 +32,7 @@ void Player_Update() {
 		//AÉ{É^ÉìÇ≈çUåÇ
 		if (g_KeyFlg & 16) {
 			//AttackFlg[AreaNum] = true;
-			PlaySoundMem(Mosquito_SE, DX_PLAYTYPE_BACK, TRUE);
+			PlaySoundMem(Flyswatter_SE, DX_PLAYTYPE_BACK, TRUE);
 			AttackFlg = true;
 		}
 
