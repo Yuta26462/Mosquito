@@ -47,10 +47,7 @@ void Player_Update() {
 		if (GetJoyPadY() > 0 && GetJoyPadX() > 150) { BoxNumber_x = 2; BoxNumber_y = 1;}
 		else if ((GetJoyPadY() < 0) && GetJoyPadX() > 150) { BoxNumber_x = 2; BoxNumber_y = 0;}
 
-		//Aƒ{ƒ^ƒ“‚ÅUŒ‚
-		if (g_KeyFlg & 16) {
-			AttackFlg[AreaNum] = true;
-		}
+	
 	}
 	switch (BoxNumber_x)
 	{
@@ -75,7 +72,7 @@ void Player_Update() {
 		PlaySoundMem(Mosquito_SE, DX_PLAYTYPE_BACK, TRUE);
 		AttackCount++;
 		if (AttackCount > 12) {
-			AttackFlg[AreaNum] = false;
+			AttackFlg = false;
 			AttackCount = 0;
 		}
 	}
