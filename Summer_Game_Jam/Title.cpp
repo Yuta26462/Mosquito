@@ -94,12 +94,12 @@ void Title::Draw() const {
 		DrawString(100, 150, "タイトル      蚊", 0xffffff);
 		DrawString(100, 180, "制作者        国際電子ビジネス専門学校 Lチーム", 0xffffff);
 		DrawString(130, 220, "素材利用", 0xffffff);
-		DrawString(100, 250, "画像　　 　   みんちりえ      https://min-chi.material.jp/", 0xffffff);
-		DrawString(100, 280, "              いらすとや      https://www.irasutoya.com/", 0xffffff);
-		DrawString(100, 310, "BGM           DOVA-SYNDROME   https://dova-s.jp/", 0xffffff);
-		DrawString(100, 340, "                MusMus        https://musmus.main.jp/", 0xffffff);
-		DrawString(100, 370, "SE            DOVA-SYNDROME   https://dova-s.jp/", 0xffffff);
-		DrawString(100, 400, "            ニコニ・コモンズ  https://commons.nicovideo.jp/", 0xffffff);
+		DrawString(100, 250, "画像　　 　 みんちりえ        ", 0xffffff);
+		DrawString(100, 280, "            いらすとや        ", 0xffffff);
+		DrawString(100, 310, "BGM         DOVA-SYNDROME     ", 0xffffff);
+		DrawString(100, 340, "            MusMus            ", 0xffffff);
+		DrawString(100, 370, "SE          魔王魂　　　　     【森田交一】システム49", 0xffffff);
+		DrawString(100, 400, "            ニコニ・コモンズ   【でぃめとろ丼】   夜の虫の音 ", 0xffffff);
 
 
 	}else {
