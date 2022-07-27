@@ -24,6 +24,7 @@ Title::Title() {
 	Help_img = LoadGraph("Resource/Images/help.png");
 	Credit_img = LoadGraph("Resource/Images/Credit.png");
 	Menu_img = LoadGraph("Resource/Images/menu.png");
+	Controller_img = LoadGraph("Resource/Images/controller.png");
 	OK_SE = LoadSoundMem("Resource/Sounds/SE/OK.wav");
 	Selecter_SE = LoadSoundMem("Resource/Sounds/SE/Selecter.wav");
 	Return_SE = LoadSoundMem("Resource/Sounds/SE/Return.wav");
@@ -81,12 +82,13 @@ void Title::Draw() const {
 
 	if (MenuChangeFlg == 1) {//操作説明
 		DrawGraph(0, 0, Help_img, FALSE);
+		DrawGraph(300, 290, Controller_img, TRUE);
 		DrawString(140, 160, "蚊が６つに分けられた枠内に出現するよ！", 0xffffff);
-		DrawString(140, 190, "スティックで蚊がいるところにカーソルを合わせて、", 0xffffff);
-		DrawString(140, 220, "Aボタンを押したら蚊を倒すことができるよ！", 0xffffff);
-		DrawString(140, 250, "間違えずに連続で蚊を倒していくと", 0xffffff);
-		DrawString(140, 280, "コンボが発生して、獲得できるスコアが増えていくから", 0xffffff);
-		DrawString(140, 310, "頑張ってたくさん倒そう！！", 0xffffff);
+		DrawString(140, 190, "スティックの角度によって狙うことができて、", 0xffffff);
+		DrawString(140, 220, "Aボタンを押すことで倒すことができるよ！", 0xffffff);
+		DrawString(140, 250, "間違えずに倒していくとコンボが発生するので", 0xffffff);
+		DrawString(140, 280, "頑張ってたくさん倒そう！！", 0xffffff);
+		/*DrawString(140, 310, "頑張ってたくさん倒そう！！", 0xffffff);*/
 		DrawStringToHandle(90, 400, "Bボタンでタイトルに戻る", 0xFFFFFF, MenuFont, 0xDC6560);
 	}
 	else if (MenuChangeFlg == 2) {//クレジット
