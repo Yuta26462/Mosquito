@@ -13,7 +13,7 @@
 
 //static int timer = 0;
 //int GameMain::Enemy_cnt;
-
+Enemy enemy[10];
 
 void Enemy::InitEnemy(Enemy* enemy) {
 	for (int i = 0; i < 10; i++) {

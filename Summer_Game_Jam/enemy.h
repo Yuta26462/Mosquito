@@ -35,5 +35,6 @@ public:
 	bool GetEnemyAliveFlg(Enemy* enemy);
 	//int GetEnemy_Area() const;
 };
+extern Enemy enemy[10];
 
 int GetEnemyVector();
