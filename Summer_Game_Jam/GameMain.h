@@ -5,7 +5,7 @@
 
 class GameMain : public BaseScene {
 private:
-	mutable int TimeLimt = 1860;
+	mutable int TimeLimt;
 	mutable int Main_BGM, MainUp_BGM;
 public:
 	GameMain();
