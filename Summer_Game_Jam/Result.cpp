@@ -65,7 +65,7 @@ void Result::Draw() const {
 		DrawRotaGraph(320, 320, 0.8, 0, Clear_Face, TRUE);
 		if (TextCount > 60) {
 			SetFontSize(40);
-			DrawFormatString(230, 30, 0x000000,"撃退成功！！！");
+			DrawFormatString(210, 30, 0x000000,"撃退成功！！！");
 		}
 		if (TextCount > 120) {
 			//DrawRotaString(500, 400, 1.0, 1.0, 0.0, 0.0, 0, 0x000000, 0x000000, TRUE, "スコア:");
