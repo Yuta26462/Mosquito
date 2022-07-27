@@ -20,8 +20,9 @@ void Title::Finalize() const{
 Title::Title() {
 	MenuFont = CreateFontToHandle("MenuFont", 40, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4);
 	Pointer_img = LoadGraph("Resource/Images/pointer.png");
-	Help_img = LoadGraph("Resource/Images/help.png");
-	Credit_img = LoadGraph("Resource/Images/Credit.png");
+	Help_img = LoadGraph("Resource/Images/Background/help.png");
+	Credit_img = LoadGraph("Resource/Images/Background/Credit.png");
+
 	Menu_img = LoadGraph("Resource/Images/menu.png");
 	Pad_img = LoadGraph("Resource/Images/pad.png");
 	OK_SE = LoadSoundMem("Resource/Sounds/SE/OK.wav");
