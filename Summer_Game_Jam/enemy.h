@@ -1,12 +1,48 @@
 #pragma once
-#define RandMaxX 1280
-#define RandMaxY 960
 
-static bool flg;
-static int img;
-static int Posx, Posy;
-static int speed;
-static int score;
+enum Enemy_Vecor { UP, DOWN, RIGHT, LEFT };
 
-void CreateEnemy();
-void EnemyControl(); 
+class Enemy {
+private:
+	int pos;
+	int NowX, NowY;       //Œ»İ’n
+	//float Enemy_angle;
+	int Enemy_cnt;
+	int Enemy_time;
+	int Enemy_vector;
+	int Died_enemy;
+	bool Spawn_flg;
+	int Enemy_Area;
+	bool Enemy_AliveFlg;
+	int EnemyIntoArea[6];
+	int Score;
+	int Combo;
+public:
+	//Enemy();
+	bool flg;
+	void InitEnemy(Enemy* enemy);		//‰á‰Šú‰»ŠÖ”
+	void DrawEnemy(Enemy enemy) const;		//‰á•`‰æŠÖ”
+	//void Drawene(Enemy enmey) const; int enemy_x, int enemy_y, bool flg/*, bool* died_flg*/
+	void MoveEnemy(Enemy* enemy, int time);		//‰áˆÚ“®ŠÖ”
+	void CreateEnemy(Enemy* enemy,int Make_enemys);		//‰á¶¬ŠÖ”
+	void GetEnemyPos(int* enemy_x, int* enemy_y, int enemy_pos);					//‰áoŒ»ˆÊ’uŒˆ’èŠÖ”
+	void DeleteEnemy(Enemy* enemy ,int num);
+	void CheckEnemyAlive(Enemy* enemy);
+	void CheckEnemyIntoArea(Enemy* enemy);
+	bool GetEnemyFlg() const;
+	int GetEnemyX() const;
+	int GetEnemyY() const;
+	int GetDied_enemy() const;
+	int GetEnemyMakes(int died_enemy);
+	bool GetEnemyAliveFlg(Enemy* enemy);
+	int GetScore()const;
+	void SetScore();
+	int GetCombo()const;
+	void SetCombo(int combo_flg);
+	//int GetEnemy_Area() const;
+	int GetEnemyIntoArea(int num)const;
+};
+extern Enemy enemy[10];
+
+int GetEnemyVector();
+int SetEnemySpawn(int died_enemy);

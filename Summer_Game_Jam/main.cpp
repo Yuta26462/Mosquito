@@ -5,11 +5,11 @@
 #include<math.h>
 
 class Fps {
-	int mStartTime; //測定開始時刻
-	int mCount;  //カウンタ
-	float mFps;  //fps
-	static const int N = 60;  //平均を取るサンプル数
-	static const int FPS = 60;  //設定したFPS
+    int mStartTime; //測定開始時刻
+    int mCount;  //カウンタ
+    float mFps;  //fps
+    static const int N = 60;  //平均を取るサンプル数
+    static const int FPS = 60;  //設定したFPS
 
 public:
 	Fps() {
@@ -31,7 +31,7 @@ public:
 		return true;
 	}
 	void Draw() {
-		DrawFormatString(100, 100, GetColor(255, 255, 255), "%.1f", mFps);
+		//DrawFormatString(100, 100, GetColor(255, 255, 255), "%.1f", mFps);
 	}
 	void Wait() {
 		int tookTime = GetNowCount() - mStartTime;
@@ -50,6 +50,8 @@ int	g_KeyFlg;				// 入力キー情報
 int Title_img;
 int GameMain_img;
 int Result_img;
+int Enemy_img;
+int Die_Enemy_img;
 
 int JoyPadX, JoyPadY, PadTimer;
 int SelectX, SelectY;
@@ -57,17 +59,19 @@ int SelectX, SelectY;
 int LoadImages();           //画像読み込み関数
 
 int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-	Fps fps;
-    SetMainWindowText("タイトル未定");
+    Fps fps;
+    SetOutApplicationLogValidFlag(FALSE);   //ログ出力を無効にする
+    SetWindowIconID(01);
+    SetMainWindowText("蚊");
 
     ChangeWindowMode(TRUE); //ウィンドウモードを有効
     SetWindowSize(1280, 960);
-    
+
     if (DxLib_Init() == -1) return -1;	// DXライブラリの初期化処理
     if (LoadImages() == -1)return -1;
 
     SetDrawScreen(DX_SCREEN_BACK);	// 描画先画面を裏にする
-    
+
     ChangeFontType(DX_FONTTYPE_ANTIALIASING_4X4);   //フォントをアンチエイジング対応4×4にする。
 
     SceneManager scenMG(new Title());
@@ -77,9 +81,10 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     while (scenMG.Update() != nullptr && ProcessMessage() == 0) {
         // 入力キー取得
         g_OldKey = g_NowKey;
-        g_NowKey = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-       // g_NowKey = GetJoypadInputState(DX_INPUT_PAD1);
+        g_NowKey = GetJoypadInputState(DX_INPUT_PAD1);
         g_KeyFlg = g_NowKey & ~g_OldKey;
+
+        if (g_KeyFlg & 1024) DxLib_End();   //BACKボタンでプログラム終了
 
         GetJoypadAnalogInput(&JoyPadX, &JoyPadY, DX_INPUT_PAD1);    //アナログスティック座標を取得
         SetJoypadDeadZone(DX_INPUT_PAD1, 0.3f);     //角度の制限を緩和
@@ -97,11 +102,11 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
         ClearDrawScreen();		// 画面の初期化
 
-		fps.Update();
-		fps.Draw();
+        fps.Update();
+        fps.Draw();
         scenMG.Draw();
 
-		fps.Wait();
+        fps.Wait();
         ScreenFlip();			// 裏画面の内容を表画面に反映
 
     }
@@ -113,8 +118,10 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 int LoadImages() {
     if ((Title_img = LoadGraph("Resource/Images/Title.png")) == -1)return -1;
-    if ((GameMain_img = LoadGraph("Resource/Images/background.png")) == -1)return -1;
+    if ((GameMain_img = LoadGraph("Resource/Images/GameMain1.png")) == -1)return -1;
     if ((Result_img = LoadGraph("Resource/Images/Ranking.png")) == -1)return -1;
+    if ((Enemy_img = LoadGraph("Resource/Images/ka.png")) == -1)return -1;
+    if ((Die_Enemy_img = LoadGraph("Resource/Images/Die_ka.png")) == -1)return -1;
     return 0;
 }
 
@@ -130,14 +137,16 @@ int GetSelectY(void) {
     if (SelectY == 1 || SelectY == -1) {
         int Key = SelectY;
         return Key;
-    }else{ return 0; }
+    }
+    else { return 0; }
 }
 
-int GetJoyPadX(void) { 
+int GetJoyPadX(void) {
     if (-1000 <= JoyPadX && JoyPadX <= 1000) {
         int PadX = JoyPadX;
         return PadX;
-    }else { return 0; }
+    }
+    else { return 0; }
 }
 
 int GetJoyPadY(void) {
