@@ -17,13 +17,15 @@ private:
 	int EnemyIntoArea[6];
 	int Score;
 	int Combo;
+	bool Missflg;
+	int MissingSE;
 public:
 	//Enemy();
 	bool flg;
 	void InitEnemy(Enemy* enemy);		//‰á‰Šú‰»ŠÖ”
 	void DrawEnemy(Enemy enemy) const;		//‰á•`‰æŠÖ”
 	//void Drawene(Enemy enmey) const; int enemy_x, int enemy_y, bool flg/*, bool* died_flg*/
-	void MoveEnemy(Enemy* enemy, int time);		//‰áˆÚ“®ŠÖ”
+	void MoveEnemy(int time);		//‰áˆÚ“®ŠÖ”
 	int SetEnemySpeed();					
 	void CreateEnemy(Enemy* enemy,int Make_enemys);		//‰á¶¬ŠÖ”
 	void GetEnemyPos(int* enemy_x, int* enemy_y, int enemy_pos);					//‰áoŒ»ˆÊ’uŒˆ’èŠÖ”
@@ -42,8 +44,10 @@ public:
 	void SetCombo(int combo_flg);
 	//int GetEnemy_Area() const;
 	int GetEnemyIntoArea(int num)const;
+	bool GetMissFlg();
+	int GetMissSE();
 };
 extern Enemy enemy[10];
 
 int GetEnemyVector();
-int SetEnemySpawn(int died_enemy);
+int SetEnemySpawn(int timelimit);

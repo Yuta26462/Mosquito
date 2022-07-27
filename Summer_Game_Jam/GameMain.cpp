@@ -23,7 +23,7 @@ GameMain::GameMain() {
 
 BaseScene* GameMain::Update() {
 	
-	enemy->MoveEnemy(enemy,TimeLimt);
+	enemy->MoveEnemy(TimeLimt);
 	enemy->CheckEnemyAlive(enemy);
 	Player_Update();
 	Sleep_Update(enemy);
@@ -66,8 +66,10 @@ void GameMain::Draw() const {
 		DrawFormatString(enemy[i])
 	}*/
 	DrawFormatStringFToHandle(500, 50, 0xffffff, StatusFont, "Time:%d", GetTime() / 60);
-	DrawFormatStringFToHandle(500, 100, 0xffffff, StatusFont, "Score:%d", enemy->GetScore());
-	DrawFormatStringFToHandle(500, 150, 0xffffff, StatusFont, "Combo:%d", enemy->GetCombo());
+	DrawFormatStringFToHandle(500, 80, 0xffff00, StatusFont, "Score");
+	DrawFormatStringFToHandle(570, 80, 0xfca800, StatusFont, "%d", enemy->GetScore());
+	DrawFormatStringFToHandle(495, 120, 0xfca800, StatusFont, " %d", enemy->GetCombo());
+	DrawFormatStringFToHandle(520, 120, 0xffff00, StatusFont, " Combo");
 }
 
 int GameMain::GetTime() const {

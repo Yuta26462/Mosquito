@@ -1,5 +1,6 @@
 #include"DxLib.h"
 #include"player.h"
+#include "enemy.h"
 #include"main.h"
 
 int AreaNum;
@@ -30,7 +31,8 @@ void Player_Update() {
 		//Aƒ{ƒ^ƒ“‚ÅUŒ‚
 		if (g_KeyFlg & 16) {
 			//AttackFlg[AreaNum] = true;
-			PlaySoundMem(Flyswatter_SE, DX_PLAYTYPE_BACK, TRUE);
+			if (enemy->GetEnemyIntoArea(AreaNum))PlaySoundMem(Flyswatter_SE, DX_PLAYTYPE_BACK, TRUE);
+			else PlaySoundMem(enemy->GetMissSE(), DX_PLAYTYPE_BACK, TRUE);
 			AttackFlg = true;
 			AttackInterval = 180;
 		}

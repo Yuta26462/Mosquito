@@ -29,6 +29,7 @@ void Enemy::InitEnemy(Enemy* enemy) {
 	enemy->Enemy_cnt = 0;
 	enemy->Score = 0;
 	enemy->Combo = 0;
+	MissingSE= LoadSoundMem("Resource/Sounds/SE/swing1.wav");
 }
 
 void Enemy::DrawEnemy(Enemy enemy) const {
@@ -39,11 +40,11 @@ void Enemy::DrawEnemy(Enemy enemy) const {
 	
 }
 
-void Enemy::MoveEnemy(Enemy* enemy, int time) {
+void Enemy::MoveEnemy(int time) {
 	if (AttackInterval <= 0)SetCombo(FALSE);
 	CheckEnemyIntoArea(enemy);
-	if (time % SetEnemySpawn(Died_enemy) == 0 && enemy->Enemy_cnt <= enemy->GetEnemyMakes(enemy->Died_enemy)) {
-		enemy->CreateEnemy(enemy, 3/*,enemy->Died_enemy*/);
+	if (time % SetEnemySpawn(time) == 0 ) {
+		enemy->CreateEnemy(enemy, 2);
 	}
 	if (time % 2) {
 		for (int i = 0; i < 10; i++) {
@@ -68,10 +69,10 @@ void Enemy::MoveEnemy(Enemy* enemy, int time) {
 				if (enemy[i].Spawn_flg) {
 					switch (enemy[i].Enemy_vector) {
 					case UP:
-						enemy[i].NowY -= enemy[i].speed;
+						enemy[i].NowY -= 10;
 						break;
 					case DOWN:
-						enemy[i].NowY += enemy[i].speed;
+						enemy[i].NowY += 10;
 						break;
 					case RIGHT:
 						if (enemy[i].pos <= 1) {
@@ -100,6 +101,8 @@ void Enemy::MoveEnemy(Enemy* enemy, int time) {
 							DeleteEnemy(enemy, i);
 						}
 						else if (EnemyIntoArea[AreaNum] <= 0) {
+							Missflg = true;
+							//PlaySoundMem(MissingSE, DX_PLAYTYPE_BACK, TRUE);
 							enemy->SetCombo(FALSE);
 						}
 					}
@@ -113,10 +116,11 @@ void Enemy::MoveEnemy(Enemy* enemy, int time) {
 	}
 }
 
-int SetEnemySpawn(int died_enemy) {
-	if (died_enemy < 10)return 180;
-	else if (died_enemy < 20)return 140;
-	else if (died_enemy < 30)return 80;
+int SetEnemySpawn(int timelimit) {
+	if (timelimit >= 1200 )return 120;
+	else if (timelimit >= 600)return 60;
+	else if (timelimit >= 0)return 30;
+	else return -1;
 }
 
 int Enemy::SetEnemySpeed() {
@@ -149,6 +153,7 @@ int Enemy::GetEnemyMakes(int died_enemy) {
 	if (died_enemy < 10)return 3;
 	else if (died_enemy < 20)return 5;
 	else if (died_enemy < 30)return 10;
+	else return -1;
 }
 
 int GetEnemyVector() {
@@ -208,28 +213,30 @@ void Enemy::CheckEnemyAlive(Enemy* enemy) {
 void Enemy::CheckEnemyIntoArea(Enemy* enemy) {
 	int NewEnemy_num[6] = { 0,0,0,0,0,0 };
 	for (int i = 0; i < 10; i++) {
-		switch (enemy[i].Enemy_Area)
-		{
-		case 0:
-			NewEnemy_num[0]++;
-			break;
-		case 1:
-			NewEnemy_num[1]++;
-			break;
-		case 2:
-			NewEnemy_num[2]++;
-			break;
-		case 3:
-			NewEnemy_num[3]++;
-			break;
-		case 4:
-			NewEnemy_num[4]++;
-			break;
-		case 5:
-			NewEnemy_num[5]++;
-			break;
-		default:
-			continue;
+		if (enemy[i].flg) {
+			switch (enemy[i].Enemy_Area)
+			{
+			case 0:
+				NewEnemy_num[0]++;
+				break;
+			case 1:
+				NewEnemy_num[1]++;
+				break;
+			case 2:
+				NewEnemy_num[2]++;
+				break;
+			case 3:
+				NewEnemy_num[3]++;
+				break;
+			case 4:
+				NewEnemy_num[4]++;
+				break;
+			case 5:
+				NewEnemy_num[5]++;
+				break;
+			default:
+				continue;
+			}
 		}
 	}
 	for (int j = 0; j < 6; j++) {
@@ -279,10 +286,18 @@ void Enemy::SetCombo(int combo_flg) {
 
 }
 
+bool Enemy::GetMissFlg() {
+	return Missflg;
+}
+
 //int Enemy::GetEnemy_Area() const {
 //	return Enemy_Area;
 //}
 
 int Enemy::GetEnemyIntoArea(int num) const {
 	return EnemyIntoArea[num];
+}
+
+int Enemy::GetMissSE() {
+	return MissingSE;
 }
