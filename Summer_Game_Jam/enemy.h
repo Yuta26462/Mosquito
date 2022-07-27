@@ -6,17 +6,19 @@ class Enemy {
 private:
 	int pos;
 	int NowX, NowY;       //Œ»İ’n
-	float Enemy_angle;
+	//float Enemy_angle;
 	int Enemy_cnt;
 	int Enemy_time;
 	int Enemy_vector;
 	int Died_enemy;
 	bool Spawn_flg;
 	int Enemy_Area;
-	int DeadEnemynum;
 	bool Enemy_AliveFlg;
-	bool Died_flg;
+	int EnemyIntoArea[6];
+	int Score;
+	int Combo;
 public:
+	//Enemy();
 	bool flg;
 	void InitEnemy(Enemy* enemy);		//‰á‰Šú‰»ŠÖ”
 	void DrawEnemy(Enemy enemy) const;		//‰á•`‰æŠÖ”
@@ -26,14 +28,19 @@ public:
 	void GetEnemyPos(int* enemy_x, int* enemy_y, int enemy_pos);					//‰áoŒ»ˆÊ’uŒˆ’èŠÖ”
 	void DeleteEnemy(Enemy* enemy ,int num);
 	void CheckEnemyAlive(Enemy* enemy);
+	void CheckEnemyIntoArea(Enemy* enemy);
 	bool GetEnemyFlg() const;
 	int GetEnemyX() const;
 	int GetEnemyY() const;
 	int GetDied_enemy() const;
-	void SetEnemyDflg(Enemy* enemy,int num);
 	int GetEnemyMakes(int died_enemy);
 	bool GetEnemyAliveFlg(Enemy* enemy);
+	int GetScore()const;
+	void SetScore();
+	int GetCombo()const;
+	void SetCombo(int combo_flg);
 	//int GetEnemy_Area() const;
+	int GetEnemyIntoArea(int num)const;
 };
 extern Enemy enemy[10];
 
