@@ -10,8 +10,12 @@
 GameMain::GameMain() {
 	Main_BGM = LoadSoundMem("Resource/Sounds/BGM/Title.wav");
 	MainUp_BGM = LoadSoundMem("Resource/Sounds/BGM/GameMain_UP.wav");
+	Wind_chimes_SE = LoadSoundMem("Resource/Sounds/SE/wind_chimes.wav");
 	PlaySoundMem(Main_BGM, DX_PLAYTYPE_BACK, TRUE);
-	StartFlg = true;
+	ChangeVolumeSoundMem(255 * 60 / 100, Main_BGM);
+	PlaySoundMem(Wind_chimes_SE, DX_PLAYTYPE_BACK, TRUE);
+	ChangeVolumeSoundMem(255 * 80 / 100, Wind_chimes_SE);
+	static bool StartFlg = true;
 	TimeLimt = 1800;
 	Sleep_Initialize();
 	StatusFont = CreateFontToHandle("StatusFont", 30, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4);
