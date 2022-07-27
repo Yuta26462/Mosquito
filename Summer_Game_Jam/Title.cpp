@@ -81,22 +81,23 @@ void Title::Draw() const {
 
 	if (MenuChangeFlg == 1) {//操作説明
 		DrawGraph(0, 0, Help_img, FALSE);
-		DrawString(100, 200, "蚊が６つに分けられた枠内に出現するよ！", 0xDC6560);
-		DrawString(100, 230, "スティックや十字ボタンで蚊がいるところに合わせて、", 0xDC6560);
-		DrawString(100, 260, "Aボタンを押したら蚊を倒すことができるよ！", 0xDC6560);
-		DrawString(100, 290, "間違えずに連続で蚊を倒していくと", 0xDC6560);
-		DrawString(100, 320, "コンボが発生して、獲得できるスコアが増えていくから", 0xDC6560);
-		DrawString(100, 350, "頑張ってたくさん倒そう！！", 0xDC6560);
-		DrawStringToHandle(120, 400, "Bボタンでタイトルに戻る", 0xFFFFFF, MenuFont, 0xDC6560);
+		DrawString(100, 150, "蚊が６つに分けられた枠内に出現するよ！", 0xDC6560);
+		DrawString(100, 180, "スティックや十字ボタンで蚊がいるところに合わせて、", 0xDC6560);
+		DrawString(100, 210, "Aボタンを押したら蚊を倒すことができるよ！", 0xDC6560);
+		DrawString(100, 240, "間違えずに連続で蚊を倒していくと", 0xDC6560);
+		DrawString(100, 270, "コンボが発生して、獲得できるスコアが増えていくから", 0xDC6560);
+		DrawString(100, 300, "頑張ってたくさん倒そう！！", 0xDC6560);
+		DrawStringToHandle(80, 380, "Bボタンでタイトルに戻る", 0xFFFFFF, MenuFont, 0xDC6560);
 	}
 	else if (MenuChangeFlg == 2) {//クレジット
 		DrawGraph(0, 0, Credit_img, FALSE);
-		DrawString(100, 200, "タイトル　　　蚊", 0xDC6560);
-		DrawString(100, 230, "制作者　　　　国際電子ビジネス専門学校 Lチーム", 0xDC6560);
-		DrawString(100, 260, "素材利用", 0xDC6560);
-		DrawString(100, 290, "画像　　　　みんちりえ（ https://min-chi.material.jp/ ）", 0xDC6560);
-		DrawString(100, 320, "BGM", 0xDC6560);
-		DrawString(100, 350, "SE", 0xDC6560);
+		DrawString(100, 150, "タイトル      蚊", 0xDC6560);
+		DrawString(100, 180, "制作者        国際電子ビジネス専門学校 Lチーム", 0xDC6560);
+		DrawString(130, 240, "素材利用", 0xDC6560);
+		DrawString(100, 270, "画像　　 　   みんちりえ   https://min-chi.material.jp/", 0xDC6560);
+		DrawString(100, 300, "              いらすとや   https://www.irasutoya.com/", 0xDC6560);
+		DrawString(100, 330, "BGM", 0xDC6560);
+		DrawString(100, 360, "SE", 0xDC6560);
 
 
 	}else {
