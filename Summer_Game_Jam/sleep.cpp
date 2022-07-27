@@ -42,6 +42,6 @@ void Sleep_Player_Draw() {
 	}
 	if (gauge <= -960) {
 		DeleteGraph(ImageSleep);
-		DrawRotaGraph(320, 390, 0.8, 0, ImageSleep2, TRUE);
+		DrawRotaGraph(320, 390, 0.6, 0, ImageSleep2, TRUE);
 	}
 }
