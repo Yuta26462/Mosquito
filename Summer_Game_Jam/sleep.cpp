@@ -11,8 +11,8 @@ bool finishFlg;
 void Sleep_Initialize() {
 	gauge = 0;
 	finishFlg = false;
-	ImageSleep = LoadGraph("Resource/images/Player_Sleep.png");
-	ImageSleep2 = LoadGraph("Resource/images/sleep.png");
+	ImageSleep = LoadGraph("Resource/images/Player/Player_Sleep.png");
+	ImageSleep2 = LoadGraph("Resource/images/Player/sleep.png");
 }
 
 void Sleep_Finalize() {
@@ -42,6 +42,6 @@ void Sleep_Player_Draw() {
 	}
 	if (gauge <= -960) {
 		DeleteGraph(ImageSleep);
-		DrawRotaGraph(320, 390, 0.8, 0, ImageSleep2, TRUE);
+		DrawRotaGraph(320, 390, 0.6, 0, ImageSleep2, TRUE);
 	}
 }

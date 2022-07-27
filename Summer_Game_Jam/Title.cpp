@@ -10,7 +10,6 @@ void Title::Initialize() const {
 	Sleep_Initialize();
 	Player_Initialize();
 	Sleep_Initialize();
-	PlaySoundMem(Title_BGM, DX_PLAYTYPE_BACK, TRUE);
 }
 void Title::Finalize() const{
 	Sleep_Finalize();
@@ -21,15 +20,18 @@ void Title::Finalize() const{
 Title::Title() {
 	MenuFont = CreateFontToHandle("MenuFont", 40, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4);
 	Pointer_img = LoadGraph("Resource/Images/pointer.png");
-	Help_img = LoadGraph("Resource/Images/help.png");
-	Credit_img = LoadGraph("Resource/Images/Credit.png");
+	Help_img = LoadGraph("Resource/Images/Background/help.png");
+	Credit_img = LoadGraph("Resource/Images/Background/Credit.png");
+
 	Menu_img = LoadGraph("Resource/Images/menu.png");
+	Pad_img = LoadGraph("Resource/Images/pad.png");
 	OK_SE = LoadSoundMem("Resource/Sounds/SE/OK.wav");
 	Selecter_SE = LoadSoundMem("Resource/Sounds/SE/Selecter.wav");
 	Return_SE = LoadSoundMem("Resource/Sounds/SE/Return.wav");
 	Title_BGM = LoadSoundMem("Resource/Sounds/BGM/Title.wav");
 	SelectNo = 0;
 	MenuChangeFlg = 0;
+	PlaySoundMem(Title_BGM, DX_PLAYTYPE_BACK, TRUE);
 }
 
 BaseScene* Title::Update() {
@@ -81,27 +83,35 @@ void Title::Draw() const {
 
 	if (MenuChangeFlg == 1) {//操作説明
 		DrawGraph(0, 0, Help_img, FALSE);
-		DrawString(140, 160, "蚊が６つに分けられた枠内に出現するよ！", 0xffffff);
-		DrawString(140, 190, "スティックで蚊がいるところにカーソルを合わせて、", 0xffffff);
-		DrawString(140, 220, "Aボタンを押したら蚊を倒すことができるよ！", 0xffffff);
-		DrawString(140, 250, "間違えずに連続で蚊を倒していくと", 0xffffff);
-		DrawString(140, 280, "コンボが発生して、獲得できるスコアが増えていくから", 0xffffff);
-		DrawString(140, 310, "頑張ってたくさん倒そう！！", 0xffffff);
+		DrawString(100, 140, "蚊が６つに分けられた枠内に出現するよ！", 0xffffff);
+		//DrawString(140, 190, "スティックで蚊がいるところにカーソルを合わせて、", 0xffffff);
+		//DrawString(140, 220, "Aボタンを押したら蚊を倒すことができるよ！", 0xffffff);
+		DrawString(100, 160, "間違えずに連続で蚊を倒していくとコンボが発生して、", 0xffffff);
+		DrawString(100, 180, "獲得できるスコアが増えていくから頑張ってたくさん倒そう！", 0xffffff);
+		//DrawString(140, 310, "頑張ってたくさん倒そう！！", 0xffffff);
+		DrawRotaGraph(300, 300, 0.5, 0, Pad_img, TRUE);
 		DrawStringToHandle(90, 400, "Bボタンでタイトルに戻る", 0xFFFFFF, MenuFont, 0xDC6560);
 	}
 	else if (MenuChangeFlg == 2) {//クレジット
 		DrawGraph(0, 0, Credit_img, FALSE);
-		DrawString(100, 130, "タイトル      蚊", 0xffffff);
-		DrawString(100, 160, "制作者        国際電子ビジネス専門学校 Lチーム", 0xffffff);
-		DrawString(130, 190, "素材利用", 0xffffff);
-		DrawString(100, 220, "画像　　 　 みんちりえ        ", 0xffffff);
-		DrawString(100, 250, "            いらすとや        ", 0xffffff);
-		DrawString(100, 280, "BGM         ", 0xffffff);
-		DrawString(100, 310, "            ", 0xffffff);
-		DrawString(100, 340, "SE          魔王魂　　　　     【森田交一】システム49", 0xffffff);
-		DrawString(100, 370, "            効果音ラボ　　　   【効果音ラボ】キャンセル5", 0xffffff);
-		DrawString(100, 400, "            効果音工房　　　   【効果音工房】カーソル移動-11", 0xffffff);
-		DrawString(100, 430, "            ニコニ・コモンズ   【でぃめとろ丼】夜の虫の音 ", 0xffffff);
+		DrawString(100, 130, "タイトル", 0x7fffd4);
+		DrawString(200, 130, "蚊", 0xffffff);
+		DrawString(100, 150, "制作者", 0x7fffd4);
+		DrawString(200, 150, "国際電子ビジネス専門学校 Lチーム", 0xffffff);
+		DrawString(130, 200, "素材利用", 0xffff00);
+		DrawString(100, 230, "画像", 0xffff00);
+		DrawString(180, 230, "みんちりえ        ", 0xffffff);
+		DrawString(180, 250, "いらすとや        ", 0xffffff);
+		DrawString(330, 230, "BGM", 0xffff00);
+		DrawString(410, 230, "DOVA-SYNDROME", 0xffffff);
+		DrawString(410, 250, "MusMus", 0xffffff);
+		DrawString(100, 300, "SE", 0xffff00);
+		DrawString(180, 300, "魔王魂　　　　     【森田交一】     システム49", 0xffffff);
+		DrawString(180, 320, "OtoLogic           【OtoLogic】     蚊　生録01", 0xffffff);
+		DrawString(180, 340, "効果音ラボ　　　   【効果音ラボ】   キャンセル5", 0xffffff);
+		DrawString(180, 360, "効果音工房　　　   【効果音工房】   カーソル移動-11", 0xffffff);
+		DrawString(180, 380, "ニコニ・コモンズ   【でぃめとろ丼】 夜の虫の音 ", 0xffffff);
+		DrawString(180, 400, "                   【みそしる】     何かを叩いた音 ", 0xffffff);
 
 
 	}else {

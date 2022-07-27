@@ -12,9 +12,7 @@ GameMain::GameMain() {
 	MainUp_BGM = LoadSoundMem("Resource/Sounds/BGM/GameMain_UP.wav");
 	Wind_chimes_SE = LoadSoundMem("Resource/Sounds/SE/wind_chimes.wav");
 	PlaySoundMem(Main_BGM, DX_PLAYTYPE_BACK, TRUE);
-	ChangeVolumeSoundMem(255 * 60 / 100, Main_BGM);
 	PlaySoundMem(Wind_chimes_SE, DX_PLAYTYPE_BACK, TRUE);
-	ChangeVolumeSoundMem(255 * 80 / 100, Wind_chimes_SE);
 	static bool StartFlg = true;
 	TimeLimt = 1800;
 	Player_Initialize();
@@ -31,6 +29,8 @@ BaseScene* GameMain::Update() {
 	Sleep_Update(enemy);
 	//デバッグ用		Yボタンでリザルト画面へ
 	if (TimeLimt-- < 1 || g_KeyFlg & 128 || finishFlg == true) {
+		StopSoundMem(Main_BGM);
+		StopSoundMem(Wind_chimes_SE);
 		return new Result();
 	}
 	else {
