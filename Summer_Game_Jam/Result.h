@@ -5,6 +5,7 @@ class Result : public BaseScene {
 	int GameClear_BGM, GameOver_BGM;
 	int GameOver_Face, Clear_Face;
 	int TextCount;
+	int HareBack,Donyori_Back;
 public:
 	Result();
 	virtual ~Result() {};
