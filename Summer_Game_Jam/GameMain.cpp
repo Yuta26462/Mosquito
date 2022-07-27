@@ -20,7 +20,7 @@ GameMain::GameMain() {
 	Player_Initialize();
 	Sleep_Initialize();
 	enemy->InitEnemy(enemy);
-	StatusFont = CreateFontToHandle("StatusFont", 30, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4);
+	StatusFont = CreateFontToHandle("StatusFont", 20, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4);
 }
 
 BaseScene* GameMain::Update() {
