@@ -64,7 +64,6 @@ void GameMain::Draw() const {
 	/*for (int j = 0; j < 10; j++) {
 		DrawFormatString(enemy[i])
 	}*/
-	
 	DrawFormatStringFToHandle(500, 50, 0xffffff, StatusFont, "Time:%d", GetTime() / 60);
 	DrawFormatStringFToHandle(500, 100, 0xffffff, StatusFont, "Score:%d", enemy->GetScore());
 	DrawFormatStringFToHandle(500, 150, 0xffffff, StatusFont, "Combo:%d", enemy->GetCombo());
