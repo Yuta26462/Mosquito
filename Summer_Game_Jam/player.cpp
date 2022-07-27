@@ -7,7 +7,7 @@ bool AttackFlg;
 
 void Player_Initialize() {
 	WeaponImage = LoadGraph("Resource/Images/Weapon.png");
-	Mosquito_SE = LoadSoundMem("Resource/Sounds/SE/Mosquitoes.wav");
+	Flyswatter_SE = LoadSoundMem("Resource/Sounds/SE/Flyswatter.wav");
 
 	BoxColor = GetColor(255, 0, 0);
 	BoxNumber_x = 1;
@@ -16,9 +16,6 @@ void Player_Initialize() {
 	box_y = 0;
 	AttackCount = 0;
 	AreaNum = 0;
-	/*for (int i = 0; i < 6; i++) {
-		AttackFlg[i] = 0;
-	}*/
 	AttackFlg = false;
 
 }
@@ -26,12 +23,13 @@ void Player_Finalize() {
 	DeleteGraph(WeaponImage);
 }
 void Player_Update() {
-	//static int NowArea = 0;
-	if (AttackFlg==false/*AttackFlg[AreaNum] == false*/) {
+	
+	if (AttackFlg==false) {
 
 		//Aボタンで攻撃
 		if (g_KeyFlg & 16) {
 			//AttackFlg[AreaNum] = true;
+			PlaySoundMem(Flyswatter_SE, DX_PLAYTYPE_BACK, TRUE);
 			AttackFlg = true;
 		}
 
@@ -68,9 +66,8 @@ void Player_Update() {
 		break;
 	}
 	
-	//NowArea = AreaNum;
-	if (AttackFlg==true/*AttackFlg[AreaNum] == true*//* && AreaNum == NowArea*/) {
-		PlaySoundMem(Mosquito_SE, DX_PLAYTYPE_BACK, TRUE);
+	
+	if (AttackFlg==true) {
 		AttackCount++;
 		if (AttackCount > 12) {
 			AttackFlg = false;
@@ -80,7 +77,6 @@ void Player_Update() {
 
 }
 void Player_Draw() {
-	DrawFormatString(100, 100, 0x000000, "areanum:%d", AreaNum);
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
 	DrawLine(0, 270, 640, 270, 0xffffff);
 	DrawLine(213, 0, 213, 480, 0xffffff);
@@ -90,6 +86,5 @@ void Player_Draw() {
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 	if (AttackFlg == true) {
 		DrawRotaGraph(BoxNumber_x * 213 + 106, BoxNumber_y * 240 + 150, 0.3, 0, WeaponImage, TRUE, FALSE);
-		DrawString(300, 200, "ボタン押したよ", 0x000000);
 	}
 }

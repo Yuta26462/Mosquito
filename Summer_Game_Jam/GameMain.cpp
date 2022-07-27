@@ -56,12 +56,18 @@ void GameMain::Draw() const {
 	/*for (int j = 0; j < 6; j++) {
 		DrawFormatString(30 * j, 200, 0xffffff, "%d", enemy->GetEnemyIntoArea(j));
 	}*/
-	DrawFormatStringFToHandle(500, 100, 0xffffff, StatusFont, "Score:%d", enemy->GetScore());
-	DrawFormatStringFToHandle(500, 150, 0xffffff, StatusFont, "Combo:%d", enemy->GetCombo());
+	
 	//DrawFormatString(100, 350, 0x000000, "Died_Enemy:%d", enemy->GetDied_enemy());
-	DrawFormatStringFToHandle(500, 50, 0xffffff, StatusFont, "Time:%d", GetTime() / 60);
+	
 	Player_Draw();
 	Sleep_Draw();
+	/*for (int j = 0; j < 10; j++) {
+		DrawFormatString(enemy[i])
+	}*/
+	
+	DrawFormatStringFToHandle(500, 50, 0xffffff, StatusFont, "Time:%d", GetTime() / 60);
+	DrawFormatStringFToHandle(500, 100, 0xffffff, StatusFont, "Score:%d", enemy->GetScore());
+	DrawFormatStringFToHandle(500, 150, 0xffffff, StatusFont, "Combo:%d", enemy->GetCombo());
 }
 
 int GameMain::GetTime() const {

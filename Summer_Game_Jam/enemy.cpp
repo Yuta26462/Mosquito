@@ -11,8 +11,6 @@
 #define Move_X 15
 #define Move_Y 15
 
-//static int timer = 0;
-//int GameMain::Enemy_cnt;
 Enemy enemy[10];
 
 void Enemy::InitEnemy(Enemy* enemy) {
@@ -64,7 +62,7 @@ void Enemy::MoveEnemy(Enemy* enemy, int time) {
 				}
 
 				if (enemy[i].Enemy_time++ % 30) {
-					enemy[i].Enemy_vector = GetRand(3);//GetEnemyVector();
+					enemy[i].Enemy_vector = GetRand(3);
 				}
 				if (enemy[i].Spawn_flg) {
 					switch (enemy[i].Enemy_vector) {
@@ -78,19 +76,11 @@ void Enemy::MoveEnemy(Enemy* enemy, int time) {
 						if (enemy[i].pos <= 1) {
 							enemy[i].NowX += Move_X;
 						}
-						/*else
-						{
-							enemy[i].NowX += Move_X - 5;
-						}*/
 						break;
 					case LEFT:
 						if (enemy[i].pos > 1) {
 							enemy[i].NowX -= Move_X;
 						}
-						/*else
-						{
-							enemy[i].NowX -= Move_X - 5;
-						}*/
 						break;
 					default:
 						break;
@@ -99,13 +89,10 @@ void Enemy::MoveEnemy(Enemy* enemy, int time) {
 
 					enemy[i].Enemy_Area = enemy[i].NowX / 213;
 					if (enemy[i].NowY > 240)enemy[i].Enemy_Area += 3;
-					/*if (AttackFlg[enemy[i].Enemy_Area]) {
-						enemy->Died_enemy++;
-						DeleteEnemy(enemy, i);
-					}*/
 
 					if (AttackFlg) {
 						if (AreaNum == enemy[i].Enemy_Area) {
+							DrawFormatString(enemy[i].NowX, enemy[i].NowY+10, 0xffffff, "%dcombo", Combo);
 							enemy->SetScore();
 							enemy->SetCombo(TRUE);
 							enemy->Died_enemy++;
@@ -126,8 +113,8 @@ void Enemy::MoveEnemy(Enemy* enemy, int time) {
 }
 
 int SetEnemySpawn(int died_enemy) {
-	if (died_enemy < 10)return 180;
-	else if (died_enemy < 20)return 120;
+	if (died_enemy < 10)return 120;
+	else if (died_enemy < 20)return 100;
 	else if (died_enemy < 30)return 60;
 }
 
