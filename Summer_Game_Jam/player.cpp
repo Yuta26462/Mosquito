@@ -87,14 +87,14 @@ void Player_Update() {
 void Player_Draw() {
 	DrawFormatString(100, 100, 0x000000, "areanum:%d", AreaNum);
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
-	DrawLine(0, 240, 640, 240, 0x000000);
-	DrawLine(213, 0, 213, 480, 0x000000);
-	DrawLine(426, 0, 426, 480, 0x000000);
+	DrawLine(0, 270, 640, 270, 0xffffff);
+	DrawLine(213, 0, 213, 480, 0xffffff);
+	DrawLine(426, 0, 426, 480, 0xffffff);
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 64);
-	DrawBox(BoxNumber_x * 213, BoxNumber_y * 240, BoxNumber_x * 213 + 214, BoxNumber_y * 241 + 241, BoxColor, TRUE);
+	DrawBox(BoxNumber_x * 213, BoxNumber_y * 270, BoxNumber_x * 213 + 214, BoxNumber_y * 271 + 271, BoxColor, TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 	if (AttackFlg[AreaNum] == true) {
-		DrawRotaGraph(BoxNumber_x * 213 + 106, BoxNumber_y * 240 + 120, 0.3, 0, WeaponImage, TRUE, FALSE);
+		DrawRotaGraph(BoxNumber_x * 213 + 106, BoxNumber_y * 240 + 150, 0.3, 0, WeaponImage, TRUE, FALSE);
 		DrawString(300, 200, "ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚æ", 0x000000);
 	}
 }

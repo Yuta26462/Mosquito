@@ -3,6 +3,8 @@
 
 class Result : public BaseScene {
 	int GameClear_BGM, GameOver_BGM;
+	int GameOver_Face, Clear_Face;
+	int TextCount,Score;
 public:
 	Result();
 	virtual ~Result() {};

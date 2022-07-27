@@ -12,6 +12,7 @@ GameMain::GameMain() {
 	PlaySoundMem(Main_BGM, DX_PLAYTYPE_BACK, TRUE);
 	static bool StartFlg = true;
 	TimeLimt = 1800;
+	Player_Initialize();
 	Sleep_Initialize();
 }
 
