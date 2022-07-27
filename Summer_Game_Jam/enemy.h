@@ -45,3 +45,4 @@ public:
 extern Enemy enemy[10];
 
 int GetEnemyVector();
+int SetEnemySpawn(int died_enemy);

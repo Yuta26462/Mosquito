@@ -43,7 +43,7 @@ void Enemy::DrawEnemy(Enemy enemy) const {
 
 void Enemy::MoveEnemy(Enemy* enemy, int time) {
 	CheckEnemyIntoArea(enemy);
-	if (time % 60 == 0 && enemy->Enemy_cnt <= enemy->GetEnemyMakes(enemy->Died_enemy)) {
+	if (time % SetEnemySpawn(Died_enemy) == 0 && enemy->Enemy_cnt <= enemy->GetEnemyMakes(enemy->Died_enemy)) {
 		enemy->CreateEnemy(enemy, 3/*,enemy->Died_enemy*/);
 	}
 	if (time % 2) {
@@ -116,7 +116,7 @@ void Enemy::MoveEnemy(Enemy* enemy, int time) {
 						}
 					}
 					
-					if (enemy[i].Spawn_flg && (enemy[i].NowX < -5 || enemy[i].NowX > 645 || enemy[i].NowY < -5 || enemy[i].NowY > 485)) {
+					if (enemy[i].Spawn_flg && (enemy[i].NowX < -5 || enemy[i].NowX > 645 || enemy[i].NowY < 25 || enemy[i].NowY > 485)) {
 						DeleteEnemy(enemy, i);
 					}
 				}
@@ -124,6 +124,13 @@ void Enemy::MoveEnemy(Enemy* enemy, int time) {
 		}
 	}
 }
+
+int SetEnemySpawn(int died_enemy) {
+	if (died_enemy < 10)return 180;
+	else if (died_enemy < 20)return 120;
+	else if (died_enemy < 30)return 60;
+}
+
 void Enemy::CreateEnemy(Enemy* enemy, int Make_enemys) {
 	int made_enemys = 0;
 
@@ -142,9 +149,9 @@ void Enemy::CreateEnemy(Enemy* enemy, int Make_enemys) {
 }
 
 int Enemy::GetEnemyMakes(int died_enemy) {
-	if (died_enemy < 20)return 3;
-	else if (died_enemy < 40)return 5;
-	else if (died_enemy < 60)return 10;
+	if (died_enemy < 10)return 3;
+	else if (died_enemy < 20)return 5;
+	else if (died_enemy < 30)return 10;
 }
 
 int GetEnemyVector() {
