@@ -12,8 +12,8 @@ Result::Result() {
 	Clear_Face = LoadGraph("Resource/Images/Clear_Face.png");
 	TextCount = 0;
 
-	if (gauge <= 0) {
-		GameOver_BGM = LoadSoundMem("Resource/Sounds/BGM/GameOver.wav");
+	if (finishFlg == true) {
+		PlaySoundMem(GameOver_BGM, DX_PLAYTYPE_BACK, TRUE);
 	}else {
 		PlaySoundMem(GameClear_BGM, DX_PLAYTYPE_BACK, TRUE);
 	}
@@ -30,6 +30,12 @@ BaseScene* Result::Update() {
 	TextCount++;
 	//Bボタンでタイトルへ
 	if (g_KeyFlg & 32) {
+		if (finishFlg == true) {
+			StopSoundMem(GameOver_BGM);
+		}
+		else {
+			StopSoundMem(GameClear_BGM);
+		}
 		return new Title();
 	}
 	else {
