@@ -6,8 +6,9 @@
 #include "player.h"
 #include "sleep.h"
 
+
 GameMain::GameMain() {
-	Main_BGM = LoadSoundMem("Resource/Sounds/BGM/GameMain.wav");
+	Main_BGM = LoadSoundMem("Resource/Sounds/BGM/Title.wav");
 	MainUp_BGM = LoadSoundMem("Resource/Sounds/BGM/GameMain_UP.wav");
 	Wind_chimes_SE = LoadSoundMem("Resource/Sounds/SE/wind_chimes.wav");
 	PlaySoundMem(Main_BGM, DX_PLAYTYPE_BACK, TRUE);
@@ -19,6 +20,7 @@ GameMain::GameMain() {
 	Player_Initialize();
 	Sleep_Initialize();
 	enemy->InitEnemy(enemy);
+	StatusFont = CreateFontToHandle("StatusFont", 30, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4);
 }
 
 BaseScene* GameMain::Update() {
@@ -53,11 +55,10 @@ void GameMain::Draw() const {
 	/*for (int j = 0; j < 6; j++) {
 		DrawFormatString(30 * j, 200, 0xffffff, "%d", enemy->GetEnemyIntoArea(j));
 	}*/
-	
-	DrawFormatString(100, 400, 0xffffff, "Score:%d", enemy->GetScore());
-	DrawFormatString(100, 450, 0xffffff, "Combo:%d", enemy->GetCombo());
+	DrawFormatStringFToHandle(500, 100, 0xffffff, StatusFont, "Score:%d", enemy->GetScore());
+	DrawFormatStringFToHandle(500, 150, 0xffffff, StatusFont, "Combo:%d", enemy->GetCombo());
 	//DrawFormatString(100, 350, 0x000000, "Died_Enemy:%d", enemy->GetDied_enemy());
-	DrawFormatString(500, 100, 0xffffff, "Time:%d", GetTime()/60);
+	DrawFormatStringFToHandle(500, 50, 0xffffff, StatusFont, "Time:%d", GetTime() / 60);
 	Player_Draw();
 	Sleep_Draw();
 }
