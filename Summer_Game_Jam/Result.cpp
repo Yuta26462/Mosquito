@@ -64,9 +64,32 @@ void Result::Draw() const {
 		DrawRotaGraph(320, 320, 0.8, 0, Clear_Face, TRUE);
 		if (TextCount > 60) {
 			DrawStringToHandle(210, 30, "撃退成功！！！", 0x000000, Font_string);
+			if (enemy->GetScore() > MaxScore)NewScore = enemy->GetScore(); SaveRanking();
 		}
 		if (TextCount > 120) {
 			DrawFormatStringToHandle(450, 400, 0x000000, Font_num, "スコア:%d", enemy->GetScore());
 		}
 	}
+}
+
+
+int  SaveRanking(void)
+{
+	FILE* fp;
+#pragma warning(disable:4996)
+	MaxScore = NewScore;
+	// ファイルオープン
+	if ((fp = fopen("Resource/maxscore.txt", "w")) == NULL) {
+		/* エラー処理 */
+		printf("Ranking Data Error\n");
+		return -1;
+	}
+
+	fprintf(fp, "%3d %5d\n", PlayCount,NewScore);
+
+	//ファイルクローズ
+	fclose(fp);
+
+	return 0;
+
 }

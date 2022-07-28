@@ -30,6 +30,7 @@ Title::Title() {
 	SelectNo = 0;
 	MenuChangeFlg = 0;
 	PlaySoundMem(Title_BGM, DX_PLAYTYPE_BACK, TRUE);
+	PlayCount++;
 }
 
 BaseScene* Title::Update() {
@@ -120,6 +121,8 @@ void Title::Draw() const {
 		DrawStringToHandle(230, 295, "操作説明", SelectNo == 1 ? 0xFFFFFF : 0x292A3E, MenuFont, 0xDC6560);
 		DrawStringToHandle(230, 340, "クレジット", SelectNo == 2 ? 0xFFFFFF : 0x292A3E, MenuFont, 0xDC6560);
 		DrawStringToHandle(230, 385, "ゲーム終了", SelectNo == 3 ? 0xFFFFFF : 0x292A3E, MenuFont, 0xDC6560);
+		DrawFormatString(60, 400, 0xFFFFFF, "プレイ回数:%d",PlayCount, 0xDC6560);
+		DrawFormatString(60, 420, 0xFFFFFF, "最高スコア:%d", MaxScore, 0xDC6560);
 		//DrawCircleAA(200, 270 + SelectNo * 45, 16.0f, 3, 0xDC6560, TRUE);
 		
 

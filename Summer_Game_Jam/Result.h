@@ -8,6 +8,7 @@ class Result : public BaseScene {
 	int HareBack,Donyori_Back;
 	int Font_string;
 	int Font_num;
+	int Score;
 public:
 	Result();
 	virtual ~Result() {};
@@ -16,3 +17,4 @@ public:
 	virtual void Finalize() const override;
 	virtual void Draw() const override;
 };
+int SaveRanking(void);

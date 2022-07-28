@@ -4,6 +4,10 @@
 #include "DxLib.h"
 #include<math.h>
 
+int PlayCount;
+int MaxScore;
+int NewScore;
+
 class Fps {
     int mStartTime; //測定開始時刻
     int mCount;  //カウンタ
@@ -78,6 +82,7 @@ int WINAPI WinMain(HINSTANCE hlnstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     SceneManager scenMG(new Title());
 
     scenMG.Initialize();
+    ReadRanking();
     // ゲームループ
     while (scenMG.Update() != nullptr && ProcessMessage() == 0) {
         // 入力キー取得
@@ -156,4 +161,24 @@ int GetJoyPadY(void) {
         return PadY;
     }
     else { return 0; }
+}
+
+int ReadRanking(void)
+{
+    FILE* fp;
+#pragma warning(disable:4996)
+
+    //ファイルオープン
+    if ((fp = fopen("Resource/maxscore.txt", "r")) == NULL) {
+        //エラー処理
+        printf("Ranking Data Error\n");
+        return -1;
+    }
+
+    fscanf(fp, "%3d %5d\n", &PlayCount, &MaxScore);
+
+    //ファイルクローズ
+    fclose(fp);
+
+    return 0;
 }
