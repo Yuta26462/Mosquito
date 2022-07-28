@@ -13,7 +13,7 @@
 
 Enemy enemy[15];
 
-void Enemy::InitEnemy(Enemy* enemy) {
+Enemy::Enemy() {
 	for (int i = 0; i < 15; i++) {
 		enemy[i].flg = false;
 		enemy[i].NowX = 0;
@@ -21,7 +21,6 @@ void Enemy::InitEnemy(Enemy* enemy) {
 		enemy[i].pos = 0;
 		enemy[i].Enemy_time = 0;
 		enemy[i].Spawn_flg = false;
-		enemy[i].Drawtimer = 0;
 	}
 	for (int j = 0; j < 6; j++) {
 		EnemyIntoArea[j] = 0;

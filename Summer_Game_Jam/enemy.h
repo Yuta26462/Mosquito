@@ -19,9 +19,8 @@ private:
 	int Combo;
 	bool Missflg;
 	int MissingSE;
-	int Drawtimer;
 public:
-	//Enemy();
+	Enemy();
 	bool flg;
 	void InitEnemy(Enemy* enemy);		//‰á‰Šú‰»ŠÖ”
 	void DrawEnemy() const;		//‰á•`‰æŠÖ”
