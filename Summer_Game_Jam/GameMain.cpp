@@ -19,6 +19,7 @@ GameMain::GameMain() {
 	TimeLimt = 1800;
 	Player_Initialize();
 	Sleep_Initialize();
+	enemy->InitEnemy();
 	StatusFont = CreateFontToHandle("StatusFont", 20, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4);
 	MoonX = 200;
 	MoonY = 130;

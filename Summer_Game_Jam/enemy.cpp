@@ -13,7 +13,7 @@
 
 Enemy enemy[15];
 
-Enemy::Enemy() {
+void Enemy::InitEnemy() {
 	for (int i = 0; i < 15; i++) {
 		enemy[i].flg = false;
 		enemy[i].NowX = 0;

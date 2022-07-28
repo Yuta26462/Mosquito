@@ -20,9 +20,9 @@ private:
 	bool Missflg;
 	int MissingSE;
 public:
-	Enemy();
+	//Enemy();
 	bool flg;
-	void InitEnemy(Enemy* enemy);		//‰á‰Šú‰»ŠÖ”
+	void InitEnemy();		//‰á‰Šú‰»ŠÖ”
 	void DrawEnemy() const;		//‰á•`‰æŠÖ”
 	//void Drawene(Enemy enmey) const; int enemy_x, int enemy_y, bool flg/*, bool* died_flg*/
 	void MoveEnemy(int time);		//‰áˆÚ“®ŠÖ”
