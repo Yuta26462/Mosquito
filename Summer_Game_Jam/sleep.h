@@ -3,7 +3,7 @@
 
 static int ImageSleep;		//Q‚Ä‚é‰æ‘œ
 static int ImageSleep2;		//Q‚Ú‚¯‰æ‘œ
-static int gauge = 0, gaugeMax = 40;
+static int gauge = 0, gaugeMax = 43;
 static int black = GetColor(0, 0, 0);
 static int blue = GetColor(0, 255, 255);
 static int red = GetColor(255, 0, 0);
