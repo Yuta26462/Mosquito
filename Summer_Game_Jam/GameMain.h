@@ -11,7 +11,7 @@ private:
 	mutable int MoonX,MoonY,SunX,SunY;
 	mutable int BackgroundColor, Bright;
 	//bool StartFlg;
-	int StatusFont;
+	static int StatusFont;
 	
 public:
 	GameMain();
@@ -21,4 +21,5 @@ public:
 	virtual void Finalize() const override;
 	virtual void Draw() const override;
 	int GetTime() const;
+	static int GetFont();
 };

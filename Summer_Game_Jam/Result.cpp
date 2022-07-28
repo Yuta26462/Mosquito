@@ -13,8 +13,8 @@ Result::Result() {
 	HareBack = LoadGraph("Resource/Images/hare.png");
 	Donyori_Back = LoadGraph("Resource/Images/Gameover_Back.png");
 	TextCount = 0;
-	Font_string = CreateFontToHandle("Font_string", 40, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4);
-	Font_num = CreateFontToHandle("Font_num", 30, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4);
+	Font_string = CreateFontToHandle("Font_string", 40, 1, DX_FONTTYPE_ANTIALIASING_8X8);
+	Font_num = CreateFontToHandle("Font_num", 30, 1, DX_FONTTYPE_ANTIALIASING_8X8);
 
 	if (finishFlg == true) {
 		PlaySoundMem(GameOver_BGM, DX_PLAYTYPE_BACK, TRUE);
