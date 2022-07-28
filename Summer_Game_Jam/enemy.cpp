@@ -13,7 +13,8 @@
 
 Enemy enemy[15];
 
-void Enemy::InitEnemy() {
+
+void Enemy::InitEnemy(Enemy* enemy) {
 	for (int i = 0; i < 15; i++) {
 		enemy[i].flg = false;
 		enemy[i].NowX = 0;
@@ -25,25 +26,24 @@ void Enemy::InitEnemy() {
 	for (int j = 0; j < 6; j++) {
 		EnemyIntoArea[j] = 0;
 	}
-	Died_enemy = 0;
-	Enemy_cnt = 0;
-	Score = 0;
-	Combo = 0;
+	enemy->Died_enemy = 0;
+	enemy->Enemy_cnt = 0;
+	enemy->Score = 0;
+	enemy->Combo = 0;
 	MissingSE= LoadSoundMem("Resource/Sounds/SE/swing1.wav");
 	
 }
 
 void Enemy::DrawEnemy() const {
-	int DieX, DieY;
-	static bool startflg = true;
+	//int DieX, DieY;
+	//static bool startflg = true;
 	if (flg) {
 		DrawRotaGraph(NowX, NowY, 0.1, 0, Enemy_img, TRUE, FALSE);
 	}
 	
 }
 
-void Enemy::MoveEnemy(int time) {
-	
+void Enemy::MoveEnemy(Enemy* enemy,int time) {
 	if (AttackInterval <= 0)SetCombo(FALSE);
 	CheckEnemyIntoArea(enemy);
 	if (time % 120 == 0 ) {
@@ -102,8 +102,8 @@ void Enemy::MoveEnemy(int time) {
 							enemy->Died_enemy++;
 							DeleteEnemy(i);
 						}
-						else if (EnemyIntoArea[AreaNum] <= 0) {
-							Missflg = true;
+						 if (EnemyIntoArea[AreaNum] <= 0) {
+							//Missflg = true;
 							enemy->SetCombo(FALSE);
 						}
 					}
@@ -209,7 +209,7 @@ void Enemy::CheckEnemyAlive(Enemy* enemy) {
 			break;
 		}
 	}
-	if (i >= 10) {
+	if (i >= 15) {
 		Enemy_AliveFlg = false;
 	}
 }
@@ -217,7 +217,7 @@ void Enemy::CheckEnemyAlive(Enemy* enemy) {
 void Enemy::CheckEnemyIntoArea(Enemy* enemy) {
 	int NewEnemy_num[6] = { 0,0,0,0,0,0 };
 	for (int i = 0; i < 15; i++) {
-		if (enemy[i].flg) {
+		//if (enemy[i].flg) {
 			switch (enemy[i].Enemy_Area)
 			{
 			case 0:
@@ -241,7 +241,7 @@ void Enemy::CheckEnemyIntoArea(Enemy* enemy) {
 			default:
 				continue;
 			}
-		}
+		//}
 	}
 	for (int j = 0; j < 6; j++) {
 		EnemyIntoArea[j] = NewEnemy_num[j];

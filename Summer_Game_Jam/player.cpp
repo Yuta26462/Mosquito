@@ -19,7 +19,7 @@ void Player_Initialize() {
 	AttackCount = 0;
 	AreaNum = 0;
 	AttackFlg = false;
-	AttackInterval = 180;
+	AttackInterval = 120;
 }
 void Player_Finalize() {
 	DeleteGraph(WeaponImage);
@@ -30,11 +30,12 @@ void Player_Update() {
 
 		//Aƒ{ƒ^ƒ“‚ÅUŒ‚
 		if (g_KeyFlg & 16) {
+			AttackFlg = true;
 			//AttackFlg[AreaNum] = true;
 			if (enemy->GetEnemyIntoArea(AreaNum))PlaySoundMem(Flyswatter_SE, DX_PLAYTYPE_BACK, TRUE);
 			else PlaySoundMem(enemy->GetMissSE(), DX_PLAYTYPE_BACK, TRUE);
-			AttackFlg = true;
-			AttackInterval = 180;
+			
+			AttackInterval = 120;
 		}
 
 		

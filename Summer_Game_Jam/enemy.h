@@ -22,10 +22,10 @@ private:
 public:
 	//Enemy();
 	bool flg;
-	void InitEnemy();		//‰á‰Šú‰»ŠÖ”
+	void InitEnemy(Enemy* enemy);		//‰á‰Šú‰»ŠÖ”
 	void DrawEnemy() const;		//‰á•`‰æŠÖ”
 	//void Drawene(Enemy enmey) const; int enemy_x, int enemy_y, bool flg/*, bool* died_flg*/
-	void MoveEnemy(int time);		//‰áˆÚ“®ŠÖ”
+	void MoveEnemy(Enemy* enemy,int time);		//‰áˆÚ“®ŠÖ”
 	int SetEnemySpeed();					
 	void CreateEnemy(int Make_enemys);		//‰á¶¬ŠÖ”
 	void GetEnemyPos(int* enemy_x, int* enemy_y, int enemy_pos);					//‰áoŒ»ˆÊ’uŒˆ’èŠÖ”

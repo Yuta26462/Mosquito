@@ -2,7 +2,6 @@
 #include "BaseScene.h"
 #include "enemy.h"
 
-
 class GameMain : public BaseScene {
 private:
 	mutable int TimeLimt;
@@ -11,8 +10,9 @@ private:
 	mutable int Moon_img, Sun_img;
 	mutable int MoonX,MoonY,SunX,SunY;
 	mutable int BackgroundColor, Bright;
-	bool StartFlg;
+	//bool StartFlg;
 	int StatusFont;
+	
 public:
 	GameMain();
 	virtual ~GameMain() {};

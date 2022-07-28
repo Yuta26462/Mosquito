@@ -19,7 +19,7 @@ GameMain::GameMain() {
 	TimeLimt = 1800;
 	Player_Initialize();
 	Sleep_Initialize();
-	enemy->InitEnemy();
+	enemy->InitEnemy(enemy);
 	StatusFont = CreateFontToHandle("StatusFont", 20, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4);
 	MoonX = 200;
 	MoonY = 130;
@@ -27,6 +27,7 @@ GameMain::GameMain() {
 	SunY = 500;
 	BackgroundColor = RGB(41, 42, 62);
 	Bright = 140;
+	
 }
 
 BaseScene* GameMain::Update() {
@@ -43,7 +44,7 @@ BaseScene* GameMain::Update() {
 	}
 	if (TimeLimt < 900)StopSoundMem(Main_BGM);
 	
-	enemy->MoveEnemy(TimeLimt);
+	enemy->MoveEnemy(enemy,TimeLimt);
 	enemy->CheckEnemyAlive(enemy);
 	Player_Update();
 	Sleep_Update(enemy);
@@ -81,8 +82,11 @@ void GameMain::Draw() const {
 	Player_Draw();
 	Sleep_Draw();
 
-	DrawStringToHandle(500, 50, "Time", 0xffff00, StatusFont);
-	DrawFormatStringToHandle(570, 50, 0xffffff, StatusFont, "%d", TimeLimt / 60);
+	/*for (int j = 0; j < 6; j++) {
+		DrawFormatString(j * 50, 200, 0xffffff, "%d", enemy->GetEnemyIntoArea(j));
+	}*/
+	/*DrawStringToHandle(500, 50, "Time", 0xffff00, StatusFont);
+	DrawFormatStringToHandle(570, 50, 0xffffff, StatusFont, "%d", TimeLimt / 60);*/
 	DrawStringToHandle(500, 80, "Score", 0xffff00, StatusFont);
 	DrawFormatStringToHandle(570, 80, 0xfca800, StatusFont, "%d", enemy->GetScore());
 	DrawFormatStringToHandle(495, 120, 0xfca800, StatusFont, " %d", enemy->GetCombo());
