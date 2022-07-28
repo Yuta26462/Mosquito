@@ -116,11 +116,11 @@ void Title::Draw() const {
 	}else {
 		//タイトル画像表示
 		DrawGraph(0, 0, Title_img, FALSE);
-		DrawStringToHandle(230, 250, "スタート", 0xFFFFFF, MenuFont, 0xDC6560);
-		DrawStringToHandle(230, 295, "操作説明", 0xFFFFFF, MenuFont, 0xDC6560);
-		DrawStringToHandle(230, 340, "クレジット", 0xFFFFFF, MenuFont, 0xDC6560);
-		DrawStringToHandle(230, 385, "ゲーム終了", 0xFFFFFF, MenuFont, 0xDC6560);
-		DrawCircleAA(200, 270 + SelectNo * 45, 16.0f, 3, 0xDC6560, TRUE);
+		DrawStringToHandle(230, 250, "スタート", SelectNo == 0 ? 0xFFFFFF : 0x292A3E, MenuFont, 0xDC6560);
+		DrawStringToHandle(230, 295, "操作説明", SelectNo == 1 ? 0xFFFFFF : 0x292A3E, MenuFont, 0xDC6560);
+		DrawStringToHandle(230, 340, "クレジット", SelectNo == 2 ? 0xFFFFFF : 0x292A3E, MenuFont, 0xDC6560);
+		DrawStringToHandle(230, 385, "ゲーム終了", SelectNo == 3 ? 0xFFFFFF : 0x292A3E, MenuFont, 0xDC6560);
+		//DrawCircleAA(200, 270 + SelectNo * 45, 16.0f, 3, 0xDC6560, TRUE);
 		
 
 	}

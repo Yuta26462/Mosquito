@@ -8,6 +8,9 @@ private:
 	mutable int TimeLimt;
 	mutable int Main_BGM, MainUp_BGM;
 	mutable int Wind_chimes_SE;
+	mutable int Moon_img, Sun_img;
+	mutable int MoonX,MoonY,SunX,SunY;
+	mutable int BackgroundColor, Bright;
 	bool StartFlg;
 	int StatusFont;
 public:
