@@ -6,6 +6,7 @@
 #include "player.h"
 #include "sleep.h"
 
+int GameMain::StatusFont;
 
 GameMain::GameMain() {
 	Main_BGM = LoadSoundMem("Resource/Sounds/BGM/Title.wav");
@@ -20,7 +21,7 @@ GameMain::GameMain() {
 	Player_Initialize();
 	Sleep_Initialize();
 	enemy->InitEnemy(enemy);
-	StatusFont = CreateFontToHandle("StatusFont", 20, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4);
+	StatusFont = CreateFontToHandle("StatusFont", 20, 1, DX_FONTTYPE_ANTIALIASING_4X4);
 	MoonX = 200;
 	MoonY = 130;
 	SunX = 640;
@@ -95,4 +96,8 @@ void GameMain::Draw() const {
 
 int GameMain::GetTime() const {
 	return TimeLimt;
+}
+
+int GameMain::GetFont() {
+	return StatusFont;
 }

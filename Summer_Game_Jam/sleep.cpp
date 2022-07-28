@@ -42,8 +42,7 @@ void Sleep_Draw() {
 		DrawBox(0, 0, 640 + 20 * gauge / gaugeMax, 10 + 20, red, TRUE);
 	}
 	DrawBox(0, 0, 620 + 20, 10 + 20, black, FALSE);
-	SetFontSize(20);
-	DrawString(260, 5, "睡眠ゲージ", 0x000000);
+	DrawStringToHandle(260, 5, "睡眠ゲージ", 0x000000, GameMain::GetFont());
 }
 
 void Sleep_Player_Draw() {
